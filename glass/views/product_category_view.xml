@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_categories_with_margin">
+            <field name="name">product_categories_with_margin</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='first']" position="after">
+                    <group name="sale" col="4" string="Sale">
+                        <field name="margin_default"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

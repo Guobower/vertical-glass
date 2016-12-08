@@ -1,4 +1,8 @@
 from openerp import models, fields, api
 
-class product_glass_shape(models.Model):
-    _name = 'Glass Shape'
+class GlassShape(models.Model):
+    _name = 'glass.shape'
+    _description = 'Glass Shape'
+
+    name = fields.Char('Name', required=True)
+    multiplier = fields.Float('Multiplier', required=True, default=1)    

@@ -1,7 +1,7 @@
 from openerp import models, fields, api
 
-class res_partner(models.Model):
-    _inherit = ['res.partner']
+class Partner(models.Model):
+    _inherit = 'res.partner'
     
     ref_auto = fields.Char(string="Customer Reference", compute='_compute_customer_reference')
 

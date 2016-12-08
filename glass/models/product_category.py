@@ -1,4 +1,6 @@
 from openerp import models, fields, api
 
-class product_category(models.Model):
-    _inherit = ['product.category']
+class ProductCategory(models.Model):
+    _inherit = 'product.category'
+
+    margin_default = fields.Float('Default Margin', default=1)

@@ -1,4 +1,8 @@
 from openerp import models, fields, api
 
-class sale_order(models.Model):
-    _inherit = ['sale.order']
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    reference_auto = fields.Char('Reference auto')
+    header_text = fields.Text('Header text')
+    footer_text = fields.Text('Footer text')
