@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="partner_with_auto_reference">
+            <field name="name">partner_with_auto_reference</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="ref_auto" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
