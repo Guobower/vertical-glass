@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_glass_shape_form">
+            <field name="name">product_glass_shape_form</field>
+            <field name="model">product.glass.shape</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                        <field name="multiplier" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_glass_shape_tree">
+            <field name="name">product_glass_shape_tree</field>
+            <field name="model">product.glass.shape</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="multiplier" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_glass_shape_action">
+            <field name="name">Glass Shapes</field>
+            <field name="res_model">product.glass.shape</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="product_glass_shape_menu" name="Product Shapes" parent="glass_sale_config_menu"
+                  sequence="20" action="product_glass_shape_action"/>
+    </data>
+</openerp>

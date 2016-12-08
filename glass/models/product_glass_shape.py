@@ -1,7 +1,7 @@
 from openerp import models, fields, api
 
 class GlassShape(models.Model):
-    _name = 'glass.shape'
+    _name = 'product.glass.shape'
     _description = 'Glass Shape'
 
     name = fields.Char('Name', required=True)

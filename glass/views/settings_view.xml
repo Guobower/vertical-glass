@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <menuitem id="glass_sale_config_menu" name="Glass Company" parent="base.menu_sale_config" action=""/>
+    </data>
+</openerp>

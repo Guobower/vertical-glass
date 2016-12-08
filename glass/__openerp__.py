@@ -14,7 +14,10 @@
     This module has been developed by AbAKUS it-solutions
     """,
     'data': [
+        'views/settings_view.xml',
         'views/product_category_view.xml',
+        'views/product_glass_shape_view.xml',
+        'views/product_glass_edge_view.xml',
         'views/res_partner_view.xml',
 
         'data/product_category_data.xml',
