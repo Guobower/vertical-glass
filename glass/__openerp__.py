@@ -1,5 +1,5 @@
 {
-    'name': "Partner Auto Reference",
+    'name': "Glass Company in Odoo",
     'version': '9.0.1.0.1',
     'depends': [
 	   'base',
@@ -9,8 +9,7 @@
     'category': 'Sale',
     'description': 
     """
-    This modules adds a method on the partners to auto set a
-    specific partner reference (based on a sequence) on the REFERENCE field.
+    
     
     This module has been developed by AbAKUS it-solutions
     """,
