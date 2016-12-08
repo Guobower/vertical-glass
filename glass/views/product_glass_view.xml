@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_product_glass_form">
+            <field name="name">product_product_glass_form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='list_price']" position="after">
+                    <field name="minimum_invoicable"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

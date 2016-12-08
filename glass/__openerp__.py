@@ -2,7 +2,7 @@
     'name': "Glass Company in Odoo",
     'version': '9.0.1.0.1',
     'depends': [
-	   'base',
+	   'sale',
     ],
     'author': "AbAKUS it-solutions SARL",
     'website': "http://www.abakusitsolutions.eu",
@@ -19,6 +19,7 @@
         'views/product_glass_shape_view.xml',
         'views/product_glass_edge_view.xml',
         'views/res_partner_view.xml',
+        'views/product_glass_view.xml',
 
         'data/product_category_data.xml',
         ],
