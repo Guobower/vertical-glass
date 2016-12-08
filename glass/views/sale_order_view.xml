@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="sale_order_for_glass_form">
+            <field name="name">sale_order_for_glass_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="reference_auto"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="before">
+                    <field name="header_text"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="after">
+                    <field name="footer_text"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

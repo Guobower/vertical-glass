@@ -20,6 +20,7 @@
         'views/product_glass_edge_view.xml',
         'views/res_partner_view.xml',
         'views/product_glass_view.xml',
+        'views/sale_order_view.xml',
 
         'data/product_category_data.xml',
         ],
