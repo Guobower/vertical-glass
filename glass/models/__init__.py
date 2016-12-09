@@ -1,3 +1,4 @@
+from . import res_config
 from . import product_category
 from . import product_glass
 from . import product_glass_edge

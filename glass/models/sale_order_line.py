@@ -4,8 +4,10 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     # name
+    name = fields.Char('Name')
     description_structured = fields.Text('Line structured description')
     sale_order_line_sub_ids = fields.One2many('sale.order.line.sub', 'order_line_id', 'Sub Order Lines')
+    sub_lines_total = fields.Float('Lines Total', compute='_compute_sub_lines_total', store=True)
 
     installation = fields.Boolean('Installation', default=False)
     installation_qty = fields.Float('Installation Quantity')
@@ -20,4 +22,12 @@ class SaleOrderLine(models.Model):
 
     # price_unit
     margin_applied = fields.Float('Applied margin')
-    # price total
+    # price_total
+
+    @api.depends('sub_lines_total')
+    def _compute_sub_lines_total(self):
+        for line in self:
+            t = 0
+            for sub_line in line.sale_order_line_sub_ids:
+                t = t + sub_line.total
+            line.sub_lines_total = t

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="sale_order_line_for_glass_form">
+            <field name="name">sale_order_line_for_glass_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form" position="replace">
+                    <form string="Sales Order Lines">
+                        <group>
+                            <notebook>
+                                <page string="Content">
+                                    <h3>
+                                        <label string="Title" name="title"/>
+                                    </h3>
+                                    <field name="name" />
+                                    <group>
+                                        <button name="add_glass" string="Add Glass" type="object"/>
+                                        <button name="add_accessory" string="Add Accessory" type="object"/>
+                                    </group>
+                                    <field name="sale_order_line_sub_ids">
+                                        <tree>
+                                            <field name="description" />
+                                            <field name="qantity" />
+                                            <field name="total" />
+                                        </tree>
+                                    </field>
+                                    <group class="oe_subtotal_footer oe_right" colspan="2" name="total_lines">
+                                        <field name="sub_lines_total" widget="monetary"/>
+                                    </group>
+                                    <group>
+                                        <div class="address_format">
+                                            <field name="installation" nolabel="1"/>
+                                            <field name="installation_qty" nolabel="1"/>
+                                            <label string="x 1h = " />
+                                            <field name="installation_total" nolabel="1" widget="monetary"/>
+                                        </div>
+                                        <group class="oe_left" colspan="8">
+                                            <field name="moving" nolabel="1"/>
+                                            <field name="moving_qty" nolabel="1"/>
+                                            <label string="x 1h = " />
+                                            <field name="moving_total" nolabel="1" widget="monetary"/>
+                                        </group>
+                                        <group class="oe_left" colspan="8">
+                                            <field name="km_qty" />
+                                            <field name="km_total" />
+                                        </group>
+                                    </group>
+                                    <group class="oe_subtotal_footer oe_right" colspan="4" name="total">
+                                        <field name="price_unit" />
+                                        <field name="margin_applied" />
+                                        <field name="price_total" widget="monetary"/>
+                                    </group>
+                                </page>
+                                
+                                <page string="Description">
+                                    <field name="description_structured" readonly="1"/>
+                                </page>
+                            </notebook>
+                        </group>
+                    </form>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

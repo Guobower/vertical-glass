@@ -4,7 +4,9 @@ class SaleOrderLineSub(models.Model):
     _name = 'sale.order.line.sub'
     _description = 'Sub Order Line Shape'
 
-    order_line_id = fields.Many2one('sale.order.line', 'Sale Order Line', required=True)
+    order_line_id = fields.Many2one('sale.order.line', 'Sale Order Line')
+
+    description = fields.Text(string="Description")
 
     glass_id = fields.Many2one('product.product', 'Product', required=True)
     shape_id = fields.Many2one('product.glass.shape', 'Shape')
