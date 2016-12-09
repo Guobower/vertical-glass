@@ -17,9 +17,18 @@
                         <field name="default_footer_text" class="oe_inline"/>
                     </group>
                     <group>
-                        <field name="installation_product_id" class="oe_inline"/>
-                        <field name="moving_product_id" class="oe_inline" />
-                        <field name="km_product_id" class="oe_inline" />
+                        <group>
+                            <field name="installation_product_id" class="oe_inline"/>
+                            <field name="installation_price" widget="monetary" />
+                        </group>
+                        <group>
+                            <field name="moving_product_id" class="oe_inline" />
+                            <field name="moving_price" widget="monetary" />
+                        </group>
+                        <group>
+                            <field name="km_product_id" class="oe_inline" />
+                            <field name="km_price" widget="monetary"/>
+                        </group>
                     </group>
                 </form>
             </field>

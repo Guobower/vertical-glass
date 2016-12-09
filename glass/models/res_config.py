@@ -13,7 +13,7 @@ class sale_glass_company_config_setting_check_config(models.Model):
     installation_product_id = fields.Many2one('product.product', 'Product for Installation')
     moving_product_id = fields.Many2one('product.product', 'Product for Moving')
     km_product_id = fields.Many2one('product.product', 'Product for KM')
-    
+
 class sale_glass_company_config_settings(models.TransientModel):
     _inherit = 'res.config.settings'
     _name = 'glass.sale.config.settings'
@@ -24,6 +24,10 @@ class sale_glass_company_config_settings(models.TransientModel):
     installation_product_id = fields.Many2one('product.product', 'Product for Installation')
     moving_product_id = fields.Many2one('product.product', 'Product for Moving')
     km_product_id = fields.Many2one('product.product', 'Product for KM')
+
+    installation_price = fields.Float('Installation Price', related='installation_product_id.list_price')
+    moving_price = fields.Float('Moving Price', related='moving_product_id.list_price')
+    km_price = fields.Float('KM Price', related='km_product_id.list_price')
 
     @api.model
     def get_default_glass_sale_config_settings_values(self, fields):
