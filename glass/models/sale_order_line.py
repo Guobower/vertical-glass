@@ -33,7 +33,7 @@ class SaleOrderLine(models.Model):
             line.sub_lines_total = t
 
     @api.model
-    @api.depends('installation', 'installation_qty', 'moving', 'moving_total', 'km_qty', 'sub_lines_total')
+    @api.depends('installation', 'installation_qty', 'moving', 'moving_total', 'km_qty', 'sub_lines_total', 'margin_applied')
     def _compute_totals(self):
         setting = self.env['glass.sale.config.settings.data'].search([])
         if len(setting) > 1:
@@ -59,4 +59,4 @@ class SaleOrderLine(models.Model):
             line.price_unit = line.sub_lines_total + line.installation_total + line.moving_total + line.km_total
 
             # total with margin
-            line.pric_total = line.price_unit * line.margin_applied
+            line.price_total = line.price_unit * line.margin_applied
