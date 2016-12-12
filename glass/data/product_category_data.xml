@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="1">
-        <record model="product.category">
+        <record id="product_category_glass" model="product.category">
             <field name="name">Vitrages</field>
             <field name="parent_id" ref="product.product_category_1" />
             <field name="margin_default">1.0</field>
         </record>
 
-        <record model="product.category">
+        <record id="product_category_acessories" model="product.category">
             <field name="name">Accessoires</field>
             <field name="parent_id" ref="product.product_category_1" />
             <field name="margin_default">1.0</field>
         </record>
 
-        <record model="product.category">
+        <record id="product_category_installation" model="product.category">
             <field name="name">MO Pose</field>
             <field name="parent_id" ref="product.product_category_1" />
             <field name="margin_default">1.0</field>
         </record>
 
-        <record model="product.category">
+        <record id="product_category_moving" model="product.category">
             <field name="name">MO Déplacement</field>
             <field name="parent_id" ref="product.product_category_1" />
             <field name="margin_default">1.0</field>
         </record>
 
-        <record model="product.category">
+        <record id="product_category_km" model="product.category">
             <field name="name">KM</field>
             <field name="parent_id" ref="product.product_category_1" />
             <field name="margin_default">1.0</field>
         </record>
 
-        <record model="product.category">
+        <record id="product_category_misc" model="product.category">
             <field name="name">Divers</field>
             <field name="parent_id" ref="product.product_category_1" />
             <field name="margin_default">1.0</field>
