@@ -14,11 +14,15 @@ class SaleOrderLine(models.Model):
     installation_total = fields.Float('Installation Total', compute='_compute_totals')
 
     moving = fields.Boolean('Moving', default=False)
-    moving_qty = fields.Float('Moving Quantity')
+    moving_qty = fields.Float('Moving Quantity', default=1)
     moving_total = fields.Float('Moving Total', compute='_compute_totals')
 
+    km = fields.Boolean('KM', default=True)
     km_qty = fields.Float('KM Quantity')
     km_total = fields.Float('KM Total', compute='_compute_totals')
+
+    miscellaneous = fields.Boolean('Misc.', default=False)
+    miscellaneous_total = fields.Float('Misc. Total')
 
     price_unit = fields.Float('Price', compute='_compute_totals')
     margin_applied = fields.Float('Applied margin')
@@ -33,7 +37,7 @@ class SaleOrderLine(models.Model):
             line.sub_lines_total = t
 
     @api.model
-    @api.depends('installation', 'installation_qty', 'moving', 'moving_total', 'km_qty', 'sub_lines_total', 'margin_applied')
+    @api.depends('installation', 'installation_qty', 'moving', 'moving_qty', 'moving_total', 'km', 'km_qty', 'sub_lines_total', 'margin_applied', 'miscellaneous', 'miscellaneous_total')
     def _compute_totals(self):
         setting = self.env['glass.sale.config.settings.data'].search([])
         if len(setting) > 1:
@@ -53,10 +57,17 @@ class SaleOrderLine(models.Model):
                 line.moving_total = 0
 
             # KM total
-            line.km_total = line.km_qty * setting.km_price
+            if line.km:
+                line.km_total = line.km_qty * setting.km_price
+            else:
+                line.km_total = 0
+
+            # Misc
+            if not line.miscellaneous:
+                line.miscellaneous_total = 0
 
             # total without margin
-            line.price_unit = line.sub_lines_total + line.installation_total + line.moving_total + line.km_total
+            line.price_unit = line.sub_lines_total + line.installation_total + line.moving_total + line.km_total + line.miscellaneous_total
 
             # total with margin
             line.price_total = line.price_unit * line.margin_applied

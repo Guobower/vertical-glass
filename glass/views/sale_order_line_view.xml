@@ -27,26 +27,33 @@
                                         </tree>
                                     </field>
                                     <group class="oe_subtotal_footer oe_right" colspan="2" name="total_lines">
-                                        <field name="sub_lines_total" widget="monetary"/>
+                                        <field name="sub_lines_total" widget="monetary" />
                                     </group>
-                                    <group>
-                                        <div class="address_format">
-                                            <field name="installation" nolabel="1"/>
-                                            <field name="installation_qty" nolabel="1"/>
+                                    <group col="1" colspan="3">
+                                        <group col="5">
+                                            <field name="installation" />
+                                            <field name="installation_qty" nolabel="1" />
                                             <label string="x 1h = " />
-                                            <field name="installation_total" nolabel="1" widget="monetary"/>
-                                        </div>
-                                        <group class="oe_left" colspan="8">
-                                            <field name="moving" nolabel="1"/>
-                                            <field name="moving_qty" nolabel="1"/>
-                                            <label string="x 1h = " />
-                                            <field name="moving_total" nolabel="1" widget="monetary"/>
+                                            <field name="installation_total" nolabel="1" widget="monetary" />
                                         </group>
-                                        <group class="oe_left" colspan="8">
-                                            <field name="km_qty" />
-                                            <field name="km_total" />
+                                        <group col="5">
+                                            <field name="moving" />
+                                            <field name="moving_qty" nolabel="1" />
+                                            <label string="x 1h = " />
+                                            <field name="moving_total" nolabel="1" widget="monetary" />
+                                        </group>
+                                        <group col="5">
+                                            <field name="km"/>
+                                            <field name="km_qty" nolabel="1" />
+                                            <label string="KM" />
+                                            <field name="km_total" nolabel="1" />
+                                        </group>
+                                        <group col="3">
+                                            <field name="miscellaneous"/>
+                                            <field name="miscellaneous_total" nolabel="1"/>
                                         </group>
                                     </group>
+                                    <separator />
                                     <group class="oe_subtotal_footer oe_right" colspan="4" name="total">
                                         <field name="price_unit" />
                                         <field name="margin_applied" />
