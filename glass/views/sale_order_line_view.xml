@@ -127,7 +127,7 @@
                                     <field name="description_structured" readonly="1"/>
                                 </page>
                                 <page string="Other Info">
-                                    <field name="tax_id" />
+                                    <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
                                 </page>
                             </notebook>
                         </group>

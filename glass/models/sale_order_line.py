@@ -30,6 +30,15 @@ class SaleOrderLine(models.Model):
     price_unit = fields.Float('Price', compute='_compute_totals', store=True)
     margin_applied = fields.Float('Applied margin', default=1.0)
 
+    @api.model
+    def get_taxes(self):
+        setting = self.env['account.config.settings'].search([('company_id', '=', self.env.user.company_id.id)])
+        if len(setting) > 1:
+            setting = setting[0]
+        return [(6, 0, [setting.sale_tax_id.id])]
+
+    tax_id = fields.Many2many('account.tax', string='Taxes', domain=['|', ('active', '=', False), ('active', '=', True)], default=get_taxes)
+
     @api.multi
     @api.depends('sale_order_line_sub_ids')
     def _compute_description(self):
