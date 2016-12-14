@@ -26,5 +26,7 @@
 
         'data/product_category_data.xml',
         'data/glass_company_setting.xml',
+
+        'reports/sale_order_report.xml',
         ],
 }

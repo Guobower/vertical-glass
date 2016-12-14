@@ -23,3 +23,11 @@ class SaleOrder(models.Model):
         if len(setting) > 1:
             setting = setting[0]
         return setting.default_footer_text
+
+    @api.multi
+    def print_technical(self):
+        return self.env['report'].get_action(self, 'glass.sale_order_technical_report_template')
+
+    @api.multi
+    def print_full(self):
+        return self.env['report'].get_action(self, 'glass.sale_order_ful_report_template')

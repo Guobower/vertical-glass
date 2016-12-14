@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- NORMAL SALE ORDER REPORT -->
+        <template id="sale_order_report_customer" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[@class='page']" position="replace">
+                <div class="page">
+                    <style type="text/css">
+                    </style>
+                </div>
+            </xpath>
+        </template>
+
+        <!-- TECHNICAL SALE ORDER REPORT -->
+        <report
+			id="sale_order_technical_report"
+			string="Technical Report"
+			model="sale.order" 
+			report_type="qweb-pdf"
+			file="technical_report" 
+			name="glass.sale_order_technical_report_template"
+			/>
+
+        <template id="sale_order_technical_report_template">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="glass.sale_order_technical_report_document" t-lang="o.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+
+		<template id="sale_order_technical_report_document">
+			<t t-name="glass.sale_order_technical_report_document">
+                <div class="page">
+                    <style type="text/css">
+                    </style>
+                </div>
+            </t>
+        </template>
+
+        <!-- FULL SALE ORDER REPORT -->
+        <report
+			id="sale_order_full_report"
+			string="Full Report"
+			model="sale.order" 
+			report_type="qweb-pdf"
+			file="technical_report" 
+			name="glass.sale_order_ful_report_template"
+			/>
+
+        <template id="sale_order_ful_report_template">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="glass.sale_order_full_report_document" t-lang="o.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+
+		<template id="sale_order_full_report_document">
+			<t t-name="glass.sale_order_technical_report_document">
+                <div class="page">
+                    <style type="text/css">
+                    </style>
+                </div>
+            </t>
+        </template>
+    </data>
+</openerp>
