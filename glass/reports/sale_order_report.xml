@@ -7,6 +7,50 @@
                 <div class="page">
                     <style type="text/css">
                     </style>
+                    <div class="oe_structure"/>
+                    <div class="row">
+                        <div class="col-xs-3 col-xs-offset-6">
+                            <div t-field="doc.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                        </div>
+                        <div class="col-xs-3 col-xs-offset-6">
+                            <span t-esc="doc.create_date" t-esc-options='{"format": "d MMMM y"}'/>
+                        </div>
+                        <div class="col-xs-3 col-xs-offset-1">
+                            Our ref: <span t-field="doc.reference_auto" />
+                        </div>
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <p>
+                                <span t-field="doc.header_text" />
+                            </p>
+
+                            <t t-foreach="doc.order_line" t-as="l">
+                                <div>
+                                    <h4><u><span t-field="l.name" /></u></h4>
+                                    <p>
+                                        <span t-field="l.description_structured" />
+                                    </p>
+                                </div>
+                            </t>
+
+                            <div class="col-xs-4 pull-right">
+                                Total : <span t-field="doc.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/> HTVA
+                            </div>
+
+                            <p>
+                                <span t-field="doc.footer_text" />
+                            </p>
+
+                            <t t-if="doc.note">
+                                <p>
+                                    <span t-field="doc.note" />
+                                </p>
+                            </t>
+
+                            <div class="col-xs-3 col-xs-offset-6">
+                                <span t-field="doc.user_id.name" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </template>
