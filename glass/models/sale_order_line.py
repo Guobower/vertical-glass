@@ -1,11 +1,13 @@
 from openerp import models, fields, api
 
+import logging
+_logger = logging.getLogger(__name__)
+
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    # name
     name = fields.Char('Name')
-    description_structured = fields.Text('Line structured description')
+    description_structured = fields.Text('Line structured description', compute="_compute_description", store=True)
     sale_order_line_sub_ids = fields.One2many('sale.order.line.sub', 'order_line_id', 'Sub Order Lines')
     sub_lines_total = fields.Float('Lines Total', compute='_compute_sub_lines_total', store=True)
 
@@ -24,10 +26,20 @@ class SaleOrderLine(models.Model):
     miscellaneous = fields.Boolean('Misc.', default=False)
     miscellaneous_total = fields.Float('Misc. Total')
 
-    price_unit = fields.Float('Price', compute='_compute_totals')
-    margin_applied = fields.Float('Applied margin')
-    # price_total
+    price_tmp = fields.Float('Base price', compute='_compute_totals', store=True)
+    price_unit = fields.Float('Price', compute='_compute_totals', store=True)
+    margin_applied = fields.Float('Applied margin', default=1.0)
 
+    @api.multi
+    @api.depends('sale_order_line_sub_ids')
+    def _compute_description(self):
+        for line in self:
+            text = ''
+            for sub in line.sale_order_line_sub_ids:
+                text = text + str(sub.description.encode('utf-8')) + '\n'
+            line.description_structured = text
+
+    @api.multi
     @api.depends('sale_order_line_sub_ids')
     def _compute_sub_lines_total(self):
         for line in self:
@@ -36,7 +48,7 @@ class SaleOrderLine(models.Model):
                 t = t + sub_line.total
             line.sub_lines_total = t
 
-    @api.model
+    @api.multi
     @api.depends('installation', 'installation_qty', 'moving', 'moving_qty', 'moving_total', 'km', 'km_qty', 'sub_lines_total', 'margin_applied', 'miscellaneous', 'miscellaneous_total')
     def _compute_totals(self):
         setting = self.env['glass.sale.config.settings.data'].search([])
@@ -67,7 +79,38 @@ class SaleOrderLine(models.Model):
                 line.miscellaneous_total = 0
 
             # total without margin
-            line.price_unit = line.sub_lines_total + line.installation_total + line.moving_total + line.km_total + line.miscellaneous_total
+            line.price_tmp = line.sub_lines_total + line.installation_total + line.moving_total + line.km_total + line.miscellaneous_total
 
             # total with margin
-            line.price_total = line.price_unit * line.margin_applied
+            line.price_unit = line.price_tmp * line.margin_applied
+
+    @api.model
+    def create(self, values):
+        if 'product_id' not in values:
+            product_id = self.env['product.product'].create({
+                    'name': values['name'],
+                    'type': 'product',
+                    'sale_ok': False,
+                    'purchase_ok': False,
+                    'order_reference': self.order_id.name,
+                })
+            values['product_id'] = product_id.id
+        return super(SaleOrderLine, self).create(values)
+
+    @api.multi
+    def write(self, values):
+        for line in self:
+            if not line.product_id:
+                product_id = self.env['product.product'].create({
+                        'name': line.name,
+                        'type': 'product',
+                        'sale_ok': False,
+                        'purchase_ok': False,
+                        'order_reference': line.order_id.name,
+                        'order_line_id': line.id,
+                    })
+                line.product_id = produdtc_id.id
+            else:
+                line.product_id.name = line.name
+                line.product_id.order_line_id = line.id
+        return super(SaleOrderLine, self).write(values)      

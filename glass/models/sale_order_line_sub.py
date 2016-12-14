@@ -9,7 +9,7 @@ class SaleOrderLineSub(models.Model):
 
     order_line_id = fields.Many2one('sale.order.line', 'Sale Order Line')
     type = fields.Selection([('glass', 'Glass'), ('accessory', 'Accessory')], "Type", default='glass', required=True)
-    description = fields.Text(string="Description")
+    description = fields.Text(string="Description", compute='_compute_description', store=True)
 
     glass_id = fields.Many2one('product.product', 'Glass')
     accessory_id = fields.Many2one('product.product', 'Accessory')
@@ -94,7 +94,6 @@ class SaleOrderLineSub(models.Model):
     def _computeSubTotals(self):
         self.area_total = self.area * self.area_cost_price
         self.perimeter_total = self.perimeter * self.perimeter_cost_price
-        
 
     @api.one
     @api.depends('quantity', 'area_total', 'perimeter_total', 'multiplier')
@@ -103,3 +102,19 @@ class SaleOrderLineSub(models.Model):
             self.total = self.quantity * (self.area_total + self.perimeter_total) * self.multiplier
         if self.type == 'accessory':
             self.total = self.quantity * self.accessory_price * self.multiplier
+
+    @api.one
+    @api.depends('total')
+    def _compute_description(self):
+        if self.type == 'glass':
+            text = ''
+            if self.glass_id:
+                text = str(self.glass_id.categ_id.name.encode('utf-8')) + " - " + str(self.glass_id.name.encode('utf-8'))
+            if self.quantity:
+                text = text + "\n- " + str(self.quantity) + " volume(s) de " + str(self.width) + "mm x " + str(self.height) + "mm"
+            if self.edge_id:
+                text = text + "\n- " + str(self.edge_id.name.encode('utf-8')) + " (" + str(self.edge_width) + " / " + str(self.edge_height) + ")"
+            self.description = text
+        if self.type == 'accessory':
+            self.description = str(self.accessory_id.categ_id.name.encode('utf-8')) + " - " + str(self.accessory_id.name.encode('utf-8'))
+            

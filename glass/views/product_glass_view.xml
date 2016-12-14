@@ -9,6 +9,10 @@
                 <xpath expr="//field[@name='type']" position="after">
                     <field name="minimum_invoicable"/>
                 </xpath>
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="order_line_id" readonly="1" />
+                    <field name="order_reference" readonly="1" />
+                </xpath>
             </field>
         </record>
     </data>

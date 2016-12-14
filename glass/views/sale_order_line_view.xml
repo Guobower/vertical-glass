@@ -6,6 +6,16 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
+                <!-- SOL tree -->
+                <xpath expr="//field[@name='order_line']/tree" position="replace">
+                    <tree string="Sale lines" editable="">
+                        <field name="name" />
+                        <field name="description_structured" />
+                        <field name="tax_id" />
+                        <field name="price_unit" />
+                    </tree>
+                </xpath>
+                <!-- SOL and SOLS forms -->
                 <xpath expr="//field[@name='order_line']/form" position="replace">
                     <form string="Sales Order Lines">
                         <group>
@@ -108,13 +118,16 @@
                                     </group>
                                     <separator />
                                     <group class="oe_subtotal_footer oe_right" colspan="4" name="total">
-                                        <field name="price_unit" />
+                                        <field name="price_tmp" />
                                         <field name="margin_applied" />
-                                        <field name="price_total" widget="monetary"/>
+                                        <field name="price_unit" widget="monetary"/>
                                     </group>
                                 </page>
                                 <page string="Description">
                                     <field name="description_structured" readonly="1"/>
+                                </page>
+                                <page string="Other Info">
+                                    <field name="tax_id" />
                                 </page>
                             </notebook>
                         </group>
