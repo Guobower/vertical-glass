@@ -13,6 +13,9 @@
                     <field name="order_line_id" readonly="1" />
                     <field name="order_reference" readonly="1" />
                 </xpath>
+                <xpath expr="//field[@name='lst_price']" position="after">
+                    <field name="price_with_auto_margin" />
+                </xpath>
             </field>
         </record>
     </data>
