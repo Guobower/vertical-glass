@@ -16,8 +16,8 @@ class SaleOrderLineSub(models.Model):
 
     shape_id = fields.Many2one('product.glass.shape', 'Shape')
 
-    width = fields.Float('Width (mm)', default=100)
-    height = fields.Float('Height (mm)', default=100)
+    width = fields.Integer('Width (mm)', default=100)
+    height = fields.Integer('Height (mm)', default=100)
 
     edge_id = fields.Many2one('product.glass.edge', 'Edge')
     edge_width = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on W.', required=True, default=2)
