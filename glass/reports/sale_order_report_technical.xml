@@ -73,19 +73,19 @@
                                             </t>
                                         </t>
                                     </tbody>
-                                    <h5>Included</h5>
-                                    <ul>
-                                        <t t-if="l.installation">
-                                            <li>Installation: <span t-field="l.installation_qty" /> h</li>
-                                        </t>
-                                        <t t-if="l.moving">
-                                            <li>Moving: <span t-field="l.moving_qty" /> h</li>
-                                        </t>
-                                        <t t-if="l.km">
-                                            <li>KM: <span t-field="l.km_qty" /> km</li>
-                                        </t>
-                                    </ul>
                                 </table>
+                                <h5>Included</h5>
+                                <ul>
+                                    <t t-if="l.installation">
+                                        <li>Installation: <span t-field="l.installation_qty" /> h</li>
+                                    </t>
+                                    <t t-if="l.moving">
+                                        <li>Moving: <span t-field="l.moving_qty" /> h</li>
+                                    </t>
+                                    <t t-if="l.km">
+                                        <li>KM: <span t-field="l.km_qty" /> km</li>
+                                    </t>
+                                </ul>
                             </t>
                             <t t-if="o.note">
                                 <p>
