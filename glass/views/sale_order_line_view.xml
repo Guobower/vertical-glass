@@ -112,8 +112,7 @@
                                             <field name="km_total" nolabel="1" />
                                         </group>
                                         <group col="3">
-                                            <field name="miscellaneous"/>
-                                            <field name="miscellaneous_total" nolabel="1"/>
+                                            <field name="miscellaneous_total" />
                                         </group>
                                     </group>
                                     <separator />

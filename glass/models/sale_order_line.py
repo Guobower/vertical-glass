@@ -23,8 +23,7 @@ class SaleOrderLine(models.Model):
     km_qty = fields.Float('KM Quantity')
     km_total = fields.Float('KM Total', compute='_compute_totals')
 
-    miscellaneous = fields.Boolean('Misc.', default=False)
-    miscellaneous_total = fields.Float('Misc. Total')
+    miscellaneous_total = fields.Float('Miscelaneous', default=0)
 
     price_tmp = fields.Float('Base price', compute='_compute_totals', store=True)
     price_unit = fields.Float('Price', compute='_compute_totals', store=True)
@@ -58,7 +57,7 @@ class SaleOrderLine(models.Model):
             line.sub_lines_total = t
 
     @api.multi
-    @api.depends('installation', 'installation_qty', 'moving', 'moving_qty', 'moving_total', 'km', 'km_qty', 'sub_lines_total', 'margin_applied', 'miscellaneous', 'miscellaneous_total')
+    @api.depends('installation', 'installation_qty', 'moving', 'moving_qty', 'moving_total', 'km', 'km_qty', 'sub_lines_total', 'margin_applied', 'miscellaneous_total')
     def _compute_totals(self):
         setting = self.env['glass.sale.config.settings.data'].search([])
         if len(setting) > 1:
@@ -82,10 +81,6 @@ class SaleOrderLine(models.Model):
                 line.km_total = line.km_qty * setting.km_price
             else:
                 line.km_total = 0
-
-            # Misc
-            if not line.miscellaneous:
-                line.miscellaneous_total = 0
 
             # total without margin
             line.price_tmp = line.sub_lines_total + line.installation_total + line.moving_total + line.km_total + line.miscellaneous_total
