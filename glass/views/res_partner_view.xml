@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="partner_with_auto_reference">
-            <field name="name">partner_with_auto_reference</field>
+        <record model="ir.ui.view" id="partner_glass_company">
+            <field name="name">partner_glass_company</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
@@ -10,6 +10,11 @@
                     <h2>
                         <label string="Customer Reference:" />
                         <field name="ref_auto" />
+                        
+                    </h2>
+                    <h2>
+                        <label string="Glass Supplier: " />
+                        <field name="glass_supplier" />
                     </h2>
                 </xpath>
             </field>
