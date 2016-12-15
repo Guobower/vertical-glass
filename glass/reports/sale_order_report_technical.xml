@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- TECHNICAL SALE ORDER REPORT -->
+        <report
+			id="sale_order_technical_report"
+			string="Technical Report"
+			model="sale.order" 
+			report_type="qweb-pdf"
+			file="technical_report" 
+			name="glass.sale_order_technical_report_template"
+			/>
+
+        <template id="sale_order_technical_report_template">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="glass.sale_order_technical_report_document" t-lang="o.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+
+		<template id="sale_order_technical_report_document">
+			<t t-name="glass.sale_order_technical_report_document">
+                <div class="page">
+                    <style type="text/css">
+                    </style>
+                    <div class="oe_structure"/>
+                    <div class="row">
+                        <div class="col-xs-3 col-xs-offset-6">
+                            <div t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                        </div>
+                        <div class="col-xs-3 col-xs-offset-6">
+                            <span t-esc="o.create_date" t-esc-options='{"format": "d MMMM y"}'/>
+                        </div>
+                        <div class="col-xs-3 col-xs-offset-1">
+                            Our ref: <span t-field="o.name" /> <br />
+                            Cusomer ref: <span t-field="o.reference_auto" /> <br />
+                            Salesman: <span t-field="o.user_id.name" /> <br />
+                        </div>
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <t t-foreach="o.order_line" t-as="l">
+                                <h4><u><span t-field="l.name" /></u></h4>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr width="75%">Description</tr>
+                                        <tr width="25%">Quantity</tr>
+                                    </thead>
+                                    <tbody class="sale_tbody">
+                                        <t t-foreach="l.sale_order_line_sub_ids" t-as="sub">
+                                            <t t-if="sub.type == 'glass'">
+                                                <tr>
+                                                    <td>
+                                                        Glass: <br />
+                                                        <span t-field="sub.glass_id.name" /> - <span t-field="sub.shape_id.name" /> <br />
+                                                        <span t-field="sub.width" />mm x <span t-field="sub.height" />mm <br /> (<span t-field="sub.area" />m<sup>3</sup> - <span t-field="sub.perimeter" />m)
+                                                        <span t-field="sub.edge_id.name" /> : <span t-field="sub.edge_width" /> / <span t-field="sub.edge_height" /> <br />
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="sub.quantity" />
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                            <t t-if="sub.type == 'accessory'">
+                                                <tr>
+                                                    <td>
+                                                        Accessory: <br />
+                                                        <span t-field="sub.accessory_id.name" />
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="sub.quantity" />
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </tbody>
+                                    <h5>Included</h5>
+                                    <ul>
+                                        <t t-if="l.installation">
+                                            <li>Installation: <span t-field="l.installation_qty" /> h</li>
+                                        </t>
+                                        <t t-if="l.moving">
+                                            <li>Moving: <span t-field="l.moving_qty" /> h</li>
+                                        </t>
+                                        <t t-if="l.km">
+                                            <li>KM: <span t-field="l.km_qty" /> km</li>
+                                        </t>
+                                    </ul>
+                                </table>
+                            </t>
+                            <t t-if="o.note">
+                                <p>
+                                    <span t-field="o.note" />
+                                </p>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</openerp>
