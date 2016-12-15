@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    name = fields.Char('Name')
+    name = fields.Char('Name', required=True)
     description_structured = fields.Text('Line structured description', compute="_compute_description", store=True)
     sale_order_line_sub_ids = fields.One2many('sale.order.line.sub', 'order_line_id', 'Sub Order Lines')
     sub_lines_total = fields.Float('Lines Total', compute='_compute_sub_lines_total', store=True)
@@ -89,6 +89,21 @@ class SaleOrderLine(models.Model):
             # total with margin
             line.price_unit = line.price_tmp * line.margin_applied
 
+    # Inherited method
+    @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id')
+    def _compute_amount(self):
+        """
+        Compute the amounts of the SO line.
+        """
+        for line in self:
+            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+            taxes = line.tax_id.compute_all(line.price_unit, line.order_id.currency_id, line.product_uom_qty, product=None, partner=line.order_id.partner_id)
+            line.update({
+                'price_tax': taxes['total_included'] - taxes['total_excluded'],
+                'price_total': taxes['total_included'],
+                'price_subtotal': taxes['total_excluded'],
+            })
+
     @api.model
     def create(self, values):
         if 'product_id' not in values:
@@ -113,9 +128,11 @@ class SaleOrderLine(models.Model):
                         'purchase_ok': False,
                         'order_reference': line.order_id.name,
                         'order_line_id': line.id,
+                        'list_price': line.price_unit,
                     })
-                line.product_id = produdtc_id.id
+                line.product_id = product_id.id
             else:
                 line.product_id.name = line.name
                 line.product_id.order_line_id = line.id
+                line.product_id.list_price = line.price_unit
         return super(SaleOrderLine, self).write(values)      
