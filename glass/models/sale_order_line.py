@@ -32,9 +32,10 @@ class SaleOrderLine(models.Model):
     @api.model
     def get_taxes(self):
         setting = self.env['account.config.settings'].search([('company_id', '=', self.env.user.company_id.id)])
-        if len(setting) > 1:
-            setting = setting[0]
-        return [(6, 0, [setting.sale_tax_id.id])]
+        if len(setting) > 0:
+            if len(setting) > 1:
+                setting = setting[0]
+            return [(6, 0, [setting.sale_tax_id.id])]
 
     tax_id = fields.Many2many('account.tax', string='Taxes', domain=['|', ('active', '=', False), ('active', '=', True)], default=get_taxes)
 
