@@ -20,8 +20,8 @@ class SaleOrderLineSub(models.Model):
     height = fields.Float('Height (mm)', default=100)
 
     edge_id = fields.Many2one('product.glass.edge', 'Edge')
-    edge_width = fields.Selection([(1,'1'),(2,'2')], 'Edges on W.', required=True, default=2)
-    edge_height = fields.Selection([(1,'1'),(2,'2')], 'Edges on H.', required=True, default=2)
+    edge_width = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on W.', required=True, default=2)
+    edge_height = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on H.', required=True, default=2)
 
     area = fields.Float('Area (m^2)', compute='_computeArea', store=True)
     perimeter = fields.Float('Perimeter (M)', compute='_computePerimeter', store=True)
@@ -58,7 +58,7 @@ class SaleOrderLineSub(models.Model):
     @api.one
     @api.depends('width', 'height', 'edge_width', 'edge_height')
     def _computePerimeter(self):
-        p = ((self.width * self.edge_width) + (self.height * self.edge_height)) / 100 # to have the area in meters
+        p = ((self.width * int(self.edge_width)) + (self.height * int(self.edge_height))) / 100 # to have the area in meters
         self.perimeter = p
         if self.edge_id:
             self.perimeter_cost_price = float(self.edge_id.price)
