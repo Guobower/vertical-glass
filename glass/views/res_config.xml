@@ -15,6 +15,7 @@
                     <group>
                         <field name="default_header_text" class="oe_inline"/>
                         <field name="default_footer_text" class="oe_inline"/>
+                        <field name="glass_maximum_area_warning" class="oe_inline"/>
                     </group>
                     <group>
                         <group>

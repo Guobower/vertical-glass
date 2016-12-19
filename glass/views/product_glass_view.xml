@@ -6,13 +6,15 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='type']" position="after">
-                    <field name="minimum_invoicable"/>
-                </xpath>
-                <xpath expr="//field[@name='default_code']" position="after">
-                    <field name="order_line_id" readonly="1" />
-                    <field name="order_reference" readonly="1" />
-                </xpath>
+                <page name="sales" position="after">
+                    <page string="Glass">
+                        <group string="Settings">
+                            <field name="maximum_area_possible" />
+                            <field name="maximum_area_substitute" domain="[('categ_id', '=ilike', 'vitrages'), ('product_tmpl_id', '=', product_tmpl_id), ('id', '!=', id)]"/>
+                            <field name="minimum_invoicable"/>
+                        </group>
+                    </page>
+                </page>
                 <xpath expr="//field[@name='lst_price']" position="after">
                     <field name="price_with_auto_margin" />
                 </xpath>

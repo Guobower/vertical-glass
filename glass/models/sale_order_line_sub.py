@@ -1,4 +1,7 @@
 from openerp import models, fields, api
+from openerp import _
+from openerp.exceptions import Warning
+
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -41,18 +44,32 @@ class SaleOrderLineSub(models.Model):
     accessory_price = fields.Float('Acc. Price', default=0, compute="_setProductInfo")
     total = fields.Float('Total', compute="_computeTotal", required=True)
 
+    area_max_exceeded = fields.Boolean('Max area exceeded for the glass', default=False)
+    use_glass_substitude = fields.Boolean('Use Glass Substitude', default=False)
+
     # Compute Area
     @api.one
-    @api.depends('width', 'height')
+    @api.depends('glass_id', 'width', 'height')
     def _computeArea(self):
+        # Compute Area
         a = ((self.width * self.height) / 1000) / 1000 # to have the area in square meters (mm * mm => m^2)
         if self.glass_id and self.glass_id.minimum_invoicable and self.glass_id.minimum_invoicable > a:
             a = self.glass_id.minimum_invoicable
+
+        # Set area
         self.area = a
+
+        # Set price for area and shape
         if self.shape_id:
             self.area_cost_price = self.glass_id.lst_price * float(self.shape_id.multiplier)
         else:
             self.area_cost_price = self.glass_id.lst_price
+
+        # Check if area is exceeded
+        if self.glass_id.maximum_area_possible > 0 and self.glass_id.maximum_area_possible < self.area:
+            self.area_max_exceeded = True
+        else:
+            self.area_max_exceeded = False
 
     # Compute Perimeter
     @api.one
@@ -117,3 +134,7 @@ class SaleOrderLineSub(models.Model):
             self.description = text
         if self.type == 'accessory':
             self.description = str(self.accessory_id.categ_id.name.encode('utf-8')) + " - " + str(self.accessory_id.name.encode('utf-8'))
+
+    @api.multi
+    def change_glass_to_substitude(self):
+        return {'value': {'use_glass_substitude': False, 'glass_id': self.glass_id.maximum_area_substitute, 'area_max_exceeded': False}}

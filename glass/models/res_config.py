@@ -19,6 +19,8 @@ class sale_glass_company_config_setting_check_config(models.Model):
     moving_price = fields.Float('Moving Price', related='moving_product_id.list_price')
     km_price = fields.Float('KM Price', related='km_product_id.list_price')
 
+    glass_maximum_area_warning = fields.Html('Glass max. Area Warning')
+
 class sale_glass_company_config_settings(models.TransientModel):
     _inherit = 'res.config.settings'
     _name = 'glass.sale.config.settings'
@@ -33,6 +35,8 @@ class sale_glass_company_config_settings(models.TransientModel):
     installation_price = fields.Float('Installation Price', related='installation_product_id.list_price')
     moving_price = fields.Float('Moving Price', related='moving_product_id.list_price')
     km_price = fields.Float('KM Price', related='km_product_id.list_price')
+
+    glass_maximum_area_warning = fields.Html('Glass max. Area Warning')
 
     @api.model
     def get_default_glass_sale_config_settings_values(self, fields):
@@ -49,6 +53,8 @@ class sale_glass_company_config_settings(models.TransientModel):
                 'installation_price': setting.installation_price,
                 'moving_price': setting.moving_price,
                 'km_price': setting.km_price,
+
+                'glass_maximum_area_warning': setting.glass_maximum_area_warning,
             }
 
     @api.one
@@ -65,3 +71,5 @@ class sale_glass_company_config_settings(models.TransientModel):
             setting.installation_price = self.installation_price
             setting.moving_price = self.moving_price
             setting.km_price = self.km_price
+
+            setting.glass_maximum_area_warning = self.glass_maximum_area_warning
