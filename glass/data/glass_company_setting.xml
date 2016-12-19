@@ -2,6 +2,7 @@
 <openerp>
     <data>
         <record id="glass_company_settings" model="glass.sale.config.settings.data">
+            <field name="company_id" ref="base.main_company" />
             <field name="default_header_text">
                 Cher client,
             </field>

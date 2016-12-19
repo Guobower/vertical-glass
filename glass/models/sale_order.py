@@ -12,14 +12,14 @@ class SaleOrder(models.Model):
 
     @api.model
     def _compute_header_text(self):
-        setting = self.env['glass.sale.config.settings.data'].search([])
+        setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
         if len(setting) > 1:
             setting = setting[0]
         return setting.default_header_text
 
     @api.model
     def _compute_footer_text(self):
-        setting = self.env['glass.sale.config.settings.data'].search([])
+        setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
         if len(setting) > 1:
             setting = setting[0]
         return setting.default_footer_text

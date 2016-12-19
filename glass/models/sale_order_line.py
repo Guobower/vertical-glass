@@ -60,7 +60,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     @api.depends('installation', 'installation_qty', 'moving', 'moving_qty', 'moving_total', 'km', 'km_qty', 'sub_lines_total', 'margin_applied', 'miscellaneous_total')
     def _compute_totals(self):
-        setting = self.env['glass.sale.config.settings.data'].search([])
+        setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
         if len(setting) > 1:
             setting = setting[0]
 

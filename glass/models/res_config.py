@@ -8,6 +8,8 @@ class sale_glass_company_config_setting_check_config(models.Model):
     _name = 'glass.sale.config.settings.data'
 
     # ----- MODEL FIELDS
+    company_id = fields.Many2one('res.company', 'Company')
+
     default_header_text = fields.Html('Default header text')
     default_footer_text = fields.Html('Default footer text')
     
@@ -25,6 +27,8 @@ class sale_glass_company_config_settings(models.TransientModel):
     _inherit = 'res.config.settings'
     _name = 'glass.sale.config.settings'
 
+    company_id = fields.Many2one('res.company', 'Company', required=True)
+
     default_header_text = fields.Html('Default header text')
     default_footer_text = fields.Html('Default footer text')
     
@@ -40,9 +44,10 @@ class sale_glass_company_config_settings(models.TransientModel):
 
     @api.model
     def get_default_glass_sale_config_settings_values(self, fields):
-        setting = self.env['glass.sale.config.settings.data'].search([])
+        setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
         if setting:
             return {
+                'company_id': setting.company_id.id,
                 'default_header_text': setting.default_header_text,
                 'default_footer_text': setting.default_footer_text,
 
@@ -56,11 +61,19 @@ class sale_glass_company_config_settings(models.TransientModel):
 
                 'glass_maximum_area_warning': setting.glass_maximum_area_warning,
             }
+        else:
+            new_setting = self.env['glass.sale.config.settings.data'].create({
+                    'company_id': self.env.user.company_id.id,
+                })
+            return {
+                'company_id': new_setting.company_id.id,
+            }
 
     @api.one
     def set_default_glass_sale_config_settings_values(self):
-        setting = self.env['glass.sale.config.settings.data'].search([])
+        setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
         if setting:
+            setting.company_id = self.company_id
             setting.default_header_text = self.default_header_text
             setting.default_footer_text = self.default_footer_text
 
