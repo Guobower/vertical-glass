@@ -19,7 +19,7 @@ class sale_glass_company_config_setting_check_config(models.Model):
     moving_price = fields.Float('Moving Price', related='moving_product_id.list_price')
     km_price = fields.Float('KM Price', related='km_product_id.list_price')
 
-    glass_maximum_area_warning = fields.Html('Glass max. Area Warning')
+    glass_maximum_area_warning = fields.Text('Glass max. Area Warning')
 
 class sale_glass_company_config_settings(models.TransientModel):
     _inherit = 'res.config.settings'
@@ -36,7 +36,7 @@ class sale_glass_company_config_settings(models.TransientModel):
     moving_price = fields.Float('Moving Price', related='moving_product_id.list_price')
     km_price = fields.Float('KM Price', related='km_product_id.list_price')
 
-    glass_maximum_area_warning = fields.Html('Glass max. Area Warning')
+    glass_maximum_area_warning = fields.Text('Glass max. Area Warning')
 
     @api.model
     def get_default_glass_sale_config_settings_values(self, fields):
