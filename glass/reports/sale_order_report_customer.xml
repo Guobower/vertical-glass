@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-xs-10 col-xs-offset-1">
                             <p>
-                                <span t-field="doc.header_text" />
+                                <span t-field="doc.header_text_replaced" />
                             </p>
 
                             <t t-foreach="doc.order_line" t-as="l">
@@ -38,7 +38,7 @@
                             </div>
 
                             <p>
-                                <span t-field="doc.footer_text" />
+                                <span t-field="doc.footer_text_replaced" />
                             </p>
 
                             <t t-if="doc.note">

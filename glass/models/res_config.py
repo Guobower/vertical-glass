@@ -42,6 +42,8 @@ class sale_glass_company_config_settings(models.TransientModel):
 
     glass_maximum_area_warning = fields.Text('Glass max. Area Warning')
 
+    available_variables = fields.Text('Variables', default='Available variables: \n%(company)s : company name \n%(internal_reference)s : your order number\n%(customer_reference)s : customer order number\n%(customer_name)s : customer name\n %(salesman)s : salesman\n%(bank_number)s : company first bank account number')
+
     @api.model
     def get_default_glass_sale_config_settings_values(self, fields):
         setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])

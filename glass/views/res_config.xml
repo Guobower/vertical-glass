@@ -13,14 +13,17 @@
                     </header>
                     <separator string="Glass Company Settings"/>
                     <group>
-                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="company_id" groups="base.group_multi_company" domain="[('id', '=', )]"/>
                     </group>
-                    <group>
+                    <group colspan="12" col="3">
                         <field name="default_header_text" class="oe_inline"/>
+                        <field name="available_variables" readonly="1" nolabel="1"/>
                         <field name="default_footer_text" class="oe_inline"/>
+                    </group>
+                    <group colspan="12" col="1">
                         <field name="glass_maximum_area_warning" class="oe_inline"/>
                     </group>
-                    <group>
+                    <group colspan="12">
                         <group>
                             <field name="installation_product_id" class="oe_inline"/>
                             <field name="installation_price" widget="monetary" />
