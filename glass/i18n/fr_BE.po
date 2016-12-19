@@ -1,0 +1,822 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* glass
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20161208\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-19 15:45+0000\n"
+"PO-Revision-Date: 2016-12-19 17:04+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr_BE\n"
+"X-Generator: Poedit 1.8.11\n"
+
+#. module: glass
+#: selection:sale.order.line.sub,quantity:0
+msgid "10"
+msgstr "10"
+
+#. module: glass
+#: selection:sale.order.line.sub,quantity:0
+msgid "11"
+msgstr "11"
+
+#. module: glass
+#: selection:sale.order.line.sub,quantity:0
+msgid "12"
+msgstr "12"
+
+#. module: glass
+#: selection:sale.order.line.sub,quantity:0
+msgid "13"
+msgstr "13"
+
+#. module: glass
+#: selection:sale.order.line.sub,quantity:0
+msgid "14"
+msgstr "14"
+
+#. module: glass
+#: selection:sale.order.line.sub,quantity:0
+msgid "15"
+msgstr "15"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid ""
+"<br/>\n"
+"                            Cusomer ref:"
+msgstr "<br>Cusomer Réf :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid ""
+"<br/>\n"
+"                            Salesman:"
+msgstr "<br>Vendeur :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+msgid ""
+"<br/>\n"
+"                            Your ref:"
+msgstr "<br>Votre référence :"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_accessory_price
+msgid "Acc. Price"
+msgstr "Prix de l’ACC."
+
+#. module: glass
+#: model:product.category,name:glass.product_category_acessories
+msgid "Accessoires"
+msgstr "Accessoires"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_accessory_id
+#: selection:sale.order.line.sub,type:0
+msgid "Accessory"
+msgstr "Accessoire"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Accessory: <br/>"
+msgstr "Accessoire :<br>"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_margin_applied
+msgid "Applied margin"
+msgstr "Marge appliquée"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_glass_settings_form
+msgid "Apply"
+msgstr "Appliquer"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area
+msgid "Area (m^2)"
+msgstr "Surface (m^2)"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area_cost_price
+msgid "Area Cost Price"
+msgstr "Prix surface"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area_total
+msgid "Area Total"
+msgstr "Surface totale"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_price_tmp
+msgid "Base price"
+msgstr "Prix de base"
+
+#. module: glass
+#: model:ir.model.fields,help:glass.field_glass_sale_config_settings_data_installation_price
+#: model:ir.model.fields,help:glass.field_glass_sale_config_settings_data_km_price
+#: model:ir.model.fields,help:glass.field_glass_sale_config_settings_data_moving_price
+#: model:ir.model.fields,help:glass.field_glass_sale_config_settings_installation_price
+#: model:ir.model.fields,help:glass.field_glass_sale_config_settings_km_price
+#: model:ir.model.fields,help:glass.field_glass_sale_config_settings_moving_price
+msgid "Base price to compute the customer price. Sometimes called the catalog price."
+msgstr "Prix de base pour calculer le prix client. Parfois appelé prix catalogue."
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_glass_settings_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_company_id
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_glass_settings_form
+msgid "Configure the Glass Company"
+msgstr "Configurer la vitrerie"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "Content"
+msgstr "Contenu"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_create_uid
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_create_uid
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge_create_uid
+#: model:ir.model.fields,field_description:glass.field_product_glass_shape_create_uid
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_create_date
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_create_date
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge_create_date
+#: model:ir.model.fields,field_description:glass.field_product_glass_shape_create_date
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_res_partner_ref_auto
+msgid "Customer Reference"
+msgstr "Référence client"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.partner_glass_company
+msgid "Customer Reference:"
+msgstr "Référence client :"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_category_margin_default
+msgid "Default Margin"
+msgstr "Marge par défaut"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_default_footer_text
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_default_footer_text
+msgid "Default footer text"
+msgstr "Bas de page par défaut"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_default_header_text
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_default_header_text
+msgid "Default header text"
+msgstr "Haut de page par défaut"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_description
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Description"
+msgstr "Description"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_display_name
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_display_name
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge_display_name
+#: model:ir.model.fields,field_description:glass.field_product_glass_shape_display_name
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_display_name
+msgid "Display Name"
+msgstr "Afficher le nom"
+
+#. module: glass
+#: model:product.category,name:glass.product_category_misc
+msgid "Divers"
+msgstr "Divers"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_edge_id
+msgid "Edge"
+msgstr "Bord"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_edge_height
+msgid "Edges on H."
+msgstr "Bords sur la hauteur"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_edge_width
+msgid "Edges on W."
+msgstr "Bords sur la largeur"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_footer_text
+msgid "Footer text"
+msgstr "Bas de page"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_footer_text_replaced
+msgid "Footer text replaced"
+msgstr "Bas de page remplacé"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_for_glass_form
+msgid "Ful Report"
+msgstr "Rapport complet"
+
+#. module: glass
+#: model:ir.actions.report.xml,name:glass.sale_order_full_report
+msgid "Full Report"
+msgstr "Rapport complet"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_glass_id
+#: model:ir.ui.view,arch_db:glass.product_product_glass_form
+#: selection:sale.order.line.sub,type:0
+msgid "Glass"
+msgstr "Vitrage"
+
+#. module: glass
+#: model:ir.ui.menu,name:glass.glass_sale_config_menu
+msgid "Glass Company"
+msgstr "Vitrerie"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_glass_settings_form
+msgid "Glass Company Settings"
+msgstr "Paramètres de la vitrerie"
+
+#. module: glass
+#: model:ir.model,name:glass.model_product_glass_edge
+msgid "Glass Edge"
+msgstr "Bord de vitrage"
+
+#. module: glass
+#: model:ir.actions.act_window,name:glass.product_glass_edge_action
+msgid "Glass Edges"
+msgstr "Bords de vitrages"
+
+#. module: glass
+#: model:ir.actions.act_window,name:glass.sale_glass_settings_action
+#: model:ir.ui.menu,name:glass.menu_suppliers_product_update_configuration
+msgid "Glass Selling settings"
+msgstr "Paramètres de vente de la vitrerie"
+
+#. module: glass
+#: model:ir.model,name:glass.model_glass_shape
+#: model:ir.model,name:glass.model_product_glass_shape
+msgid "Glass Shape"
+msgstr "Forme de vitrage"
+
+#. module: glass
+#: model:ir.actions.act_window,name:glass.product_glass_shape_action
+msgid "Glass Shapes"
+msgstr "Formes de vitrage"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_res_partner_glass_supplier
+msgid "Glass Supplier"
+msgstr "Fournisseur de vitrage"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.partner_glass_company
+msgid "Glass Supplier:"
+msgstr "Fournisseur de vitrage :"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_glass_maximum_area_warning
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_glass_maximum_area_warning
+msgid "Glass max. Area Warning"
+msgstr "Alerte de Surface maximum de vitrage"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Glass: <br/>"
+msgstr "Vitrage : <br/>"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+msgid "HTVA"
+msgstr "HTVA"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_header_text
+msgid "Header text"
+msgstr "Haut de page"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_header_text_replaced
+msgid "Header text replaced"
+msgstr "Haut de page replacé"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_height
+msgid "Height (mm)"
+msgstr "Hauteur (mm)"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_id
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_id
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge_id
+#: model:ir.model.fields,field_description:glass.field_product_glass_shape_id
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_id
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Included"
+msgstr "Inclu"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_installation
+msgid "Installation"
+msgstr "Pose"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_installation_price
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_installation_price
+msgid "Installation Price"
+msgstr "Prix de la pose"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_installation_qty
+msgid "Installation Quantity"
+msgstr "Nombre d'heures de pose"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_installation_total
+msgid "Installation Total"
+msgstr "Total de la pose"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Installation:"
+msgstr "Pose :"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_km
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+#: model:product.category,name:glass.product_category_km
+msgid "KM"
+msgstr "KM"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_km_price
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_km_price
+msgid "KM Price"
+msgstr "Prix du KM"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_km_qty
+msgid "KM Quantity"
+msgstr "Nombre de KM"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_km_total
+msgid "KM Total"
+msgstr "Total KM"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "KM:"
+msgstr "KM :"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings___last_update
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data___last_update
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge___last_update
+#: model:ir.model.fields,field_description:glass.field_product_glass_shape___last_update
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_write_uid
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_write_uid
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge_write_uid
+#: model:ir.model.fields,field_description:glass.field_product_glass_shape_write_uid
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_write_date
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_write_date
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge_write_date
+#: model:ir.model.fields,field_description:glass.field_product_glass_shape_write_date
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_description_structured
+msgid "Line structured description"
+msgstr "Description structurée de la ligne"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_lines_total
+msgid "Lines Total"
+msgstr "Total des lignes"
+
+#. module: glass
+#: model:product.category,name:glass.product_category_moving
+msgid "MO Déplacement"
+msgstr "MO Déplacement"
+
+#. module: glass
+#: model:product.category,name:glass.product_category_installation
+msgid "MO Pose"
+msgstr "MO Pose"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_product_price_with_auto_margin
+msgid "Marged Price"
+msgstr "Prix avec marge"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area_max_exceeded
+msgid "Max area exceeded for the glass"
+msgstr "Surface maximum dépassée pour le vitrage"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_product_maximum_area_possible
+msgid "Maximum Area with warranty (m^2)"
+msgstr "Surface maximum couverte par la garantie (m^2)"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_product_minimum_invoicable
+msgid "Minimum Invoicable (m^2)"
+msgstr "Minimum facturable (m^2)"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_miscellaneous_total
+msgid "Miscelaneous"
+msgstr "Divers"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_moving
+msgid "Moving"
+msgstr "Déplacement"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_moving_price
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_moving_price
+msgid "Moving Price"
+msgstr "Prix du déplacement"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_moving_qty
+msgid "Moving Quantity"
+msgstr "Nombre d'heure de déplacement"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_moving_total
+msgid "Moving Total"
+msgstr "Total déplacement"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Moving:"
+msgstr "Déplacement:"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_glass_shape_multiplier
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_multiplier
+msgid "Multiplier"
+msgstr "Multiplicateur"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge_name
+#: model:ir.model.fields,field_description:glass.field_product_glass_shape_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_product_order_line_id
+msgid "Order Line"
+msgstr "Ligne de commande"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_product_order_reference
+msgid "Order reference"
+msgstr "Référence de la commande"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "Other Info"
+msgstr "Autres informations"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Our ref:"
+msgstr "Notre référence :"
+
+#. module: glass
+#: model:ir.model,name:glass.model_res_partner
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter
+msgid "Perimeter (M)"
+msgstr "Périmetre (M)"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter_cost_price
+msgid "Perimeter Cost Price"
+msgstr "Prix du périmètre"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter_total
+msgid "Perimeter Total"
+msgstr "Périmètre total"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+msgid "Price"
+msgstr "Prix"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge_price
+msgid "Price (M)"
+msgstr "Prix (M)"
+
+#. module: glass
+#: model:ir.model,name:glass.model_product_product
+msgid "Product"
+msgstr "Produit"
+
+#. module: glass
+#: model:ir.model,name:glass.model_product_category
+msgid "Product Category"
+msgstr "Catégorie d'articles"
+
+#. module: glass
+#: model:ir.ui.menu,name:glass.product_glass_edge_menu
+msgid "Product Edges"
+msgstr "Finitions des bords"
+
+#. module: glass
+#: model:ir.ui.menu,name:glass.product_glass_shape_menu
+msgid "Product Shapes"
+msgstr "Formes"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_installation_product_id
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_installation_product_id
+msgid "Product for Installation"
+msgstr "Produit lié à l'installation"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_km_product_id
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_km_product_id
+msgid "Product for KM"
+msgstr "Produit lié aux KM"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_moving_product_id
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_moving_product_id
+msgid "Product for Moving"
+msgstr "Produit lié au déplacement"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_quantity
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_reference_auto
+msgid "Reference auto"
+msgstr "Référence automatique"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.product_categories_with_margin
+msgid "Sale"
+msgstr "Vente"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_order_line_id
+msgid "Sale Order Line"
+msgstr "Ligne de commande"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "Sale Order Sub line"
+msgstr "Sous-ligne de vente"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "Sale lines"
+msgstr "Lignes de vente"
+
+#. module: glass
+#: model:ir.model,name:glass.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: glass
+#: model:ir.model,name:glass.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne du bon de commande"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "Sales Order Lines"
+msgstr "Lignes de ventes"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.product_product_glass_form
+msgid "Settings"
+msgstr "Configuration"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_shape_id
+msgid "Shape"
+msgstr "Forme"
+
+#. module: glass
+#: model:ir.model,name:glass.model_sale_order_line_sub
+msgid "Sub Order Line Shape"
+msgstr "Forme de la sous-ligne de vente"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sale_order_line_sub_ids
+msgid "Sub Order Lines"
+msgstr "Sous-lignes de vente"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "Sub Type:"
+msgstr "Sous-type"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_product_maximum_area_substitute
+msgid "Substitude product"
+msgstr "Produit substitut"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_supplier_id
+msgid "Supplier"
+msgstr "Fournisseur"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "TOTAL HTVA ="
+msgstr "TOTAL HTVA ="
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_for_glass_form
+msgid "Tech. Report"
+msgstr "Rapport Technique"
+
+#. module: glass
+#: model:ir.actions.report.xml,name:glass.sale_order_technical_report
+msgid "Technical Report"
+msgstr "Rapport Technique"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "The specified area for the product exceeds the maximum size on the product settings. If you leave the area as it, a message informing the customer about the loss of warranty will be added to the line. If you want to add the substitude product, use the button 'Substitute' in the form."
+msgstr "La surface spécifiée dépasse le maxium défini sur les paramètres du produit. Si vous la laissez comme tel, un message informant le client que la garantie sur le vitrage n'est plus applicable apparaîtra sur le rapport. Si vous voulez utiliser le produit substitut de celui sélectionner, cochez la case ci dessous."
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "Title"
+msgstr "Titre"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_total
+msgid "Total"
+msgstr "Total"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+msgid "Total :"
+msgstr "Total :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+msgid "Total:"
+msgstr "Total :"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_type
+msgid "Type"
+msgstr "Type"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_use_glass_substitude
+msgid "Use Glass Substitude"
+msgstr "Utiliser le substitut"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_available_variables
+msgid "Variables"
+msgstr "Variables"
+
+#. module: glass
+#: model:product.category,name:glass.product_category_glass
+msgid "Vitrages"
+msgstr "Vitrages"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_website_message_ids
+msgid "Website Messages"
+msgstr "Messages du site web"
+
+#. module: glass
+#: model:ir.model.fields,help:glass.field_sale_order_website_message_ids
+msgid "Website communication history"
+msgstr "Historique de communication du site web"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_width
+msgid "Width (mm)"
+msgstr "Largeur  (mm)"
+
+#. module: glass
+#: model:ir.model,name:glass.model_glass_sale_config_settings
+msgid "glass.sale.config.settings"
+msgstr "glass.sale.config.settings"
+
+#. module: glass
+#: model:ir.model,name:glass.model_glass_sale_config_settings_data
+msgid "glass.sale.config.settings.data"
+msgstr "glass.sale.config.settings.data"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "km"
+msgstr "km"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "m<sup>3</sup> -"
+msgstr "m<sup>3</sup> -"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "mm <br/> ("
+msgstr "mm <br/> ("
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "mm x"
+msgstr "mm x"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_glass_settings_form
+msgid "or"
+msgstr "ou"
+
+#. module: glass
+#: model:ir.model,name:glass.model_sale_order_line_sub_area_exceeded_wizard
+msgid "sale.order.line.sub.area.exceeded.wizard"
+msgstr "sale.order.line.sub.area.exceeded.wizard"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "x 1h ="
+msgstr "x 1h ="
