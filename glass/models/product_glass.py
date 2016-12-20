@@ -19,3 +19,14 @@ class ProductGlass(models.Model):
     def _compute_price_with_auto_margin(self):
         for product in self:
             product.price_with_auto_margin = product.lst_price * product.categ_id.margin_default
+
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        args = args or []
+        recs = self.browse()
+        if name:
+            recs = self.search((args + ['|', ('name', 'ilike', name), '|', ('attribute_value_ids', 'ilike', name), ('default_code', 'ilike', name)]), limit=limit)
+        if not recs:
+            recs = self.search([('name', operator, name)] + args, limit=limit)
+        return recs.name_get()     
