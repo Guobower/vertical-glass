@@ -11,90 +11,153 @@
 			name="glass.sale_order_technical_report_template"
 			/>
 
+        <record id="glass.sale_order_technical_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="report_paper_format_full_height"/>
+        </record>
+
         <template id="sale_order_technical_report_template">
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="o">
 					<t t-call="glass.sale_order_technical_report_document" t-lang="o.partner_id.lang"/>
-				</t>
+                </t>
 			</t>
 		</template>
 
 		<template id="sale_order_technical_report_document">
 			<t t-name="glass.sale_order_technical_report_document">
+                <link rel="stylesheet" href="/glass/static/src/css/report_style.css"/>
                 <div class="page">
-                    <style type="text/css">
-                    </style>
-                    <div class="oe_structure"/>
                     <div class="row">
-                        <div class="col-xs-3 col-xs-offset-6">
-                            <div t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                        <div class="col-xs-3">
+                            <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo" style="max-height: 200px;"/>
                         </div>
-                        <div class="col-xs-3 col-xs-offset-6">
-                            <span t-esc="o.create_date" t-esc-options='{"format": "d MMMM y"}'/>
-                        </div>
-                        <div class="col-xs-3 col-xs-offset-1">
-                            Our ref: <span t-field="o.name" /> <br />
-                            Cusomer ref: <span t-field="o.reference_auto" /> <br />
-                            Salesman: <span t-field="o.user_id.name" /> <br />
-                        </div>
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <t t-foreach="o.order_line" t-as="l">
-                                <h4><u><span t-field="l.name" /></u></h4>
-                                <table class="table table-condensed">
-                                    <thead>
-                                        <tr width="75%">Description</tr>
-                                        <tr width="25%">Quantity</tr>
-                                    </thead>
-                                    <tbody class="sale_tbody">
-                                        <t t-foreach="l.sale_order_line_sub_ids" t-as="sub">
-                                            <t t-if="sub.type == 'glass'">
-                                                <tr>
-                                                    <td>
-                                                        Glass: <br />
-                                                        <span t-field="sub.glass_id.name" /> - <span t-field="sub.shape_id.name" /> <br />
-                                                        <span t-field="sub.width" />mm x <span t-field="sub.height" />mm <br /> (<span t-field="sub.area" />m<sup>3</sup> - <span t-field="sub.perimeter" />m)
-                                                        <span t-field="sub.edge_id.name" /> : <span t-field="sub.edge_width" /> / <span t-field="sub.edge_height" /> <br />
-                                                    </td>
-                                                    <td>
-                                                        <span t-field="sub.quantity" />
-                                                    </td>
-                                                </tr>
-                                            </t>
-                                            <t t-if="sub.type == 'accessory'">
-                                                <tr>
-                                                    <td>
-                                                        Accessory: <br />
-                                                        <span t-field="sub.accessory_id.name" />
-                                                    </td>
-                                                    <td>
-                                                        <span t-field="sub.quantity" />
-                                                    </td>
-                                                </tr>
-                                            </t>
-                                        </t>
-                                    </tbody>
+                        <div class="col-xs-9">
+                            <div id="upper_right_table">
+                                <table>
+                                    <tr>
+                                        <td width="15%">SMART</td>
+                                        <td class="align-right">Date : <span t-esc="o.create_date" t-esc-options='{"format": "d MMMM y"}'/></td>
+                                    </tr>
                                 </table>
-                                <h5>Included</h5>
-                                <ul>
-                                    <t t-if="l.installation">
-                                        <li>Installation: <span t-field="l.installation_qty" /> h</li>
-                                    </t>
-                                    <t t-if="l.moving">
-                                        <li>Moving: <span t-field="l.moving_qty" /> h</li>
-                                    </t>
-                                    <t t-if="l.km">
-                                        <li>KM: <span t-field="l.km_qty" /> km</li>
-                                    </t>
-                                </ul>
-                            </t>
-                            <t t-if="o.note">
-                                <p>
-                                    <span t-field="o.note" />
-                                </p>
-                            </t>
+                                <h4>Ouvert du lundi au vendredi de 8h à 12 heures et de 13 à 17h30</h4>
+                                <span t-field="o.user_id.name" />
+                                <h4>Type de demande</h4>
+                                <img src="/glass/static/img/glass_upper_right_table.png" width="95%" />
+                            </div>
                         </div>
                     </div>
+                    <div class="row top-buffer">
+                        <div class="col-xs-6">
+                            <p><u>Identité CHANTIER</u> : <span t-field="o.name" /> / <span t-field="o.reference_auto" /></p>
+                            <p>NOM : <span t-field="o.partner_id.name" /></p>
+                            <p>SOCIETE : <t  t-if="o.partner_id.parent_id"><span t-field="o.partner_id.parent_id.name" /></t></p>
+                            <p>Adresse : <span t-field="o.partner_id.street" /></p>
+                            <p>CP : <span t-field="o.partner_id.zip" /> Ville : <span t-field="o.partner_id.city" /></p>
+                        </div>
+                        <div class="col-xs-6">
+                            <p>Tél : <span t-field="o.partner_id.phone" /></p>
+                            <p>GSM : <span t-field="o.partner_id.mobile" /></p>
+                            <p>Fax : <span t-field="o.partner_id.fax" /></p>
+                            <p>Mail : <span t-field="o.partner_id.email" /></p>
+                        </div>
+                    </div>
+                    <div clas="row">
+                        <div class="col-xs-12">
+                            <table class="sale_table" width="100%">
+                                <tr>
+                                    <td colspan="6">TRAVAIL à exécuter</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">Q</th>
+                                    <th>Type</th>
+                                    <th colspan="2">Lg . Mesures (mm) ht.</th>
+                                    <th>Epaiss.</th>
+                                    <th>Finition</th>
+                                </tr>
+                                <t t-foreach="o.order_line" t-as="l">
+                                    <t t-foreach="l.sale_order_line_sub_ids" t-as="sub">
+                                        <tr>
+                                            <t t-if="sub.type=='glass'">
+                                                <td>
+                                                    <span t-field="sub.quantity" />
+                                                </td>
+                                                <td>
+                                                    <span t-field="sub.glass_id" />
+                                                    <br />
+                                                    <span t-field="sub.shape_id" />
+                                                </td>
+                                                <td><span t-field="sub.width" /></td>
+                                                <td><span t-field="sub.height" /></td>
+                                                <td></td>
+                                                <td><span t-field="sub.edge_id" /></td>
+                                            </t>
+                                            <t t-if="sub.type=='accessory'">
+                                                <td>
+                                                    <span t-field="sub.quantity" />
+                                                </td>
+                                                <td colspan="5">
+                                                    <span t-field="sub.accessory_id" />
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <u>Remarques :</u>
+                            <br />
+                            <span t-field="o.note" />
+                        </div>
+                        <div class="col-xs-8">
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table width="100%">
+                            <tr>
+                                <th>Infos FACTURATION ou LIVRAISON si =/=</th>
+                            </tr>
+                            <tr>
+                                <td width="50%">[ ] à facturer - N° TVA :</td>
+                                <td width="25%">Pour accord,</td>
+                                <td width="25%">Pour accord,</td>
+                            </tr>
+                            <tr>
+                                <td>Réf. Client :</td>
+                            </tr>
+                            <tr>
+                                <td>NOM :</td>
+                            </tr>
+                            <tr>
+                                <td>Adresse :</td>
+                            </tr>
+                            <tr>
+                                <td>CP :       Ville : </td>
+                                <td>(pour la miroiterie)</td>
+                                <td>(nom + signature client)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <table width="100%">
+                            <tr>
+                                <td>Reste à faire :</td>
+                                <td><u>Travail exécuté par :</u></td>
+                                <td>Pour accord,</td>
+                            </tr>
+                            <tr>
+                                <td>Enlevé - Placé - Livré (biffer) le ___ / ___</td>
+                                <td>[ ] Travail terminé</td>
+                                <td>(nom + signature client)</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
+
+                 <t t-call="glass.glass_layout_footer_report"/>
             </t>
         </template>
     </data>

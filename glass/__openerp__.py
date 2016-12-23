@@ -26,7 +26,9 @@
 
         'data/product_category_data.xml',
         'data/glass_company_setting.xml',
+        'data/report_paper_format.xml',
 
+        'reports/report_footer.xml',
         'reports/sale_order_report_customer.xml',
         'reports/sale_order_report_technical.xml',
         'reports/sale_order_report_full.xml',

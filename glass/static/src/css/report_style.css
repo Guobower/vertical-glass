@@ -1,0 +1,40 @@
+/* General */
+.align-right {
+    text-align: right;
+}
+.align-left {
+    text-align: left;
+}
+
+/* Specific */
+#upper_table {
+    width: 100%;
+}
+#upper_right_table {
+    border: 1px solid black;
+    padding: 3px;
+    width: 100%;
+}
+#upper_right_table h4 {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* Sale Table */
+.sale_table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin: 10px 0 15px 0;
+    font-size: 14px;
+}
+.sale_table th {
+    font-style: bold;
+    border-bottom: 1px solid #F68B19;
+    text-align: center;
+}
+.sale_table td, td {
+    border: 1px solid black;
+    vertical-align: top;
+    padding: 2px 8px 2px 8px;
+}

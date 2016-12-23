@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="glass_layout_footer_report">
+			<t t-name="glass.glass_layout_footer_report">
+                <!-- Multicompany -->
+                <t t-if="not o and doc">
+                    <t t-set="o" t-value="doc"/>
+                </t>
+                <t t-if="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id"/>
+                </t>
+                <t t-if="not o or not 'company_id' in o">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+                <div class="footer">
+                    <div class="col-xs-4">
+                        <b><span t-esc="company.name" /></b>
+                        <br />
+                        <span t-esc="company.street" />, <span t-esc="company.zip" /> <span t-esc="company.city" />
+                        <br />
+                        TVA : <span t-field="company.vat" /> - <span t-field="company.company_registry" />
+                    </div>
+                    <div class="col-xs-4">
+                        Tél. : <span t-field="company.phone" /><br />
+                        Fax : <span t-field="company.fax" /><br />
+                    </div>
+                    <div class="col-xs-4">
+                        <span t-field="company.email" /><br />
+                        <span t-field="company.website" /><br />
+                        <span t-esc="o.get_bank_account()" />
+                    </div>
+                    <div class="text-center" style="border-top: 1px solid black;">
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</openerp>
+

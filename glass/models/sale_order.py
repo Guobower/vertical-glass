@@ -66,3 +66,11 @@ class SaleOrder(models.Model):
             text = text.replace('%(bank_number)s', bank_account_ids.bank_acc_number)
         self.footer_text_replaced = text
         return text.encode('utf-8')
+
+    @api.model
+    def get_bank_account(self):
+        bank_account_ids = self.env['account.journal'].search([('company_id', '=', self.env.user.company_id.id), ('bank_acc_number', '!=', '')])
+        if len(bank_account_ids) >= 1:
+            if len(bank_account_ids) > 1:
+                bank_account_ids = bank_account_ids[0]
+            return str(str(bank_account_ids.bank_id.name) + ' : IBAN ' + str(bank_account_ids.bank_acc_number) + ' - ' + str(bank_account_ids.bank_id.bic))
