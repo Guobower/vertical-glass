@@ -52,7 +52,7 @@ class SaleOrderLineSub(models.Model):
     @api.depends('glass_id', 'width', 'height')
     def _computeArea(self):
         # Compute Area
-        a = ((self.width * self.height) / 1000) / 1000 # to have the area in square meters (mm * mm => m^2)
+        a = ((float(self.width) * float(self.height)) / 1000) / 1000 # to have the area in square meters (mm * mm => m^2)
         if self.glass_id and self.glass_id.minimum_invoicable and self.glass_id.minimum_invoicable > a:
             a = self.glass_id.minimum_invoicable
 
@@ -75,7 +75,7 @@ class SaleOrderLineSub(models.Model):
     @api.one
     @api.depends('width', 'height', 'edge_width', 'edge_height')
     def _computePerimeter(self):
-        p = ((self.width * int(self.edge_width)) + (self.height * int(self.edge_height))) / 1000 # to have the area in meters
+        p = ((float(self.width) * float(self.edge_width)) + (float(self.height) * float(self.edge_height))) / 1000 # to have the area in meters
         self.perimeter = p
         if self.edge_id:
             self.perimeter_cost_price = float(self.edge_id.price)
