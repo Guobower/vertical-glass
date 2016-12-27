@@ -74,3 +74,15 @@ class SaleOrder(models.Model):
             if len(bank_account_ids) > 1:
                 bank_account_ids = bank_account_ids[0]
             return str(str(bank_account_ids.bank_id.name) + ' : IBAN ' + str(bank_account_ids.bank_acc_number) + ' - ' + str(bank_account_ids.bank_id.bic))
+
+    @api.model
+    def get_used_taxes(self):
+        used_taxes = ''
+        for line in self.order_line:
+            for tax in line.tax_id:
+                if tax.name not in used_taxes:
+                    if len(used_taxes) > 0:
+                        used_taxes = used_taxes + ", " + tax.name
+                    else:
+                        used_taxes = tax.name
+        return used_taxes
