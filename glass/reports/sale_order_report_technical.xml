@@ -195,20 +195,22 @@
                             <table width="100%">
                                 <tr>
                                     <td><b>Total HTVA</b></td>
-                                    <td colspan="3" class="align-left"><span t-field="o.amount_untaxed" /></td>
+                                    <td class="align-right"><span t-field="o.amount_untaxed" /></td>
+                                    <td colspan="2" />
                                 </tr>
                                 <tr>
                                     <td>+ TVA</td>
-                                    <td class="align-right"><span t-field="o.amount_tax" /></td>
+                                    <td class="align-right" width="150px"><span t-field="o.amount_tax" /></td>
                                     <td colspan="2">
                                         <span t-esc="o.get_used_taxes()" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Total TVAC</td>
-                                    <td colspan="3" class="align-left">
+                                    <td class="align-right">
                                         <span t-field="o.amount_total" />
                                     </td>
+                                    <td colspan="2" />
                                 </tr>
                                 <tr>
                                     <td>- Acompte</td>
