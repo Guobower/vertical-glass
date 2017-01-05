@@ -1,58 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <record id="sale.report_sale_order" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="report_paper_format_full_height"/>
+        </record>
+
         <!-- NORMAL SALE ORDER REPORT -->
-        <template id="sale_order_report_customer" inherit_id="sale.report_saleorder_document">
-            <xpath expr="//div[@class='page']" position="replace">
+        <template id="sale_order_report_customer" inherit_id="sale.report_saleorder">
+            <xpath expr="(//t)[last()]" position="replace">
                 <div class="page">
                     <style type="text/css">
+                        /* General */
+                        .align-right {
+                            text-align: right;
+                        }
+                        .align-left {
+                            text-align: left;
+                        }
+
+                        .row {
+                            margin-top: 15px;
+                        }
+
+                        /* Specific */
+                        .upper_right_table {
+                            padding: 3px;
+                            width: 100%;
+                        }
+                        .upper_right_table table {
+                            padding: 3px;
+                            width: 100%;
+                        }
+
+                        .upper_right_table table .h1 {
+                            font-size: 18pt;
+                            font-style: italic;
+                        }
+                        
                     </style>
-                    <div class="oe_structure"/>
                     <div class="row">
-                        <div class="col-xs-3 col-xs-offset-6">
-                            <div t-field="doc.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                        <div class="col-xs-3">
+                            <img t-if="doc.company_id.logo" t-att-src="'data:image/png;base64,%s' % doc.company_id.logo" style="max-height: 200px;"/>
                         </div>
-                        <div class="col-xs-3 col-xs-offset-6">
-                            <span t-esc="doc.create_date" t-esc-options='{"format": "d MMMM y"}'/>
+
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <div class="upper_right_table">
+                                <table>
+                                    <tr>
+                                        <td class="align-right">
+                                            <h1>
+                                                <i>
+                                                    <span t-if="doc.state not in ['draft','sent']">Commande # </span>
+                                                    <span t-if="doc.state in ['draft','sent']">Offre </span>
+                                                </i>
+                                            </h1>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>
+                                                <div t-field="doc.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br />
+                                            <br />
+                                            <span t-esc="doc.create_date" t-esc-options='{"format": "d MMMM y"}'/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
                         </div>
-                        <div class="col-xs-3 col-xs-offset-1">
-                            Our ref: <span t-field="doc.name" /> <br />
-                            Your ref: <span t-field="doc.reference_auto" /> <br />
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-7">
+                            <table width="100%">
+                                <tr>
+                                    <td>
+                                        <u>Nos réf. : </u>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.name" /> / 
+                                        <span t-field="doc.reference_auto" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <u>Vos coordonnées : </u>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.partner_id.phone" />
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.partner_id.email" />
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="col-xs-10 col-xs-offset-1">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
                             <p>
                                 <span t-field="doc.header_text_replaced" />
                             </p>
-
-                            <t t-foreach="doc.order_line" t-as="l">
-                                <div>
-                                    <h4><u><span t-field="l.name" /></u></h4>
-                                    <p>
-                                        <span t-field="l.description_structured" />
-                                    </p>
-                                </div>
-                            </t>
-
-                            <div class="col-xs-4 pull-right">
-                                Total : <span t-field="doc.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/> HTVA
-                            </div>
-
-                            <p>
-                                <span t-field="doc.footer_text_replaced" />
-                            </p>
-
-                            <t t-if="doc.note">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <t t-foreach="doc.order_line" t-as="l">
+                            <div>
+                                <h4><u><span t-field="l.name" /></u></h4>
                                 <p>
-                                    <span t-field="doc.note" />
+                                    <span t-field="l.description_structured" />
                                 </p>
-                            </t>
-
-                            <div class="col-xs-3 col-xs-offset-6">
-                                <span t-field="doc.user_id.name" />
                             </div>
+                        </t>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 pull-right">
+                            Total : <span t-field="doc.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/> HTVA
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p>
+                            <span t-field="doc.footer_text_replaced" />
+                        </p>
+
+                        <t t-if="doc.note">
+                            <p>
+                                <span t-field="doc.note" />
+                            </p>
+                        </t>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 col-xs-offset-1">
+                            <span t-field="doc.user_id.name" />
+                        </div>
+                        <div class="col-xs-3 col-xs-offset-2">
+                            Pour Accord (signature client)
                         </div>
                     </div>
                 </div>
+                <t t-call="glass.glass_layout_footer_report"/>
             </xpath>
         </template>
     </data>
