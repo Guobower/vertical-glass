@@ -240,34 +240,33 @@
                             </tr>
                             <tr>
                                 <td width="50%">[ ] à facturer - N° TVA :</td>
-                                <td width="25%">Pour accord,</td>
-                                <td width="25%">Pour accord,</td>
-                            </tr>
-                            <tr>
                                 <td>Réf. Client :</td>
                             </tr>
                             <tr>
                                 <td>NOM :</td>
+                                <td>Téléphone :</td>
+                            </tr>
+                            <tr>
+                                <td>GSM :</td>
+                                <td>Email :</td>
                             </tr>
                             <tr>
                                 <td>Adresse :</td>
                             </tr>
                             <tr>
                                 <td>CP :       Ville : </td>
-                                <td>(pour la miroiterie)</td>
-                                <td>(nom + signature client)</td>
                             </tr>
                         </table>
                     </div>
                     <div class="row">
                         <table width="100%" class="external_border_table">
                             <tr>
-                                <td>Reste à faire :</td>
+                                <td>Réception - Accord client</td>
                                 <td><u>Travail exécuté par :</u></td>
                                 <td>Pour accord,</td>
                             </tr>
                             <tr>
-                                <td>Enlevé - Placé - Livré (biffer) le ___ / ___</td>
+                                <td></td>
                                 <td>[ ] Travail terminé</td>
                                 <td>(nom + signature client)</td>
                             </tr>
