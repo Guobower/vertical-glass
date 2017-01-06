@@ -12,7 +12,7 @@ class SaleOrderLine(models.Model):
     sub_lines_total = fields.Float('Lines Total', compute='_compute_sub_lines_total', store=True)
 
     men = fields.Boolean('Men quantity', default=True)
-    men_quantity = fields.Selection([('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10')], 'Men quantity', default=1)
+    men_quantity = fields.Selection([('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10')], 'Men quantity', default='1')
 
     installation = fields.Boolean('Installation', default=False)
     installation_qty = fields.Float('Installation Quantity', default=1)
