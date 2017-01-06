@@ -13,7 +13,7 @@
                     </header>
                     <separator string="Glass Company Settings"/>
                     <group>
-                        <field name="company_id" groups="base.group_multi_company" domain="[('id', '=', )]"/>
+                        <field name="company_id" groups="base.group_multi_company" readonly="1" />
                     </group>
                     <group colspan="12" col="3">
                         <field name="default_header_text" class="oe_inline"/>
