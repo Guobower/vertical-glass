@@ -181,97 +181,99 @@
                             </t>
                         </table>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <u>Remarques :</u>
-                            <br />
-                            <span t-field="o.note" />
+                    <div style="white-space: nowrap; page-break-inside: avoid;">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <u>Remarques :</u>
+                                <br />
+                                <span t-field="o.note" />
+                            </div>
+                            <div class="col-xs-6">
+                                <table width="100%">
+                                    <tr>
+                                        <td><b>Total HTVA</b></td>
+                                        <td class="align-right"><span t-field="o.amount_untaxed" /></td>
+                                        <td colspan="2" />
+                                    </tr>
+                                    <tr>
+                                        <td>+ TVA</td>
+                                        <td class="align-right" width="150px"><span t-field="o.amount_tax" /></td>
+                                        <td colspan="2">
+                                            <span t-esc="o.get_used_taxes()" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total TVAC</td>
+                                        <td class="align-right">
+                                            <span t-field="o.amount_total" />
+                                        </td>
+                                        <td colspan="2" />
+                                    </tr>
+                                    <tr>
+                                        <td>- Acompte</td>
+                                        <td></td>
+                                        <td>versé le __/___</td>
+                                        <td>par BC-ESP-VIR</td>
+                                    </tr>
+                                    <tr>
+                                        <td>- Acompte</td>
+                                        <td></td>
+                                        <td>versé le __/___</td>
+                                        <td>par BC-ESP-VIR</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Solde TVAC</td>
+                                        <td></td>
+                                        <td>versé le __/___</td>
+                                        <td>par BC-ESP-VIR</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                        <div class="col-xs-6">
-                            <table width="100%">
+                        <div class="row">
+                            <b>Infos FACTURATION ou LIVRAISON si &amp;ne;</b>
+                            <table width="100%" class="sale_table">
                                 <tr>
-                                    <td><b>Total HTVA</b></td>
-                                    <td class="align-right"><span t-field="o.amount_untaxed" /></td>
-                                    <td colspan="2" />
+                                    <td width="50%">[ ] à facturer - N° TVA :</td>
+                                    <td width="25%" rownspan="6">Pour accord,</td>
+                                    <td width="25%" rownspan="6">Pour accord,</td>
                                 </tr>
                                 <tr>
-                                    <td>+ TVA</td>
-                                    <td class="align-right" width="150px"><span t-field="o.amount_tax" /></td>
-                                    <td colspan="2">
-                                        <span t-esc="o.get_used_taxes()" />
-                                    </td>
+                                    <td>Réf. Client :</td>
                                 </tr>
                                 <tr>
-                                    <td>Total TVAC</td>
-                                    <td class="align-right">
-                                        <span t-field="o.amount_total" />
-                                    </td>
-                                    <td colspan="2" />
+                                    <td>NOM :</td>
                                 </tr>
                                 <tr>
-                                    <td>- Acompte</td>
-                                    <td></td>
-                                    <td>versé le __/___</td>
-                                    <td>par BC-ESP-VIR</td>
+                                    <td>Téléphone / GSM :</td>
                                 </tr>
                                 <tr>
-                                    <td>- Acompte</td>
-                                    <td></td>
-                                    <td>versé le __/___</td>
-                                    <td>par BC-ESP-VIR</td>
+                                    <td>Email :</td>
                                 </tr>
                                 <tr>
-                                    <td>Solde TVAC</td>
-                                    <td></td>
-                                    <td>versé le __/___</td>
-                                    <td>par BC-ESP-VIR</td>
+                                    <td>Adresse :</td>
+                                </tr>
+                                <tr>
+                                    <td>CP : &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Ville : </td>
+                                    <td>(pour la miroiterie)</td>
+                                    <td>(nom + signature client)</td>
                                 </tr>
                             </table>
                         </div>
-                    </div>
-                    <div class="row">
-                        <b>Infos FACTURATION ou LIVRAISON si &amp;ne;</b>
-                        <table width="100%" class="sale_table">
-                            <tr>
-                                <td width="50%">[ ] à facturer - N° TVA :</td>
-                                <td width="25%" rownspan="6">Pour accord,</td>
-                                <td width="25%" rownspan="6">Pour accord,</td>
-                            </tr>
-                            <tr>
-                                <td>Réf. Client :</td>
-                            </tr>
-                            <tr>
-                                <td>NOM :</td>
-                            </tr>
-                            <tr>
-                                <td>Téléphone / GSM :</td>
-                            </tr>
-                            <tr>
-                                <td>Email :</td>
-                            </tr>
-                            <tr>
-                                <td>Adresse :</td>
-                            </tr>
-                            <tr>
-                                <td>CP : &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Ville : </td>
-                                <td>(pour la miroiterie)</td>
-                                <td>(nom + signature client)</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="row">
-                        <table width="100%" class="external_border_table">
-                            <tr>
-                                <td>Reste à faire</td>
-                                <td><u>Travail exécuté par :</u></td>
-                                <td>Pour accord,</td>
-                            </tr>
-                            <tr>
-                                <td>Enlevé - Placé - Livré (biffer) le ____ / ____</td>
-                                <td><br />[ ] Travail terminé</td>
-                                <td><br /><br /><br />(nom + signature client)</td>
-                            </tr>
-                        </table>
+                        <div class="row">
+                            <table width="100%" class="external_border_table">
+                                <tr>
+                                    <td>Reste à faire</td>
+                                    <td><u>Travail exécuté par :</u></td>
+                                    <td>Pour accord,</td>
+                                </tr>
+                                <tr>
+                                    <td>Enlevé - Placé - Livré (biffer) le ____ / ____</td>
+                                    <td><br />[ ] Travail terminé</td>
+                                    <td><br /><br /><br />(nom + signature client)</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
