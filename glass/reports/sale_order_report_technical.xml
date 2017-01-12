@@ -87,6 +87,13 @@
                         .external_border_table tr {
                             border: none;
                         }
+                        .small_checkbox_table {
+                            width: 20px;
+                            height: 20px;
+                            border: 1px solid black;
+                            display: inline-block;
+                            vertical-align: text-bottom;
+                        }
                         
                     </style>
                     <div class="row">
@@ -117,7 +124,7 @@
                                         <td colspan="3">
                                             <img src="/glass/static/img/glass_upper_right_table.png" width="100%" />
                                             <br />
-                                            Délai incertain : merci de nous téléphoner avant enlèvement [ ]
+                                            Délai incertain : merci de nous téléphoner avant enlèvement <div class="small_checkbox_table"></div>
                                         </td>
                                     </tr>
                                 </table>
@@ -269,7 +276,7 @@
                                 </tr>
                                 <tr>
                                     <td>Enlevé - Placé - Livré (biffer) le ____ / ____</td>
-                                    <td><br />[ ] Travail terminé</td>
+                                    <td><br /><div class="small_checkbox_table"></div> Travail terminé</td>
                                     <td><br /><br /><br />(nom + signature client)</td>
                                 </tr>
                             </table>
