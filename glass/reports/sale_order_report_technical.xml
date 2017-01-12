@@ -242,11 +242,13 @@
                             <table width="100%" class="sale_table">
                                 <tr>
                                     <td width="50%"><div class="small_checkbox_table"></div> à facturer - N° TVA :</td>
-                                    <td width="25%" rownspan="6">Pour accord,</td>
-                                    <td width="25%" rownspan="6">Pour accord,</td>
+                                    <td width="25%">Pour accord,</td>
+                                    <td width="25%">Pour accord,</td>
                                 </tr>
                                 <tr>
                                     <td>Réf. Client :</td>
+                                    <td rowspan="5"></td>
+                                    <td rowspan="5"></td>
                                 </tr>
                                 <tr>
                                     <td>NOM :</td>
