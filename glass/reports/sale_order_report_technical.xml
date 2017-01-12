@@ -241,7 +241,7 @@
                             <b>Infos FACTURATION ou LIVRAISON si &amp;ne;</b>
                             <table width="100%" class="sale_table">
                                 <tr>
-                                    <td width="50%">[ ] à facturer - N° TVA :</td>
+                                    <td width="50%"><div class="small_checkbox_table"></div> à facturer - N° TVA :</td>
                                     <td width="25%" rownspan="6">Pour accord,</td>
                                     <td width="25%" rownspan="6">Pour accord,</td>
                                 </tr>
