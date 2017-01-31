@@ -536,8 +536,8 @@ msgstr "Référence de la commande"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
-msgid "Other Info"
-msgstr "Autres informations"
+msgid "Taxes"
+msgstr "Taxes"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document

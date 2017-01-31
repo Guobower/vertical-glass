@@ -531,7 +531,7 @@ msgstr ""
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
-msgid "Other Info"
+msgid "Taxes"
 msgstr ""
 
 #. module: glass
