@@ -32,5 +32,7 @@
         'reports/sale_order_report_customer.xml',
         'reports/sale_order_report_technical.xml',
         'reports/sale_order_report_full.xml',
+
+        'security/ir.model.access.csv',
         ],
 }

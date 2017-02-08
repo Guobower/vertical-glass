@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_glass_settings_sales,glass.settings.sales,glass.model_glass_sale_config_settings,base.group_sale_salesman,1,0,0,0
+edit_glass_settings_sales,glass.settings.sales,glass.model_glass_sale_config_settings,base.group_sale_salesman_all_leads,1,1,1,0
+access_glass_edge,glass.edge,glass.model_product_glass_edge,base.group_sale_salesman,1,0,0,0
+edit_glass_edge,glass.edge,glass.model_product_glass_edge,base.group_sale_salesman_all_leads,1,1,1,1
+access_glass_shape,glass.shape,glass.model_product_glass_shape,base.group_sale_salesman,1,0,0,0
+edit_glass_shape,glass.shape,glass.model_product_glass_shape,base.group_sale_salesman_all_leads,1,1,1,1
+access_glass_so_line_sub,glass.sale.order.line.sub,glass.model_sale_order_line_sub,base.group_sale_salesman,1,1,1,1
