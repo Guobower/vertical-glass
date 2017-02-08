@@ -38,8 +38,7 @@ class SaleOrderLineSub(models.Model):
     supplier_id = fields.Many2one('res.partner', 'Supplier')
 
     multiplier = fields.Float('Multiplier', required=True, default=1.0)
-    quantity_table = [(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'), (7, '7'), (8, '8'), (9, '9'), (10, '10'), (11, '11'), (12, '12'), (13, '13'), (14, '14'), (15, '15')]
-    quantity = fields.Selection(quantity_table, 'Quantity', required=True, default=1)
+    quantity = fields.Integer('Quantity', required=True, default=1)
 
     accessory_price = fields.Float('Acc. Price', default=0, compute="_setProductInfo")
     total = fields.Float('Total', compute="_computeTotal", required=True)
