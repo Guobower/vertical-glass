@@ -10,7 +10,7 @@
                     <page string="Glass">
                         <group string="Settings">
                             <field name="maximum_area_possible" />
-                            <field name="maximum_area_substitute" domain="[('categ_id', '=ilike', 'vitrages'), ('product_tmpl_id', '=', product_tmpl_id), ('id', '!=', id)]"/>
+                            <field name="maximum_area_substitute" domain="[('categ_id', '=ilike', 'vitrages'), ('id', '!=', id)]"/>
                             <field name="minimum_invoicable"/>
                         </group>
                     </page>
