@@ -99,12 +99,6 @@
                                         <field name="sub_lines_total" widget="monetary" />
                                     </group>
                                     <group col="1" colspan="3">
-                                        <group col="5" colspan="5">
-                                            <field name="men" />
-                                            <field name="men_quantity" nolabel="1" />
-                                            <label string="" />
-                                            <label string="" />
-                                        </group>
                                         <group col="5">
                                             <field name="installation" />
                                             <field name="installation_qty" nolabel="1" />
@@ -116,6 +110,12 @@
                                             <field name="moving_qty" nolabel="1" />
                                             <label string="x 1h = " />
                                             <field name="moving_total" nolabel="1" widget="monetary" />
+                                        </group>
+                                        <group col="5" colspan="5">
+                                            <field name="men" />
+                                            <field name="men_quantity" nolabel="1" />
+                                            <label string="" />
+                                            <label string="" />
                                         </group>
                                         <group col="5">
                                             <field name="km"/>

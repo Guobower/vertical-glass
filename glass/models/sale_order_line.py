@@ -12,7 +12,7 @@ class SaleOrderLine(models.Model):
     sub_lines_total = fields.Float('Lines Total', compute='_compute_sub_lines_total', store=True)
 
     men = fields.Boolean('Men quantity', default=True)
-    men_quantity = fields.Selection([('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10')], 'Men quantity', default='1')
+    men_quantity = fields.Selection([('1', 1), ('2', 2), ('3', 3), ('4', 4), ('5', 5), ('6', 6), ('7', 7), ('8', 8), ('9', 9), ('10', 10)], 'Men quantity', default='1')
 
     installation = fields.Boolean('Installation', default=False)
     installation_qty = fields.Float('Installation Quantity', default=1)
@@ -61,7 +61,7 @@ class SaleOrderLine(models.Model):
             line.sub_lines_total = t
 
     @api.multi
-    @api.depends('installation', 'installation_qty', 'moving', 'moving_qty', 'moving_total', 'km', 'km_qty', 'sub_lines_total', 'margin_applied', 'miscellaneous_total')
+    @api.depends('men', 'men_quantity', 'installation', 'installation_qty', 'moving', 'moving_qty', 'moving_total', 'km', 'km_qty', 'sub_lines_total', 'margin_applied', 'miscellaneous_total')
     def _compute_totals(self):
         setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
         if len(setting) > 1:
@@ -69,6 +69,8 @@ class SaleOrderLine(models.Model):
 
         for line in self:
             # installation total
+            if line.men:
+                line.installation_qty *= int(line.men_quantity)
             if line.installation:
                 line.installation_total = line.installation_qty * setting.installation_price
             else:
@@ -76,6 +78,8 @@ class SaleOrderLine(models.Model):
 
             # moving total
             if line.moving:
+                if line.men:
+                    line.moving_qty *= int(line.men_quantity)
                 line.moving_total = line.moving_qty * setting.moving_price
             else:
                 line.moving_total = 0
