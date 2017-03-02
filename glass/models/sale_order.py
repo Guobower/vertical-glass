@@ -44,9 +44,10 @@ class SaleOrder(models.Model):
         text = text.replace('%(customer_name)s', self.partner_id.name)
         text = text.replace('%(salesman)s', self.user_id.name)
         bank_account_ids = self.env['account.journal'].search([('company_id', '=', self.env.user.company_id.id), ('bank_acc_number', '!=', '')])
-        if len(bank_account_ids) > 1:
-            bank_account_ids = bank_account_ids[0]
-        text = text.replace('%(bank_number)s', bank_account_ids.bank_acc_number)
+        if len(bank_account_ids) > 0:
+            if len(bank_account_ids) > 1:
+                bank_account_ids = bank_account_ids[0]
+            text = text.replace('%(bank_number)s', bank_account_ids.bank_acc_number)
         self.header_text_replaced = text
         return text.encode('utf-8')
 
@@ -60,7 +61,7 @@ class SaleOrder(models.Model):
         text = text.replace('%(customer_name)s', self.partner_id.name)
         text = text.replace('%(salesman)s', self.user_id.name)
         bank_account_ids = self.env['account.journal'].search([('company_id', '=', self.env.user.company_id.id), ('bank_acc_number', '!=', '')])
-        if len(bank_account_ids) >= 1:
+        if len(bank_account_ids) > 0:
             if len(bank_account_ids) > 1:
                 bank_account_ids = bank_account_ids[0]
             text = text.replace('%(bank_number)s', bank_account_ids.bank_acc_number)
