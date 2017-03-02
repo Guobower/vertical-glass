@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c-20161208\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-19 15:45+0000\n"
-"PO-Revision-Date: 2016-12-19 17:04+0100\n"
+"POT-Creation-Date: 2017-03-02 14:32+0000\n"
+"PO-Revision-Date: 2017-03-02 15:33+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,38 +18,51 @@ msgstr ""
 "X-Generator: Poedit 1.8.11\n"
 
 #. module: glass
-#: selection:sale.order.line.sub,quantity:0
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "(nom + signature client)"
+msgstr "(nom + signature client)"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "(pour la miroiterie)"
+msgstr "(pour la miroiterie)"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "+ TVA"
+msgstr "+ TVA"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "- Acompte"
+msgstr "- Acompte"
+
+#. module: glass
+#: selection:sale.order.line,men_quantity:0
 msgid "10"
 msgstr "10"
 
 #. module: glass
-#: selection:sale.order.line.sub,quantity:0
-msgid "11"
-msgstr "11"
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "<b>Infos FACTURATION ou LIVRAISON si &amp;ne;</b>"
+msgstr "<b>Infos FACTURATION ou LIVRAISON si &amp;ne;</b>"
 
 #. module: glass
-#: selection:sale.order.line.sub,quantity:0
-msgid "12"
-msgstr "12"
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "<b>Total HTVA</b>"
+msgstr "<b>Total HTVA</b>"
 
 #. module: glass
-#: selection:sale.order.line.sub,quantity:0
-msgid "13"
-msgstr "13"
-
-#. module: glass
-#: selection:sale.order.line.sub,quantity:0
-msgid "14"
-msgstr "14"
-
-#. module: glass
-#: selection:sale.order.line.sub,quantity:0
-msgid "15"
-msgstr "15"
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid ""
+"<br/>\n"
+"                                            Délai incertain : merci de nous téléphoner avant enlèvement"
+msgstr ""
+"<br/>\n"
+"                                            Délai incertain : merci de nous téléphoner avant enlèvement"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid ""
 "<br/>\n"
 "                            Cusomer ref:"
@@ -57,18 +70,67 @@ msgstr "<br>Cusomer Réf :"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid ""
 "<br/>\n"
 "                            Salesman:"
 msgstr "<br>Vendeur :"
 
 #. module: glass
-#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+#: model:ir.ui.view,arch_db:glass.glass_layout_footer_report
 msgid ""
 "<br/>\n"
-"                            Your ref:"
-msgstr "<br>Votre référence :"
+"                        Fax :"
+msgstr ""
+"<br/>\n"
+"                        Fax :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.glass_layout_footer_report
+msgid ""
+"<br/>\n"
+"                        TVA :"
+msgstr ""
+"<br/>\n"
+"                        TVA :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "<br/><br/><br/>(nom + signature client)"
+msgstr "<br/><br/><br/>(nom + signature client)"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "<u>Identité CHANTIER</u> :"
+msgstr "<u>Identité CHANTIER</u> :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+msgid "<u>Nos références : </u>"
+msgstr "<u>Nos références : </u>"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid ""
+"<u>Remarques :</u>\n"
+"                                <br/>"
+msgstr ""
+"<u>Remarques :</u>\n"
+"                                <br/>"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "<u>TRAVAIL à exécuter</u><br/>"
+msgstr "<u>TRAVAIL à exécuter</u><br/>"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "<u>Travail exécuté par :</u>"
+msgstr "<u>Travail exécuté par :</u>"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+msgid "<u>Vos références : </u>"
+msgstr "<u>Vos références : </u>"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_accessory_price
@@ -88,9 +150,13 @@ msgstr "Accessoire"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Accessory: <br/>"
 msgstr "Accessoire :<br>"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Adresse :"
+msgstr "Adresse :"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_margin_applied
@@ -133,9 +199,24 @@ msgid "Base price to compute the customer price. Sometimes called the catalog pr
 msgstr "Prix de base pour calculer le prix client. Parfois appelé prix catalogue."
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "CP :"
+msgstr "CP :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "CP : &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Ville :"
+msgstr "CP : &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Ville :"
+
+#. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_glass_settings_form
 msgid "Cancel"
 msgstr "Annuler"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+msgid "Commande #"
+msgstr "Commande #"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_company_id
@@ -182,6 +263,11 @@ msgid "Customer Reference:"
 msgstr "Référence client :"
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Date :"
+msgstr "Date :"
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_category_margin_default
 msgid "Default Margin"
 msgstr "Marge par défaut"
@@ -202,7 +288,6 @@ msgstr "Haut de page par défaut"
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_description
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Description"
 msgstr "Description"
 
@@ -236,6 +321,31 @@ msgid "Edges on W."
 msgstr "Bords sur la largeur"
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Email :"
+msgstr "Email :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Enlevé - Placé - Livré (biffer) le ____ / ____"
+msgstr "Enlevé - Placé - Livré (biffer) le ____ / ____"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Epaiss."
+msgstr "Epaiss."
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Fax :"
+msgstr "Fax :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Finition"
+msgstr "Finition"
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_footer_text
 msgid "Footer text"
 msgstr "Bas de page"
@@ -254,6 +364,11 @@ msgstr "Rapport complet"
 #: model:ir.actions.report.xml,name:glass.sale_order_full_report
 msgid "Full Report"
 msgstr "Rapport complet"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "GSM :"
+msgstr "GSM :"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_glass_id
@@ -317,13 +432,11 @@ msgstr "Alerte de Surface maximum de vitrage"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Glass: <br/>"
 msgstr "Vitrage : <br/>"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
 msgid "HTVA"
 msgstr "HTVA"
 
@@ -353,7 +466,6 @@ msgstr "Identifiant"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Included"
 msgstr "Inclu"
 
@@ -380,7 +492,6 @@ msgstr "Total de la pose"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Installation:"
 msgstr "Pose :"
 
@@ -409,7 +520,6 @@ msgstr "Total KM"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "KM:"
 msgstr "KM :"
 
@@ -441,6 +551,11 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Lg . Mesures (mm) ht."
+msgstr "Lg . Mesures (mm) ht."
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_description_structured
 msgid "Line structured description"
 msgstr "Description structurée de la ligne"
@@ -461,6 +576,11 @@ msgid "MO Pose"
 msgstr "MO Pose"
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Mail :"
+msgstr "Mail :"
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_product_price_with_auto_margin
 msgid "Marged Price"
 msgstr "Prix avec marge"
@@ -474,6 +594,12 @@ msgstr "Surface maximum dépassée pour le vitrage"
 #: model:ir.model.fields,field_description:glass.field_product_product_maximum_area_possible
 msgid "Maximum Area with warranty (m^2)"
 msgstr "Surface maximum couverte par la garantie (m^2)"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_men
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_men_quantity
+msgid "Men quantity"
+msgstr "Nombre d'hommes"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_product_minimum_invoicable
@@ -508,7 +634,6 @@ msgstr "Total déplacement"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Moving:"
 msgstr "Déplacement:"
 
@@ -519,10 +644,20 @@ msgid "Multiplier"
 msgstr "Multiplicateur"
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "NOM :"
+msgstr "NOM :"
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_edge_name
 #: model:ir.model.fields,field_description:glass.field_product_glass_shape_name
 msgid "Name"
 msgstr "Nom"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+msgid "Offre"
+msgstr "Offre"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_product_order_line_id
@@ -535,16 +670,14 @@ msgid "Order reference"
 msgstr "Référence de la commande"
 
 #. module: glass
-#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
-msgid "Taxes"
-msgstr "Taxes"
-
-#. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Our ref:"
 msgstr "Notre référence :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Ouvert du lundi au vendredi de 8h à 12 heures et de 13 à 17h30"
+msgstr "Ouvert du lundi au vendredi de 8h à 12 heures et de 13 à 17h30"
 
 #. module: glass
 #: model:ir.model,name:glass.model_res_partner
@@ -565,6 +698,16 @@ msgstr "Prix du périmètre"
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter_total
 msgid "Perimeter Total"
 msgstr "Périmètre total"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+msgid "Pour Accord (signature client)"
+msgstr "Pour Accord (signature client)"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Pour accord,"
+msgstr "Pour accord,"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
@@ -617,7 +760,6 @@ msgstr "Produit lié au déplacement"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_quantity
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Quantity"
 msgstr "Quantité"
 
@@ -625,6 +767,26 @@ msgstr "Quantité"
 #: model:ir.model.fields,field_description:glass.field_sale_order_reference_auto
 msgid "Reference auto"
 msgstr "Référence automatique"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Reste à faire"
+msgstr "Reste à faire"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Réf. Client :"
+msgstr "Réf. Client :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "SMART"
+msgstr "SMART"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "SOCIETE :"
+msgstr "SOCIETE :"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.product_categories_with_margin
@@ -672,6 +834,11 @@ msgid "Shape"
 msgstr "Forme"
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Solde TVAC"
+msgstr "Solde TVAC"
+
+#. module: glass
 #: model:ir.model,name:glass.model_sale_order_line_sub
 msgid "Sub Order Line Shape"
 msgstr "Forme de la sous-ligne de vente"
@@ -702,6 +869,11 @@ msgid "TOTAL HTVA ="
 msgstr "TOTAL HTVA ="
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "Taxes"
+msgstr "Taxes"
+
+#. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_for_glass_form
 msgid "Tech. Report"
 msgstr "Rapport Technique"
@@ -728,9 +900,28 @@ msgstr "Total"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
 msgid "Total :"
 msgstr "Total :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_report_customer
+msgid ""
+"Total HTVA : \n"
+"                            <br/>\n"
+"                            TVA : \n"
+"                            <br/>\n"
+"                            Total TVAC :"
+msgstr ""
+"Total HTVA : \n"
+"                            <br/>\n"
+"                            TVA : \n"
+"                            <br/>\n"
+"                            Total TVAC :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Total TVAC"
+msgstr "Total TVAC"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
@@ -738,9 +929,35 @@ msgid "Total:"
 msgstr "Total :"
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Travail terminé"
+msgstr "Travail terminé"
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_type
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Type"
 msgstr "Type"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Type de demande"
+msgstr "Type de demande"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Tél :"
+msgstr "Tél :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.glass_layout_footer_report
+msgid "Tél. :"
+msgstr "Tél. :"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Téléphone / GSM :"
+msgstr "Téléphone / GSM :"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_use_glass_substitude
@@ -751,6 +968,11 @@ msgstr "Utiliser le substitut"
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_available_variables
 msgid "Variables"
 msgstr "Variables"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "Ville :"
+msgstr "Ville :"
 
 #. module: glass
 #: model:product.category,name:glass.product_category_glass
@@ -784,25 +1006,21 @@ msgstr "glass.sale.config.settings.data"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "km"
 msgstr "km"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "m<sup>3</sup> -"
 msgstr "m<sup>3</sup> -"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "mm <br/> ("
 msgstr "mm <br/> ("
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "mm x"
 msgstr "mm x"
 
@@ -812,11 +1030,26 @@ msgid "or"
 msgstr "ou"
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "par BC-ESP-VIR"
+msgstr "par BC-ESP-VIR"
+
+#. module: glass
 #: model:ir.model,name:glass.model_sale_order_line_sub_area_exceeded_wizard
 msgid "sale.order.line.sub.area.exceeded.wizard"
 msgstr "sale.order.line.sub.area.exceeded.wizard"
 
 #. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "versé le __/___"
+msgstr "versé le __/___"
+
+#. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
 msgid "x 1h ="
 msgstr "x 1h ="
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
+msgid "à facturer - N° TVA :"
+msgstr "à facturer - N° TVA :"
