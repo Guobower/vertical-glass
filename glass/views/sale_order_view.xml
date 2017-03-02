@@ -19,6 +19,12 @@
                 <xpath expr="//field[@name='order_line']" position="after">
                     <field name="footer_text"/>
                 </xpath>
+                <xpath expr="//field[@name='client_order_ref']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="client_order_ref"/>
+                </xpath>
+                
             </field>
         </record>
     </data>
