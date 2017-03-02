@@ -80,7 +80,7 @@
                             <table width="100%">
                                 <tr>
                                     <td>
-                                        <u>Nos réf. : </u>
+                                        <u>Nos références : </u>
                                     </td>
                                     <td>
                                         <span t-field="doc.name" /> / 
@@ -89,13 +89,10 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <u>Vos coordonnées : </u>
+                                        <u>Vos références : </u>
                                     </td>
                                     <td>
-                                        <span t-field="doc.partner_id.phone" />
-                                    </td>
-                                    <td>
-                                        <span t-field="doc.partner_id.email" />
+                                        <span t-field="doc.client_order_ref" />
                                     </td>
                                 </tr>
                             </table>
