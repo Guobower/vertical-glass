@@ -119,8 +119,19 @@
                         </t>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 pull-right">
-                            Total : <span t-field="doc.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/> HTVA
+                        <div class="col-xs-2 col-xs-offset-7">
+                            Total HTVA : 
+                            <br />
+                            TVA : 
+                            <br />
+                            Total TVAC : 
+                        </div>
+                        <div class="col-xs-2">
+                            <span t-field="doc.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/>
+                            <br />
+                            <span t-field="doc.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/>
+                            <br />
+                            <span t-field="doc.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/>
                         </div>
                     </div>
                     <div class="row">
