@@ -65,7 +65,7 @@
                                             <!-- Acc part -->
                                             <group name="main_accessory" col="4" attrs="{'invisible':[('type', '!=', 'accessory')]}" >
                                                 <!-- Line 1 -->
-                                                <field name="accessory_id" colspan="4" domain="[('categ_id', '=ilike', 'accessoires')]" attrs="{'required':[('type','=','accessory')]}"/>
+                                                <field name="accessory_id" colspan="4" domain="[('categ_id', 'not ilike', 'vitrages')]" attrs="{'required':[('type','=','accessory')]}"/>
                                             </group>
                                             <separator />
                                             <!-- TOTALS -->
