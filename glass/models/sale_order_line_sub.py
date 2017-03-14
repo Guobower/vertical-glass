@@ -69,6 +69,7 @@ class SaleOrderLineSub(models.Model):
             self.area_max_exceeded = True
         else:
             self.area_max_exceeded = False
+        self._compute_description()
 
     # Compute Perimeter
     @api.one
@@ -78,6 +79,7 @@ class SaleOrderLineSub(models.Model):
         self.perimeter = p
         if self.edge_id:
             self.perimeter_cost_price = float(self.edge_id.price)
+        self._compute_description()
 
     # Set Product Related info
     @api.one
@@ -93,6 +95,7 @@ class SaleOrderLineSub(models.Model):
         if self.type == 'accessory':
             self.accessory_price = self.accessory_id.lst_price
             self.total = self.quantity * self.accessory_price * self.multiplier
+        self._compute_description()
 
     # Compute base prices
     @api.one
@@ -103,6 +106,7 @@ class SaleOrderLineSub(models.Model):
             self.perimeter_cost_price = float(self.edge_id.price)
         else:
             self.perimeter_cost_price = 0
+        self._compute_description()
 
     # Compute sub-totals
     @api.one
@@ -118,9 +122,10 @@ class SaleOrderLineSub(models.Model):
             self.total = self.quantity * (self.area_total + self.perimeter_total) * self.multiplier
         if self.type == 'accessory':
             self.total = self.quantity * self.accessory_price * self.multiplier
+        self._compute_description()
 
     @api.one
-    @api.depends('total')
+    @api.depends('width', 'height', 'edge_width', 'edge_height', 'glass_id', 'accessory_id', 'shape_id', 'edge_id', 'area', 'area_cost_price', 'perimeter_cost_price', 'quantity', 'area_total', 'perimeter_total', 'multiplier', 'total')
     def _compute_description(self):
         if self.type == 'glass':
             text = ''
