@@ -133,7 +133,7 @@ class SaleOrderLineSub(models.Model):
             if self.glass_id:
                 text = str(self.glass_id.categ_id.name.encode('utf-8')) + " - " + str(self.glass_id.name.encode('utf-8'))
             if self.quantity:
-                text = text + "\n- " + str(self.quantity) + " volume(s) de " + str(self.width) + "mm x " + str(self.height) + "mm"
+                text = text + "\n- " + str(self.quantity) + " volume(s) de " + str(self.width) + "mm x " + str(self.height) + "mm - " + str(self.shape_id.name.encode('utf-8'))
             if self.area_max_exceeded:
                 setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
                 text = text + "\n /!\ " + str(setting.glass_maximum_area_warning.encode('utf-8'))
