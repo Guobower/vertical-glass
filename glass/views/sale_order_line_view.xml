@@ -34,8 +34,11 @@
                                             <field name="type" colspan="1" nolabel="1" />
                                             <!-- Glass part -->
                                             <group name="main_glass" col="4" attrs="{'invisible':[('type', '!=', 'glass')]}">
+                                                
+                                                <field name="category_id" colspan="4" domain="[('name', '=ilike', 'vitr')]" attrs="{'required':[('type','=','glass')]}" />
+                                                
                                                 <!-- Line 1 -->
-                                                <field name="glass_id" colspan="3" domain="[('categ_id', '=ilike', 'vitrages')]" attrs="{'required':[('type','=','glass')]}" />
+                                                <field name="glass_id" colspan="3" domain="[('categ_id', '=', category_id)]" attrs="{'required':[('type','=','glass')]}" />
                                                 <field name="shape_id" nolabel="1" attrs="{'required':[('type','=','glass')]}"/>
                                                 <!-- Line 2 -->
                                                 <field name="supplier_id" domain="[('glass_supplier', '=', True)]"/>

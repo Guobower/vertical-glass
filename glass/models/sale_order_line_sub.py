@@ -14,6 +14,7 @@ class SaleOrderLineSub(models.Model):
     type = fields.Selection([('glass', 'Glass'), ('accessory', 'Accessory')], "Type", default='glass', required=True)
     description = fields.Text(string="Description", compute='_compute_description', store=True)
 
+    category_id = fields.Many2one('product.category', 'Category')
     glass_id = fields.Many2one('product.product', 'Glass')
     accessory_id = fields.Many2one('product.product', 'Accessory')
 
