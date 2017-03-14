@@ -108,13 +108,13 @@
                                         <group col="5">
                                             <field name="installation" />
                                             <field name="installation_qty" nolabel="1" />
-                                            <label string="x 1h x men qty = " />
+                                            <label string="x 1h x nbr hommes = " />
                                             <field name="installation_total" nolabel="1" widget="monetary" />
                                         </group>
                                         <group col="5">
                                             <field name="moving" />
                                             <field name="moving_qty" nolabel="1" />
-                                            <label string="x 1h x men qty = " />
+                                            <label string="x 1h x nbr hommes = " />
                                             <field name="moving_total" nolabel="1" widget="monetary" />
                                         </group>
                                         <group col="5">
