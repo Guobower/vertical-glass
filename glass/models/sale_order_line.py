@@ -69,18 +69,20 @@ class SaleOrderLine(models.Model):
 
         for line in self:
             # installation total
-            if line.men:
-                line.installation_qty *= int(line.men_quantity)
             if line.installation:
-                line.installation_total = line.installation_qty * setting.installation_price
+                if line.men:
+                    line.installation_total = line.installation_qty * setting.installation_price * int(line.men_quantity)
+                else:
+                    line.installation_total = line.installation_qty * setting.installation_price
             else:
                 line.installation_total = 0
 
             # moving total
             if line.moving:
                 if line.men:
-                    line.moving_qty *= int(line.men_quantity)
-                line.moving_total = line.moving_qty * setting.moving_price
+                    line.moving_total = line.moving_qty * setting.moving_price * int(line.men_quantity)
+                else:
+                    line.moving_total = line.moving_qty * setting.moving_price
             else:
                 line.moving_total = 0
 
