@@ -39,7 +39,7 @@
                                                 
                                                 <!-- Line 1 -->
                                                 <field name="glass_id" colspan="3" domain="[('categ_id', '=', category_id), ('sale_ok', '=', True)]" attrs="{'required':[('type','=','glass')]}" />
-                                                <field name="shape_id" nolabel="1" domain="[('sale_ok', '=', True)]" attrs="{'required':[('type','=','glass')]}"/>
+                                                <field name="shape_id" nolabel="1" attrs="{'required':[('type','=','glass')]}"/>
                                                 <!-- Line 2 -->
                                                 <field name="supplier_id" domain="[('glass_supplier', '=', True)]"/>
                                                 <group col="4" colspan="2">

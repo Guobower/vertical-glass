@@ -23,7 +23,7 @@ class SaleOrderLine(models.Model):
     moving_total = fields.Float('Moving Total', compute='_compute_totals')
 
     km = fields.Boolean('KM', default=True)
-    km_qty = fields.Float('KM Quantity')
+    km_qty = fields.Float('KM Quantity', default=40)
     km_total = fields.Float('KM Total', compute='_compute_totals')
 
     miscellaneous_total = fields.Float('Miscelaneous', default=0)
