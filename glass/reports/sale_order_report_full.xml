@@ -85,7 +85,10 @@
                                 <h5>Included</h5>
                                 <ul>
                                     <t t-if="l.installation">
-                                        <li>Installation: <span t-field="l.installation_qty" /> h</li>
+                                        <li>
+                                            Installation: <span t-field="l.installation_qty" /> h
+                                            <t t-if="l.men">, <span t-field="l.men_quantity" /> homme(s)</t>
+                                        </li>
                                     </t>
                                     <t t-if="l.moving">
                                         <li>Moving: <span t-field="l.moving_qty" /> h</li>

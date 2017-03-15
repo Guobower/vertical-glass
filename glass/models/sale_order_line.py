@@ -93,7 +93,7 @@ class SaleOrderLine(models.Model):
                 line.km_total = 0
 
             # total without margin
-            line.price_tmp = line.sub_lines_total + line.installation_total + line.moving_total + line.km_total + line.miscellaneous_total
+            line.price_tmp = round(line.sub_lines_total + line.installation_total + line.moving_total + line.km_total + line.miscellaneous_total, 2)
 
             # total with margin
             line.price_unit = line.price_tmp * line.margin_applied
