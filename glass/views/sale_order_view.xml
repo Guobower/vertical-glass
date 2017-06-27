@@ -24,7 +24,9 @@
                 <xpath expr="//field[@name='payment_term_id']" position="after">
                     <field name="client_order_ref"/>
                 </xpath>
-                
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
             </field>
         </record>
     </data>
