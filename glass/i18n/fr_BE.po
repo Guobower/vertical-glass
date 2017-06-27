@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c-20161208\n"
+"Project-Id-Version: Odoo Server 9.0c-20170627\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 14:32+0000\n"
-"PO-Revision-Date: 2017-03-02 15:33+0100\n"
+"POT-Creation-Date: 2017-06-27 10:29+0000\n"
+"PO-Revision-Date: 2017-06-27 12:41+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "Language: fr_BE\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.1\n"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
@@ -66,7 +66,7 @@ msgstr ""
 msgid ""
 "<br/>\n"
 "                            Cusomer ref:"
-msgstr "<br>Cusomer Réf :"
+msgstr "<br>Référence client :"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
@@ -175,8 +175,8 @@ msgstr "Surface (m^2)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area_cost_price
-msgid "Area Cost Price"
-msgstr "Prix surface"
+msgid "Area Cost Price (m^2)"
+msgstr "Area Cost Price (m^2)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area_total
@@ -214,9 +214,14 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_category_id
+msgid "Category"
+msgstr "Catégorie"
+
+#. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_report_customer
 msgid "Commande #"
-msgstr "Commande #"
+msgstr "No. de Commande"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_company_id
@@ -238,6 +243,7 @@ msgstr "Contenu"
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_create_uid
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_create_uid
 #: model:ir.model.fields,field_description:glass.field_product_glass_edge_create_uid
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish_create_uid
 #: model:ir.model.fields,field_description:glass.field_product_glass_shape_create_uid
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_create_uid
 msgid "Created by"
@@ -247,6 +253,7 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_create_date
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_create_date
 #: model:ir.model.fields,field_description:glass.field_product_glass_edge_create_date
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish_create_date
 #: model:ir.model.fields,field_description:glass.field_product_glass_shape_create_date
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_create_date
 msgid "Created on"
@@ -295,6 +302,7 @@ msgstr "Description"
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_display_name
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_display_name
 #: model:ir.model.fields,field_description:glass.field_product_glass_edge_display_name
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish_display_name
 #: model:ir.model.fields,field_description:glass.field_product_glass_shape_display_name
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_display_name
 msgid "Display Name"
@@ -339,6 +347,11 @@ msgstr "Epaiss."
 #: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Fax :"
 msgstr "Fax :"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_finish_id
+msgid "Finish"
+msgstr "Façonnage de vitrage"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
@@ -398,21 +411,20 @@ msgid "Glass Edges"
 msgstr "Bords de vitrages"
 
 #. module: glass
+#: model:ir.model,name:glass.model_product_glass_finish
+msgid "Glass Finish"
+msgstr "Façonnage de vitrage"
+
+#. module: glass
 #: model:ir.actions.act_window,name:glass.sale_glass_settings_action
 #: model:ir.ui.menu,name:glass.menu_suppliers_product_update_configuration
 msgid "Glass Selling settings"
 msgstr "Paramètres de vente de la vitrerie"
 
 #. module: glass
-#: model:ir.model,name:glass.model_glass_shape
 #: model:ir.model,name:glass.model_product_glass_shape
 msgid "Glass Shape"
 msgstr "Forme de vitrage"
-
-#. module: glass
-#: model:ir.actions.act_window,name:glass.product_glass_shape_action
-msgid "Glass Shapes"
-msgstr "Formes de vitrage"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_res_partner_glass_supplier
@@ -423,6 +435,11 @@ msgstr "Fournisseur de vitrage"
 #: model:ir.ui.view,arch_db:glass.partner_glass_company
 msgid "Glass Supplier:"
 msgstr "Fournisseur de vitrage :"
+
+#. module: glass
+#: model:ir.actions.act_window,name:glass.product_glass_finish_action
+msgid "Glass finishes"
+msgstr "Façonnages de vitrage"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_glass_maximum_area_warning
@@ -459,6 +476,7 @@ msgstr "Hauteur (mm)"
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_id
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_id
 #: model:ir.model.fields,field_description:glass.field_product_glass_edge_id
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish_id
 #: model:ir.model.fields,field_description:glass.field_product_glass_shape_id
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_id
 msgid "ID"
@@ -527,6 +545,7 @@ msgstr "KM :"
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings___last_update
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data___last_update
 #: model:ir.model.fields,field_description:glass.field_product_glass_edge___last_update
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish___last_update
 #: model:ir.model.fields,field_description:glass.field_product_glass_shape___last_update
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub___last_update
 msgid "Last Modified on"
@@ -536,6 +555,7 @@ msgstr "Dernière modification le"
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_write_uid
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_write_uid
 #: model:ir.model.fields,field_description:glass.field_product_glass_edge_write_uid
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish_write_uid
 #: model:ir.model.fields,field_description:glass.field_product_glass_shape_write_uid
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_write_uid
 msgid "Last Updated by"
@@ -545,6 +565,7 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_write_date
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_write_date
 #: model:ir.model.fields,field_description:glass.field_product_glass_edge_write_date
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish_write_date
 #: model:ir.model.fields,field_description:glass.field_product_glass_shape_write_date
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_write_date
 msgid "Last Updated on"
@@ -650,6 +671,7 @@ msgstr "NOM :"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_edge_name
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish_name
 #: model:ir.model.fields,field_description:glass.field_product_glass_shape_name
 msgid "Name"
 msgstr "Nom"
@@ -720,6 +742,11 @@ msgid "Price (M)"
 msgstr "Prix (M)"
 
 #. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish_price
+msgid "Price (m^2)"
+msgstr "Prix (m^2)"
+
+#. module: glass
 #: model:ir.model,name:glass.model_product_product
 msgid "Product"
 msgstr "Produit"
@@ -735,9 +762,9 @@ msgid "Product Edges"
 msgstr "Finitions des bords"
 
 #. module: glass
-#: model:ir.ui.menu,name:glass.product_glass_shape_menu
-msgid "Product Shapes"
-msgstr "Formes"
+#: model:ir.ui.menu,name:glass.product_glass_finish_menu
+msgid "Product finishes"
+msgstr "Façonnages des vitrages"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_installation_product_id
@@ -1006,13 +1033,18 @@ msgstr "glass.sale.config.settings.data"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
+msgid "homme(s)"
+msgstr "homme(s)"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
 msgid "km"
 msgstr "km"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
-msgid "m<sup>3</sup> -"
-msgstr "m<sup>3</sup> -"
+msgid "m<sup>2</sup> -"
+msgstr "m<sup>2</sup> -"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
@@ -1035,19 +1067,14 @@ msgid "par BC-ESP-VIR"
 msgstr "par BC-ESP-VIR"
 
 #. module: glass
-#: model:ir.model,name:glass.model_sale_order_line_sub_area_exceeded_wizard
-msgid "sale.order.line.sub.area.exceeded.wizard"
-msgstr "sale.order.line.sub.area.exceeded.wizard"
-
-#. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "versé le __/___"
 msgstr "versé le __/___"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
-msgid "x 1h ="
-msgstr "x 1h ="
+msgid "x 1h x nbr hommes ="
+msgstr "x 1h x nbr hommes ="
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document

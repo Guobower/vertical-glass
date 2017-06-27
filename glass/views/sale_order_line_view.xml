@@ -59,11 +59,16 @@
                                                     <field name="edge_height" widget="radio" options="{'horizontal': true}"/>
                                                 </group>
                                                 <!-- Line 4 -->
-                                                <field name="area"/>
-                                                <field name="perimeter"/>
+                                                <group name="area" col="4" colspan="4">
+                                                    <field name="area"/>
+                                                    <field name="area_cost_price"/>
+                                                    <field name="finish_id"/>
+                                                </group>
                                                 <!-- Line 5 -->
-                                                <field name="area_cost_price"/>
-                                                <field name="perimeter_cost_price"/>
+                                                <group name="perimeter" col="4" colspan="4">
+                                                    <field name="perimeter"/>
+                                                    <field name="perimeter_cost_price"/>
+                                                </group>
                                             </group>
                                             <!-- Acc part -->
                                             <group name="main_accessory" col="4" attrs="{'invisible':[('type', '!=', 'accessory')]}" >

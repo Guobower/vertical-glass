@@ -27,10 +27,12 @@ class SaleOrderLineSub(models.Model):
     edge_width = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on W.', required=True, default=2)
     edge_height = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on H.', required=True, default=2)
 
+    finish_id = fields.Many2one('product.glass.finish', 'Finish')
+
     area = fields.Float('Area (m^2)', compute='_computeArea', store=True)
     perimeter = fields.Float('Perimeter (M)', compute='_computePerimeter', store=True)
     
-    area_cost_price = fields.Float('Area Cost Price', compute="_setProductInfo")
+    area_cost_price = fields.Float('Area Cost Price (m^2)', compute="_setProductInfo")
     perimeter_cost_price = fields.Float('Perimeter Cost Price', compute="_setProductInfo")
 
     area_total = fields.Float('Area Total', compute='_computeSubTotals')
@@ -111,9 +113,11 @@ class SaleOrderLineSub(models.Model):
 
     # Compute sub-totals
     @api.one
-    @api.depends('area', 'area_cost_price', 'perimeter_cost_price')
+    @api.depends('area', 'area_cost_price', 'perimeter_cost_price', 'finish_id')
     def _computeSubTotals(self):
         self.area_total = self.area * self.area_cost_price
+        if self.finish_id and self.finish_id.price:
+            self.area_total = self.area_total + (self.area * self.finish_id.price)
         self.perimeter_total = self.perimeter * self.perimeter_cost_price
 
     @api.one
@@ -126,7 +130,7 @@ class SaleOrderLineSub(models.Model):
         self._compute_description()
 
     @api.one
-    @api.depends('width', 'height', 'edge_width', 'edge_height', 'glass_id', 'accessory_id', 'shape_id', 'edge_id', 'area', 'area_cost_price', 'perimeter_cost_price', 'quantity', 'area_total', 'perimeter_total', 'multiplier', 'total')
+    @api.depends('width', 'height', 'edge_width', 'edge_height', 'glass_id', 'accessory_id', 'shape_id', 'edge_id', 'area', 'area_cost_price', 'perimeter_cost_price', 'quantity', 'area_total', 'perimeter_total', 'multiplier', 'total', 'finish_id')
     def _compute_description(self):
         if self.type == 'glass':
             text = ''
@@ -136,6 +140,8 @@ class SaleOrderLineSub(models.Model):
                 text = text + "\n- " + str(self.quantity) + " volume(s) de " + str(self.width) + "mm x " + str(self.height) + "mm - "
                 if self.shape_id:
                     text = text + str(self.shape_id.name.encode('utf-8'))
+                if self.finish_id:
+                    text = text + ", " + str(self.finish_id.name.encode('utf-8'))
             if self.area_max_exceeded:
                 setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
                 text = text + "\n /!\ " + str(setting.glass_maximum_area_warning.encode('utf-8'))
