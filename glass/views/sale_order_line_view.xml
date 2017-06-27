@@ -129,6 +129,9 @@
                                         <group col="3">
                                             <field name="miscellaneous_total" />
                                         </group>
+                                        <group col="3">
+                                            <field name="tax_id" string="Taxes" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
+                                        </group>
                                     </group>
                                     <separator />
                                     <group class="oe_subtotal_footer oe_right" colspan="4" name="total">
@@ -139,9 +142,6 @@
                                 </page>
                                 <page string="Description">
                                     <field name="description_structured" readonly="1"/>
-                                </page>
-                                <page string="Taxes">
-                                    <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"/>
                                 </page>
                             </notebook>
                         </group>
