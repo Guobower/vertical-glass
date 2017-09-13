@@ -15,10 +15,10 @@ class ProductGlass(models.Model):
     maximum_area_substitute = fields.Many2one('product.product', 'Substitude product')
 
     @api.multi
-    @api.depends('categ_id')
+    @api.depends('categ_id', 'lst_price')
     def _compute_price_with_auto_margin(self):
         for product in self:
-            product.price_with_auto_margin = product.lst_price * product.categ_id.margin_default
+            product.price_with_auto_margin = product.lst_price * (1 + product.categ_id.margin / 100)
 
 
     @api.model

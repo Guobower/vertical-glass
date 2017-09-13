@@ -11,5 +11,5 @@ class GlassFinish(models.Model):
     def name_get(self):
         result = []
         for record in self:
-            result.append((record.id, "%s [x %s]" % (record.name, str(record.price))))
+            result.append((record.id, "%s [%s EUR]" % (record.name, str(record.price))))
         return result

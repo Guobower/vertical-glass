@@ -74,7 +74,7 @@
                                                         <span t-field="sub.quantity" />
                                                     </td>
                                                     <td>
-                                                        <span t-field="sub.accessory_price" /> x <span t-field="sub.multiplier" /><br />
+                                                        <span t-field="sub.accessory_price" /> + <span t-field="sub.margin" /> %<br />
                                                         = <span t-field="sub.total" />
                                                     </td>
                                                 </tr>

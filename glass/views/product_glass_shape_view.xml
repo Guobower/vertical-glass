@@ -8,7 +8,7 @@
                 <form>
                     <group>
                         <field name="name" />
-                        <field name="multiplier" />
+                        <field name="margin" />
                     </group>
                 </form>
             </field>
@@ -20,7 +20,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name" />
-                    <field name="multiplier" />
+                    <field name="margin" />
                 </tree>
             </field>
         </record>
