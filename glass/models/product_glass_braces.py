@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+"""
+Manage braces (croisillons - FR) with price per socket (alvéoles -FR)
+"""
+
 import logging
 from openerp import api, fields, models
 _logger = logging.getLogger(__name__)
@@ -6,7 +10,7 @@ _logger = logging.getLogger(__name__)
 
 class GlassBraces(models.Model):
     """
-    Manage braces (croisillon - FR) with price per socket (alvéoles -FR)
+    Main braces class
     """
     _name = 'product.glass.braces'
     _description = "Glass Braces"
@@ -17,7 +21,7 @@ class GlassBraces(models.Model):
     @api.multi
     def name_get(self):
         """
-        Custom name display format
+        Custom display used in lieu of name
         """
         result = []
         for record in self:
