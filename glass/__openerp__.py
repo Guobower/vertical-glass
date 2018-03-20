@@ -26,6 +26,7 @@
         'views/product_glass_dimconstraint_view.xml',
         'views/res_partner_view.xml',
         'views/product_glass_view.xml',
+        'views/product_template.xml',
         'views/sale_order_view.xml',
         'views/sale_order_line_view.xml',
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <!-- Remix product form to add wood fields -->
+    <record id="view_product_template_wood_inherit" model="ir.ui.view">
+        <field name="name">product.template.glass.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <!-- extras tab -->
+            <xpath expr="//page[@name='notes']" position="before">
+                <page string="Product Extras" name="wood_delivery_rules">
+                    <group string="Product Extras" mode="tree,kanban">
+                        <field name="product_extras_ids" nolabel="1" editable="bottom">
+                            <field name="name"/>
+                            <field name="type"/>
+                            <field name="price"/>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</openerp>
