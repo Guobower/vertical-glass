@@ -7,4 +7,8 @@ access_glass_shape,glass.shape,glass.model_product_glass_shape,base.group_sale_s
 edit_glass_shape,glass.shape,glass.model_product_glass_shape,base.group_sale_salesman_all_leads,1,1,1,1
 access_glass_braces,glass.braces,glass.model_product_glass_braces,base.group_sale_salesman,1,0,0,0
 edit_glass_braces,glass.braces,glass.model_product_glass_braces,base.group_sale_salesman_all_leads,1,1,1,1
+access_glass_extra_type,glass.extra_type,glass.model_product_glass_extra_type,base.group_sale_salesman,1,0,0,0
+edit_glass_extra_type,glass.extra_type,glass.model_product_glass_extra_type,base.group_sale_salesman_all_leads,1,1,1,1
+access_glass_extra,glass.extra,glass.model_product_glass_extra,base.group_sale_salesman,1,0,0,0
+edit_glass_extra,glass.extra,glass.model_product_glass_extra,base.group_sale_salesman_all_leads,1,1,1,1
 access_glass_so_line_sub,glass.sale.order.line.sub,glass.model_sale_order_line_sub,base.group_sale_salesman,1,1,1,1

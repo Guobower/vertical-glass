@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_glass_extras_type_form">
+            <field name="name">product_glass_extras_type_form</field>
+            <field name="model">product.glass.extra.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_glass_extras_type_tree">
+            <field name="name">product_glass_extras_type_tree</field>
+            <field name="model">product.glass.extra.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_glass_extras_type_action">
+            <field name="name">Glass extra type</field>
+            <field name="res_model">product.glass.extra.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="product_glass_extras_extra_form">
+            <field name="name">product_glass_extras_extra_form</field>
+            <field name="model">product.glass.extra</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                        <field name="type_id" />
+                        <field name="price" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_glass_extras_extra_tree">
+            <field name="name">product_glass_extras_extra_tree</field>
+            <field name="model">product.glass.extra</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="type_id" />
+                    <field name="price" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_glass_extras_extra_action">
+            <field name="name">Glass extra</field>
+            <field name="res_model">product.glass.extra</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="product_glass_extras_menu" name="Product Extras" parent="glass_sale_config_menu"
+                  sequence="28" action=""/>
+
+        <menuitem id="product_glass_extras_type_menu" name="Extras types" parent="product_glass_extras_menu"
+                  sequence="1" action="product_glass_extras_type_action"/>
+        <menuitem id="product_glass_extras_extra_menu" name="Extras" parent="product_glass_extras_menu"
+                  sequence="2" action="product_glass_extras_extra_action"/>
+    </data>
+</openerp>
