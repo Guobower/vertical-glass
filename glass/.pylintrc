@@ -1,0 +1,9 @@
+[Master]
+init-hook='sys.path = list(); sys.path.append("C:\\Program Files (x86)\\Odoo 9.0\\server")'
+
+# accept the following non coventional name
+good-names=_logger
+
+# skip mandatory docstring for short function
+docstring-min-length=10
+
