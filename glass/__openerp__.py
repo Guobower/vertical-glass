@@ -23,6 +23,7 @@
         'views/product_glass_extras_view.xml',
         'views/product_glass_shape_view.xml',
         'views/product_glass_finish_view.xml',
+        'views/product_glass_dimconstraint_view.xml',
         'views/res_partner_view.xml',
         'views/product_glass_view.xml',
         'views/sale_order_view.xml',
