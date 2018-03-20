@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_glass_braces_form">
+            <field name="name">product_glass_braces_form</field>
+            <field name="model">product.glass.braces</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                        <field name="price" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_glass_braces_tree">
+            <field name="name">product_glass_braces_tree</field>
+            <field name="model">product.glass.braces</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="price" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_glass_braces_action">
+            <field name="name">Glass Braces</field>
+            <field name="res_model">product.glass.braces</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="product_glass_braces_menu" name="Product braces" parent="glass_sale_config_menu"
+                  sequence="26" action="product_glass_braces_action"/>
+    </data>
+</openerp>
