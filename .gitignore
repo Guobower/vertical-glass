@@ -1,0 +1,8 @@
+# intelli-J
+.idea/
+.idea/vcs.xml
+*.iws
+# Python virtual env
+venv/
+# Compiled sources
+*.pyc

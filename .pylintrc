@@ -1,0 +1,4 @@
+[pre-commit-hook]
+command=custom_pylint
+params=--rcfile=C:\\Users\\Paul.N.Butera\\PycharmProjects\\vertical-glass\\glass\\pylint.rc
+limit=8.0
