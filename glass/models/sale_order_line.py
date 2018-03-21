@@ -1,9 +1,17 @@
-from openerp import models, fields, api
+# -*- coding: utf-8 -*-
+"""
+Sale order line extension
+"""
 
 import logging
+from openerp import models, fields, api
 _logger = logging.getLogger(__name__)
 
+
 class SaleOrderLine(models.Model):
+    """
+    Main class adding workforce and sale_order_line_sub concepts
+    """
     _inherit = 'sale.order.line'
 
     name = fields.Char('Name', required=True)
