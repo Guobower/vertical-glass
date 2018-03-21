@@ -471,8 +471,8 @@ msgid "Maximum Area with warranty (m^2)"
 msgstr ""
 
 #. module: glass
-#: model:ir.model.fields,field_description:glass.field_product_product_minimum_invoicable
-msgid "Minimum Invoicable (m^2)"
+#: model:ir.model.fields,field_description:glass.field_product_product_minimum_invoiceable
+msgid "Minimum Invoiceable (m^2)"
 msgstr ""
 
 #. module: glass

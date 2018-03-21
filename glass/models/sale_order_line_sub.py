@@ -55,8 +55,8 @@ class SaleOrderLineSub(models.Model):
     def _computeArea(self):
         # Compute Area
         a = ((float(self.width) * float(self.height)) / 1000) / 1000 # to have the area in square meters (mm * mm => m^2)
-        if self.glass_id and self.glass_id.minimum_invoicable and self.glass_id.minimum_invoicable > a:
-            a = self.glass_id.minimum_invoicable
+        if self.glass_id and self.glass_id.minimum_invoiceable and self.glass_id.minimum_invoiceable > a:
+            a = self.glass_id.minimum_invoiceable
 
         # Set area
         self.area = a
