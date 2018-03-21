@@ -49,8 +49,8 @@
                                                 <!-- When Area is too big for the product -->
                                                 <group col="2" colspan="4" attrs="{'invisible':[('area_max_exceeded', '=', False)]}">
                                                     <field name="area_max_exceeded" nolabel="1" invisible="1" />
-                                                    <label colspan="2" string="The specified area for the product exceeds the maximum size on the product settings. If you leave the area as it, a message informing the customer about the loss of warranty will be added to the line. If you want to add the substitude product, use the button 'Substitute' in the form." color="red"/>
-                                                    <field name="use_glass_substitude" on_change="change_glass_to_substitude()" />
+                                                    <label colspan="2" string="The specified area for the product exceeds the maximum size on the product settings. If you leave the area as it, a message informing the customer about the loss of warranty will be added to the line. If you want to add the substitute product, use the button 'Substitute' in the form." color="red"/>
+                                                    <field name="use_glass_substitute" on_change="change_glass_to_substitute()" />
                                                 </group>
                                                 <!-- Line 3 -->
                                                 <field name="edge_id" attrs="{'required':[('type','=','glass')]}"/>

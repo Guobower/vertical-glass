@@ -34,7 +34,7 @@ class GlassExtras(models.Model):
 
     name = fields.Char(required=True)
     type_id = fields.Many2one('product.glass.extra.type', required=True)
-    price = fields.Char('Price', required=True)
+    price = fields.Float('Price/Surface area [m^2]', required=True)
 
     @api.multi
     def name_get(self):
