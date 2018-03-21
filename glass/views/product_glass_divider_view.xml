@@ -35,6 +35,6 @@
         </record>
 
         <menuitem id="product_glass_divider_menu" name="Product Divider" parent="glass_sale_config_menu"
-                  sequence="26" action="product_glass_divider_action"/>
+                  sequence="30" action="product_glass_divider_action"/>
     </data>
 </openerp>
