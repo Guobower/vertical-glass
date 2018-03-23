@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # (c) 2018 - AbAKUS IT SOLUTIONS
-
+from collections import OrderedDict
 from openerp.tests import common
 
 
@@ -46,3 +46,10 @@ class TestGlassCommon(common.TransactionCase):
             'email': 'glasse@glasscompany.com',
             'groups_id': [(6, 0, [self.group_user_id])]
         })
+
+        # create quotation with different kinds of products (all possible combinations)
+        self.products = OrderedDict([
+            ('prod_order', self.env.ref('product.product_order_01')),
+        ])
+
+        self.partner = self.env.ref('base.res_partner_1')

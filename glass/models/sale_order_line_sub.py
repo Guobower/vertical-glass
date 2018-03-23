@@ -15,7 +15,10 @@ class SaleOrderLineSub(models.Model):
 
     order_line_id = fields.Many2one('sale.order.line', 'Sale Order Line')
 
-    type = fields.Selection([('glass', 'Glass'), ('accessory', 'Accessory')], "Type", default='glass', required=True)
+    type = fields.Selection([
+        ('glass', 'Glass'),
+        ('accessory', 'Accessory')],
+        "Type", default='glass', required=True)
 
     description = fields.Text(string="Description", compute='_compute_description', store=True)
 
@@ -60,7 +63,6 @@ class SaleOrderLineSub(models.Model):
     braces_id = fields.Many2one('product.glass.braces', 'Braces')
     finish_id = fields.Many2one('product.glass.finish', 'Finish')
     shape_id = fields.Many2one('product.glass.shape', 'Shape')
-
 
     # Compute Area
     @api.one

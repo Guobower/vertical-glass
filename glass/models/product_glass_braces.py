@@ -16,6 +16,7 @@ class GlassBraces(models.Model):
     _description = "Glass Braces"
 
     name = fields.Char(required=True)
+    colour = fields.Char(required=True)
     price = fields.Char('Price / socket', required=True)
 
     @api.multi
@@ -25,5 +26,5 @@ class GlassBraces(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s [%s EUR]" % (record.name, record.price)))
+            result.append((record.id, "%s (%s) [%s EUR]" % (record.name, record.colour, record.price)))
         return result

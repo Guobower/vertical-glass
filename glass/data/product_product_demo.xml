@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="product.product_order_01" model="product.product">
+            <field name="name">SO009</field>
+            <field name="invoice_policy">order</field>
+        </record>
+    </data>
+</openerp>

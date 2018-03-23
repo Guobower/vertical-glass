@@ -42,4 +42,7 @@
 
         'security/ir.model.access.csv',
         ],
+        'demo': [
+            'data/product_product_demo.xml',
+        ],
 }

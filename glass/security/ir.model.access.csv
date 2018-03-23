@@ -1,5 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_glass_settings_sales,glass.settings.sales,glass.model_glass_sale_config_settings,base.group_sale_salesman,1,0,0,0
+access_glass_sale_config_settings_data,access_glass_sale_config_settings_data,model_glass_sale_config_settings_data,,1,0,0,0
 edit_glass_settings_sales,glass.settings.sales,glass.model_glass_sale_config_settings,base.group_sale_salesman_all_leads,1,1,1,0
 access_glass_edge,glass.edge,glass.model_product_glass_edge,base.group_sale_salesman,1,0,0,0
 edit_glass_edge,glass.edge,glass.model_product_glass_edge,base.group_sale_salesman_all_leads,1,1,1,1
@@ -7,6 +8,10 @@ access_glass_shape,glass.shape,glass.model_product_glass_shape,base.group_sale_s
 edit_glass_shape,glass.shape,glass.model_product_glass_shape,base.group_sale_salesman_all_leads,1,1,1,1
 access_glass_braces,glass.braces,glass.model_product_glass_braces,base.group_sale_salesman,1,0,0,0
 edit_glass_braces,glass.braces,glass.model_product_glass_braces,base.group_sale_salesman_all_leads,1,1,1,1
+access_glass_divider,glass.divider,glass.model_product_glass_divider,base.group_sale_salesman,1,0,0,0
+edit_glass_divider,glass.divider,glass.model_product_glass_divider,base.group_sale_salesman_all_leads,1,1,1,1
+access_glass_finish,glass.finish,glass.model_product_glass_finish,base.group_sale_salesman,1,0,0,0
+edit_glass_finish,glass.finish,glass.model_product_glass_finish,base.group_sale_salesman_all_leads,1,1,1,1
 access_glass_dimconstraint,glass.dimconstraint,glass.model_product_glass_dimconstraint,base.group_sale_salesman,1,0,0,0
 edit_glass_dimconstraint,glass.dimconstraint,glass.model_product_glass_dimconstraint,base.group_sale_salesman_all_leads,1,1,1,1
 access_glass_extra_type,glass.extra_type,glass.model_product_glass_extra_type,base.group_sale_salesman,1,0,0,0
