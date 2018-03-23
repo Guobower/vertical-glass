@@ -13,6 +13,10 @@
                             <field name="maximum_area_substitute" domain="[('categ_id', '=ilike', 'vitrages'), ('id', '!=', id)]"/>
                             <field name="minimum_invoiceable"/>
                         </group>
+                        <group string="Presets">
+                            <field name="glass_back_id" string="Glass 02 (Back)" />
+                            <field name="glass_middle_id" string="Glass 03 (Middle)" />
+                        </group>
                     </page>
                 </page>
                 <xpath expr="//field[@name='lst_price']" position="after">

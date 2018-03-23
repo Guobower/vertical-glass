@@ -18,6 +18,9 @@ class ProductGlass(models.Model):
     price_with_auto_margin = fields.Float('Marged Price', compute='_compute_price_with_auto_margin')
     maximum_area_possible = fields.Float('Maximum Area with warranty (m^2)', default='3')
     maximum_area_substitute = fields.Many2one('product.product', string='Substitute product')
+    # Presets
+    glass_back_id = fields.Many2one('product.product', string="Glass (back)")
+    glass_middle_id = fields.Many2one('product.product', string="Glass (middle)")
 
     @api.multi
     @api.depends('categ_id')
