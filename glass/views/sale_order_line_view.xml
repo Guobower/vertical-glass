@@ -70,11 +70,22 @@
                                                     <group name="area">
                                                         <field name="area"/>
                                                         <field name="area_cost_price"/>
-                                                        <field name="finish_id"/>
                                                     </group>
                                                     <group name="perimeter">
                                                         <field name="perimeter"/>
                                                         <field name="perimeter_cost_price"/>
+                                                    </group>
+                                                </group>
+                                                <group attrs="{'invisible':[('area_max_exceeded', '=', False)]}">
+                                                    <field name="area_max_exceeded" nolabel="1" invisible="1" />
+                                                    <label colspan="2" string="The specified area for the product exceeds the maximum size on the product settings. If you leave the area as it, a message informing the customer about the loss of warranty will be added to the line. If you want to add the substitute product, use the button 'Substitute' in the form." color="red"/>
+                                                    <field name="use_glass_substitute"  />
+                                                </group>
+                                                <group>
+                                                    <group string="Product Options">
+                                                        <field name="finish_id" />
+                                                        <field name="divider_id" />
+                                                        <field name="braces_id" />
                                                     </group>
                                                 </group>
                                                 <group>
@@ -82,7 +93,7 @@
                                                         <field name="extras_ids" nolabel="1" editable="bottom">
                                                             <field name="name"/>
                                                             <field name="type"/>
-                                                            <field name="price"/>
+                                                            <field name="price" sum="Total extra [m^2]"/>
                                                         </field>
                                                     </group>
                                                 </group>

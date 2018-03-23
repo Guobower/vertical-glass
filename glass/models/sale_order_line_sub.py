@@ -23,46 +23,47 @@ class SaleOrderLineSub(models.Model):
     glass_back_id = fields.Many2one('product.product', 'Glass (back)')
     glass_middle_id = fields.Many2one('product.product', 'Glass (middle)')
 
+    shape_id = fields.Many2one('product.glass.shape', 'Shape')
+    width = fields.Integer('Width (mm)', default=1000)
+    height = fields.Integer('Height (mm)', default=1000)
+
     edge_id = fields.Many2one('product.glass.edge', 'Edge')
     edge_width = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on W.', required=True, default=2)
     edge_height = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on H.', required=True, default=2)
 
     perimeter = fields.Float('Perimeter (M)', compute='_compute_perimeter', store=True)
-    
-    area_cost_price = fields.Float('Area Cost Price (m^2)', compute="_set_product_info")
-    perimeter_cost_price = fields.Float('Perimeter Cost Price', compute="_set_product_info")
-
-    area_total = fields.Float('Area Total', compute='_compute_sub_totals')
     perimeter_total = fields.Float('Perimeter Total', compute='_compute_sub_totals')
 
+    area = fields.Float('Invoice Area (m^2)', compute='_computeArea', store=True)
+    area_geometric = fields.Float('Area (m^2)', compute='_computeArea', store=True)
+    area_cost_price = fields.Float('Area Cost Price (m^2)', compute="_set_product_info")
+    perimeter_cost_price = fields.Float('Perimeter Cost Price', compute="_set_product_info")
+    area_total = fields.Float('Area Total', compute='_compute_sub_totals')
+    minimum_invoiceable = fields.Float('Minimum Invoiceable (m^2)', related='glass_front_id.minimum_invoiceable')
+    area_max_exceeded = fields.Boolean('Max area exceeded for the glass', default=False, readonly=True, compute="_computeArea")
+    use_glass_substitute = fields.Boolean('Use Glass Substitute', default=False)
+    # Options
+    braces_id = fields.Many2one('product.glass.braces', 'Braces')
+    divider_id = fields.Many2one('product.glass.divider', 'Divider')
+    finish_id = fields.Many2one('product.glass.finish', 'Finish')
+    # Extras
+    extras_ids = fields.Many2many('product.glass.extra', string="Extras")
+
     multiplier = fields.Float('Multiplier', required=True, default=1.0)
+
     quantity = fields.Integer('Quantity', required=True, default=1)
 
+    accessory_id = fields.Many2one('product.product', 'Accessory')
     accessory_price = fields.Float('Acc. Price', default=0, compute="_set_product_info")
     total = fields.Float('Total', compute="_compute_total", required=True)
 
-    use_glass_substitute = fields.Boolean('Use Glass Substitute', default=False)
-
     supplier_id = fields.Many2one('res.partner', 'Supplier')
 
-    width = fields.Integer('Width (mm)', default=1000)
-    height = fields.Integer('Height (mm)', default=1000)
-    area_geometric = fields.Float('Area (m^2)', compute='_computeArea', store=True)
-    area = fields.Float('Invoice Area (m^2)', compute='_computeArea', store=True)
     standard_price = fields.Float(related='glass_front_id.standard_price')
     lst_price = fields.Float(related='glass_front_id.lst_price')
     margin = fields.Float(related='category_id.margin_default')
-    area_max_exceeded = fields.Boolean('Max area exceeded for the glass', default=False, readonly=True,
-                                       compute="_computeArea")
-    dimension_constraint_id = fields.Many2one('product.glass.dimconstraint', 'Dimension constraint')
-    # TODO: There can be only one : are extras products with specific category or its own module
-    extras_ids = fields.Many2many('product.glass.extra', string="Extras")
-    accessory_id = fields.Many2one('product.product', 'Accessory')
 
-    minimum_invoiceable = fields.Float('Minimum Invoiceable (m^2)', related='glass_front_id.minimum_invoiceable')
-    braces_id = fields.Many2one('product.glass.braces', 'Braces')
-    finish_id = fields.Many2one('product.glass.finish', 'Finish')
-    shape_id = fields.Many2one('product.glass.shape', 'Shape')
+    dimension_constraint_id = fields.Many2one('product.glass.dimconstraint', 'Dimension constraint')
 
     @api.onchange('glass_front_id')
     def get_glass_product_presets(self):
@@ -80,7 +81,7 @@ class SaleOrderLineSub(models.Model):
     @api.depends('glass_front_id', 'width', 'height')
     def _computeArea(self):
         """ Compute Area
-        both geomtric and invoicable area
+        both geometric and invoiceable area
         """
         # in order to have the area in square meters (mm * mm => m^2)
         a = ((float(self.width) * float(self.height)) / 1000) / 1000
@@ -182,5 +183,13 @@ class SaleOrderLineSub(models.Model):
             self.description = str(self.accessory_id.categ_id.name.encode('utf-8')) + " - " + str(self.accessory_id.name.encode('utf-8'))
 
     @api.multi
+    @api.onchange('use_glass_substitute')
     def change_glass_to_substitute(self):
-        return {'value': {'use_glass_substitute': False, 'glass_front_id': self.glass_front_id.maximum_area_substitute, 'area_max_exceeded': False}}
+        return {
+            'value':
+                {
+                    'use_glass_substitute': False,
+                    'glass_front_id': self.glass_front_id.maximum_area_substitute,
+                    'area_max_exceeded': False
+                }
+        }
