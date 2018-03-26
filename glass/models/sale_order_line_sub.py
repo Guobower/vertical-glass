@@ -51,10 +51,10 @@ class SaleOrderLineSub(models.Model):
     braces_id = fields.Many2one('product.glass.braces', 'Braces')
     divider_id = fields.Many2one('product.glass.divider', 'Divider')
     finish_id = fields.Many2one('product.glass.finish', 'Finish')
-    options_total = fields.Float('Total options', readonly=True, default=0)
+    options_total = fields.Float('Total options', compute="compute_options", readonly=True, default=0)
     # Extras
     extras_ids = fields.Many2many('product.glass.extra', string="Extras")
-    extras_total = fields.Float('Total extras', readonly=True, default=0)
+    extras_total = fields.Float('Total extras', compute="compute_extras", readonly=True, default=0)
     # Accessory
     accessory_id = fields.Many2one('product.product', 'Accessory')
     accessory_price = fields.Float('Acc. Price', default=0, compute="compute_accessory")
@@ -176,24 +176,29 @@ class SaleOrderLineSub(models.Model):
         self._compute_description()
 
     @api.one
+    @api.onchange('finish_id', 'divider_id', 'braces_id')
+    def compute_options(self):
+        self.options_total = 0
+        if self.finish_id and self.finish_id.price:
+            self.options_total += self.finish_id.compute_price(self.area_geometric)
+        if self.divider_id and self.divider_id.price:
+            self.options_total += self.divider_id.compute_price(self.area_geometric)
+        if self.braces_id and self.braces_id.price:
+            self.options_total += self.braces_id.compute_price()
+
+    @api.one
+    @api.depends('extras_ids')
+    def compute_extras(self):
+        self.extras_total = 0
+        if self.extras_ids:
+            for line in self.extras_ids:
+                self.extras_total += line.price
+            self.extras_total = self.extras_total * self.area_geometric
+
+    @api.one
     @api.depends('quantity', 'area_total', 'perimeter_total', 'multiplier')
     def _compute_total(self):
         if self.type == 'glass':
-            # Add options
-            self.options_total = 0
-            if self.finish_id and self.finish_id.price:
-                self.options_total += self.finish_id.compute_price(self.area_geometric)
-            if self.divider_id and self.divider_id.price:
-                self.options_total += self.divider_id.compute_price(self.area_geometric)
-            if self.braces_id and self.braces_id.price:
-                self.options_total += self.braces_id.compute_price()
-            # Add Extras
-            self.extras_total = 0
-            if self.extras_ids:
-                for line in self.extras_ids:
-                    self.extras_total += line.price
-                self.extras_total = self.extras_total * self.area_geometric
-
             self.total = self.options_total + self.extras_total + self.area_total + self.perimeter_total
             # apply quantity and correction rate
             self.total = self.quantity * self.area_total * self.multiplier
@@ -207,29 +212,33 @@ class SaleOrderLineSub(models.Model):
         if self.type == 'glass':
             text = ''
             if self.glass_front_id:
-                text = "{} - {}".format(self.glass_front_id.categ_id.name.encode('utf-8'), self.glass_front_id.name.encode('utf-8'))
+                text += "Front: {} - {}".format(self.glass_front_id.categ_id.name.encode('utf-8'), self.glass_front_id.name.encode('utf-8'))
             if self.glass_back_id:
-                text = "\n{} - {}".format(self.glass_back_id.categ_id.name.encode('utf-8'), self.glass_back_id.name.encode('utf-8'))
+                text += "\nBack: {} - {}".format(self.glass_back_id.categ_id.name.encode('utf-8'), self.glass_back_id.name.encode('utf-8'))
             if self.glass_middle_id:
-                text = "\n{} - {}".format(self.glass_middle_id.categ_id.name.encode('utf-8'),self.glass_middle_id.name.encode('utf-8'))
+                text += "\nMiddle: {} - {}".format(self.glass_middle_id.categ_id.name.encode('utf-8'),self.glass_middle_id.name.encode('utf-8'))
             if self.quantity:
-                text = text + "\n- {} volume(s) de {} mm x {} mm -".format(self.quantity, self.width, self.height)
+                text += "\n- {} volume(s) de {} mm x {} mm".format(self.quantity, self.width, self.height)
                 if self.shape_id:
-                    text = text + str(self.shape_id.name.encode('utf-8'))
+                    text += ", " + str(self.shape_id.name.encode('utf-8'))
                 if self.finish_id:
-                    text = text + ", " + str(self.finish_id.name.encode('utf-8'))
+                    text += ", " + str(self.finish_id.name.encode('utf-8'))
+                if self.divider_id:
+                    text += ", " + str(self.divider_id.name.encode('utf-8'))
+                if self.braces_id:
+                    text += ", " + str(self.braces_id.name.encode('utf-8'))
             if self.area_max_exceeded_front or self.area_max_exceeded_back or self.area_max_exceeded_middle:
                 setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
-                text = text + "\n /!\ "
+                text += "\n /!\ "
                 if self.area_max_exceeded_front:
-                    text = "{}\n /!\ [{}]".format(text, self.glass_front_id.name.encode('utf-8'))
+                    text += "\n /!\ [{}]".format(self.glass_front_id.name.encode('utf-8'))
                 if self.area_max_exceeded_back:
-                    text = "{}\n /!\ [{}]".format(text, self.glass_back_id.name.encode('utf-8'))
+                    text += "\n /!\ [{}]".format(self.glass_back_id.name.encode('utf-8'))
                 if self.area_max_exceeded_middle:
-                    text = "{}\n /!\ [{}]".format(text, self.glass_middle_id.name.encode('utf-8'))
-                text = text + "\n /!\ " + str(setting.glass_maximum_area_warning.encode('utf-8'))
+                    text += "\n /!\ [{}]".format(self.glass_middle_id.name.encode('utf-8'))
+                text += "\n /!\ " + str(setting.glass_maximum_area_warning.encode('utf-8'))
             if self.edge_id:
-                text = text + "\n- " + str(self.edge_id.name.encode('utf-8')) + " (" + str(self.edge_width) + " / " + str(self.edge_height) + ")"
+                text += "\n- " + str(self.edge_id.name.encode('utf-8')) + " (" + str(self.edge_width) + " / " + str(self.edge_height) + ")"
             self.description = text
         if self.type == 'accessory':
             self.description = str(self.accessory_id.categ_id.name.encode('utf-8')) + " - " + str(self.accessory_id.name.encode('utf-8'))
