@@ -68,6 +68,7 @@
                                                 </group>
                                                 <group>
                                                     <group name="area">
+                                                        <field name="area_geometric"/>
                                                         <field name="area"/>
                                                         <field name="area_cost_price"/>
                                                     </group>
@@ -76,8 +77,8 @@
                                                         <field name="perimeter_cost_price"/>
                                                     </group>
                                                 </group>
-                                                <group attrs="{'invisible':[('area_max_exceeded', '=', False)]}">
-                                                    <field name="area_max_exceeded" nolabel="1" invisible="1" />
+                                                <group attrs="{'invisible':[('area_max_exceeded_front', '=', False)]}">
+                                                    <field name="area_max_exceeded_front" nolabel="1" invisible="1" />
                                                     <label colspan="2" string="The specified area for the product exceeds the maximum size on the product settings. If you leave the area as it, a message informing the customer about the loss of warranty will be added to the line. If you want to add the substitute product, use the button 'Substitute' in the form." color="red"/>
                                                     <field name="use_glass_substitute"  />
                                                 </group>
@@ -108,25 +109,17 @@
                                             </group>
                                             <separator/>
                                             <!-- TOTALS -->
-                                            <group col="10" colspan="2">
-                                                <!-- BEGIN -->
-                                                <label string="TOTAL HTVA = "/>
-                                                <field name="quantity" nolabel="1"/>
-                                                <label string="x ("/>
-                                                <!-- GLASS -->
-                                                <field name="area_total" nolabel="1"
-                                                       attrs="{'invisible':[('type', '!=', 'glass')]}"/>
-                                                <label string="+" attrs="{'invisible':[('type', '!=', 'glass')]}"/>
-                                                <field name="perimeter_total" nolabel="1"
-                                                       attrs="{'invisible':[('type', '!=', 'glass')]}"/>
-                                                <!-- ACC -->
-                                                <field name="accessory_price" nolabel="1"
-                                                       attrs="{'invisible':[('type', '!=', 'accessory')]}"/>
-                                                <!-- END -->
-                                                <label string=") x"/>
-                                                <field name="multiplier" nolabel="1"/>
-                                                <label string="="/>
-                                                <field name="total" nolabel="1"/>
+                                            <group class="oe_subtotal_footer oe_right" colspan="2" name="total_summary">
+                                                <field name="area_total" widget="monetary" />
+                                                <field name="perimeter_total" widget="monetary" />
+                                                <field name="options_total" widget="monetary" />
+                                                <field name="extras_total" widget="monetary" />
+                                                <field name="quantity" />
+                                                <field name="multiplier" />
+                                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                                    <label for="total"/>
+                                                </div>
+                                                <field name="total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary"/>
                                             </group>
                                         </form>
                                         <!-- SOL Sub Tree -->
