@@ -185,6 +185,7 @@ class SaleOrderLineSub(models.Model):
             self.options_total += self.divider_id.compute_price(self.area_geometric)
         if self.braces_id and self.braces_id.price:
             self.options_total += self.braces_id.compute_price()
+        self._compute_description()
 
     @api.one
     @api.depends('extras_ids')
@@ -194,6 +195,7 @@ class SaleOrderLineSub(models.Model):
             for line in self.extras_ids:
                 self.extras_total += line.price
             self.extras_total = self.extras_total * self.area_geometric
+        self._compute_description()
 
     @api.one
     @api.depends('quantity', 'area_total', 'perimeter_total', 'multiplier')
@@ -207,7 +209,6 @@ class SaleOrderLineSub(models.Model):
         self._compute_description()
 
     @api.one
-    @api.depends('width', 'height', 'edge_width', 'edge_height', 'glass_front_id', 'accessory_id', 'shape_id', 'edge_id', 'area', 'area_cost_price', 'perimeter_cost_price', 'quantity', 'area_total', 'perimeter_total', 'multiplier', 'total', 'finish_id')
     def _compute_description(self):
         if self.type == 'glass':
             text = ''
@@ -246,11 +247,27 @@ class SaleOrderLineSub(models.Model):
     @api.multi
     @api.onchange('use_glass_substitute')
     def change_glass_to_substitute(self):
-        return {
-            'value':
-                {
-                    'use_glass_substitute': False,
-                    'glass_front_id': self.glass_front_id.maximum_area_substitute,
-                    'area_max_exceeded': False
-                }
-        }
+        """
+        This will replace any glass product that has exceeded the max area constraint for a registered substitute
+        product. When replacement product doesn't exist no action will take place and the warning will still be on.
+        """
+        ret = {'value': {
+            'use_glass_substitute': False
+        }}
+        if self.area_max_exceeded_front and self.glass_front_id and self.glass_front_id.maximum_area_substitute:
+            ret['value'].update({
+                'glass_front_id': self.glass_front_id.maximum_area_substitute,
+                'are_max_exceeded_front': False
+            })
+        if self.area_max_exceeded_back and self.glass_back_id and self.glass_back_id.maximum_area_substitute:
+            ret['value'].update({
+                'glass_back_id': self.glass_back_id.maximum_area_substitute,
+                'are_max_exceeded_back': False
+            })
+        if self.area_max_exceeded_back and self.glass_middle_id and self.glass_middle_id.maximum_area_substitute:
+            ret['value'].update({
+                'glass_middle_id': self.glass_middle_id.maximum_area_substitute,
+                'are_max_exceeded_middle': False
+            })
+
+        return ret
