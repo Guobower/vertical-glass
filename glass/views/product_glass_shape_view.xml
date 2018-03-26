@@ -7,8 +7,13 @@
             <field name="arch" type="xml">
                 <form>
                     <group>
-                        <field name="name" />
-                        <field name="multiplier" />
+                        <group>
+                            <field name="name"/>
+                            <field name="multiplier"/>
+                        </group>
+                        <group>
+                            <field name="photo" widget="image" class="oe_avatar"/>
+                        </group>
                     </group>
                 </form>
             </field>
@@ -21,6 +26,7 @@
                 <tree>
                     <field name="name" />
                     <field name="multiplier" />
+                    <field name="photo" widget="image" />
                 </tree>
             </field>
         </record>
@@ -33,6 +39,6 @@
         </record>
 
         <menuitem id="product_glass_shape_menu" name="Product Shapes" parent="glass_sale_config_menu"
-                  sequence="20" action="product_glass_shape_action"/>
+                  sequence="27" action="product_glass_shape_action"/>
     </data>
 </openerp>
