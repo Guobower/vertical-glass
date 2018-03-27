@@ -199,6 +199,7 @@ class SaleOrderLineSub(models.Model):
 
     @api.one
     @api.depends('quantity', 'area_total', 'perimeter_total', 'multiplier')
+    @api.onchange('accessory_id')
     def _compute_total(self):
         if self.type == 'glass':
             self.total = self.options_total + self.extras_total + self.area_total + self.perimeter_total
@@ -242,7 +243,8 @@ class SaleOrderLineSub(models.Model):
                 text += "\n- " + str(self.edge_id.name.encode('utf-8')) + " (" + str(self.edge_width) + " / " + str(self.edge_height) + ")"
             self.description = text
         if self.type == 'accessory':
-            self.description = str(self.accessory_id.categ_id.name.encode('utf-8')) + " - " + str(self.accessory_id.name.encode('utf-8'))
+            self.description = "{} - {}".format(self.accessory_id.categ_id.name.encode('utf-8'),
+                                                self.accessory_id.name.encode('utf-8'))
 
     @api.multi
     @api.onchange('use_glass_substitute')
