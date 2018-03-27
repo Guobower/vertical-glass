@@ -1,11 +1,14 @@
 # -*- encoding: utf-8 -*-
-
+"""
+Extension of product.template in order to add a list of extras
+"""
+import logging
 from openerp import models, fields, api
+_logger = logging.getLogger(__name__)
 
 
 class ProductTemplate(models.Model):
-    """
-    Extension of product.template in order to add a list of extras
+    """ Main class holding additional fields.
     """
     _inherit = 'product.template'
 
@@ -18,6 +21,8 @@ class ProductTemplate(models.Model):
     glass_middle_id = fields.Many2one('product.product', string="Glass (middle)")
     product_extras_ids = fields.Many2many('product.glass.extra', string='Product extras')
     price_with_auto_margin = fields.Float('Marged Price', compute='_compute_price_with_auto_margin')
+    # keep a reference of the order in this line
+    order_reference = fields.Char()
 
     @api.multi
     @api.depends('categ_id')

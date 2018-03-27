@@ -1,7 +1,7 @@
-from openerp import models, fields, api
-
 import logging
+from openerp import models, fields, api
 _logger = logging.getLogger(__name__)
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -87,3 +87,7 @@ class SaleOrder(models.Model):
                     else:
                         used_taxes = tax.name
         return used_taxes
+
+    @api.onchange('order_line')
+    def update_total(self):
+        self._amount_all()

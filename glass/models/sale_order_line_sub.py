@@ -5,7 +5,7 @@ Sale order line extension
 
 import logging
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from pprint import pformat
 _logger = logging.getLogger(__name__)
 
 
@@ -14,7 +14,7 @@ class SaleOrderLineSub(models.Model):
     _description = 'Sub Order Line Shape'
 
     order_line_id = fields.Many2one('sale.order.line', 'Sale Order Line')
-    description = fields.Text(string="Description", compute='_compute_description', store=True)
+    description = fields.Text(compute='_compute_description', default='', store=True)
 
     type = fields.Selection([('glass', 'Glass'), ('accessory', 'Accessory')], string="Sub Type", default='glass', required=True)
     category_id = fields.Many2one('product.category', 'Category')
@@ -69,6 +69,23 @@ class SaleOrderLineSub(models.Model):
     lst_price = fields.Float(related='glass_front_id.lst_price')
     margin = fields.Float(related='category_id.margin_default')
     dimension_constraint_id = fields.Many2one('product.glass.dimconstraint', 'Dimension constraint')
+
+    @api.model
+    def create(self, values):
+        """ Make sur description is saved """
+        # update description
+        if not values.get('description'):
+            self._compute_description()
+            values['description'] = self.description
+        return super(SaleOrderLineSub, self).create(values)
+
+    @api.multi
+    def write(self, values):
+        """Make sure description is saved to db"""
+        if not values.get('description'):
+            self._compute_description()
+            values['description'] = self.description
+        super(SaleOrderLineSub, self).write(values)
 
     @api.onchange('glass_front_id')
     def get_glass_product_presets(self):
@@ -210,7 +227,9 @@ class SaleOrderLineSub(models.Model):
         self._compute_description()
 
     @api.one
+    @api.depends('type', 'total')
     def _compute_description(self):
+        # _logger.debug('PNT: Computing description - BEG: {}'.format(self.description))
         if self.type == 'glass':
             text = ''
             if self.glass_front_id:
@@ -245,6 +264,7 @@ class SaleOrderLineSub(models.Model):
         if self.type == 'accessory':
             self.description = "{} - {}".format(self.accessory_id.categ_id.name.encode('utf-8'),
                                                 self.accessory_id.name.encode('utf-8'))
+        # _logger.debug('PNT: Computing description - END: {}'.format(self.description))
 
     @api.multi
     @api.onchange('use_glass_substitute')
