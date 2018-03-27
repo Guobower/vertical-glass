@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="product_glass_braces_form">
-            <field name="name">product_glass_braces_form</field>
-            <field name="model">product.glass.braces</field>
+        <record model="ir.ui.view" id="product_glass_grid_form">
+            <field name="name">product_glass_grid_form</field>
+            <field name="model">product.glass.grid</field>
             <field name="arch" type="xml">
                 <form>
                     <group>
@@ -16,9 +16,9 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="product_glass_braces_tree">
-            <field name="name">product_glass_braces_tree</field>
-            <field name="model">product.glass.braces</field>
+        <record model="ir.ui.view" id="product_glass_grid_tree">
+            <field name="name">product_glass_grid_tree</field>
+            <field name="model">product.glass.grid</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name" />
@@ -29,14 +29,14 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="product_glass_braces_action">
-            <field name="name">Glass Braces</field>
-            <field name="res_model">product.glass.braces</field>
+        <record model="ir.actions.act_window" id="product_glass_grid_action">
+            <field name="name">Glass Grid</field>
+            <field name="res_model">product.glass.grid</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="product_glass_braces_menu" name="Product Braces" parent="glass_sale_config_menu"
-                  sequence="26" action="product_glass_braces_action"/>
+        <menuitem id="product_glass_grid_menu" name="Product Grid" parent="glass_sale_config_menu"
+                  sequence="26" action="product_glass_grid_action"/>
     </data>
 </openerp>

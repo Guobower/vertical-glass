@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Manage braces (croisillons - FR) with price per socket (alvéoles -FR)
+Manage internal grids (croisillons - FR) with price per socket (alvéoles -FR)
 """
 
 import logging
@@ -8,12 +8,12 @@ from openerp import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class GlassBraces(models.Model):
+class GlassGrid(models.Model):
     """
-    Main braces class
+    Main grid class
     """
-    _name = 'product.glass.braces'
-    _description = "Glass Braces"
+    _name = 'product.glass.grid'
+    _description = "Glass Grid"
 
     name = fields.Char(required=True)
     colour = fields.Char(required=True)
