@@ -169,7 +169,15 @@ class SaleOrderLineSub(models.Model):
         if self.shape_id:
             self.area_cost_price = self.area_cost_price*float(self.shape_id.multiplier)
 
-        self.area_total = self.area * self.area_cost_price
+        # Check dimension constraint
+        dim_constraint_rate = 1.0
+        rules = self.env['product.glass.dimconstraint'].search([
+            '|', ('width', '>=', self.width), ('height', '>=', self.height)
+        ], order='rate desc')
+        if len(rules) > 0:
+            dim_constraint_rate += rules[0].rate/100
+
+        self.area_total = self.area * self.area_cost_price * dim_constraint_rate
 
         self._compute_description()
 
@@ -262,8 +270,8 @@ class SaleOrderLineSub(models.Model):
                 text += "\n- " + str(self.edge_id.name.encode('utf-8')) + " (" + str(self.edge_width) + " / " + str(self.edge_height) + ")"
             self.description = text
         if self.type == 'accessory':
-            self.description = "{} - {}".format(self.accessory_id.categ_id.name.encode('utf-8'),
-                                                self.accessory_id.name.encode('utf-8'))
+            self.description = "{} - {}".format(self.accessory_id.categ_id.name,
+                                                self.accessory_id.name)
         # _logger.debug('PNT: Computing description - END: {}'.format(self.description))
 
     @api.multi
