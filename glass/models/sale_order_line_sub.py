@@ -229,7 +229,7 @@ class SaleOrderLineSub(models.Model):
         if self.type == 'glass':
             self.total = self.options_total + self.extras_total + self.area_total + self.perimeter_total
             # apply quantity and correction rate
-            self.total = self.quantity * self.area_total * self.multiplier
+            self.total = self.quantity * self.total * self.multiplier
         if self.type == 'accessory':
             self.total = self.quantity * self.accessory_price * self.multiplier
         self._compute_description()
@@ -237,7 +237,6 @@ class SaleOrderLineSub(models.Model):
     @api.one
     @api.depends('type', 'total')
     def _compute_description(self):
-        # _logger.debug('PNT: Computing description - BEG: {}'.format(self.description))
         if self.type == 'glass':
             text = ''
             if self.glass_front_id:
@@ -272,7 +271,6 @@ class SaleOrderLineSub(models.Model):
         if self.type == 'accessory':
             self.description = "{} - {}".format(self.accessory_id.categ_id.name,
                                                 self.accessory_id.name)
-        # _logger.debug('PNT: Computing description - END: {}'.format(self.description))
 
     @api.multi
     @api.onchange('use_glass_substitute')
