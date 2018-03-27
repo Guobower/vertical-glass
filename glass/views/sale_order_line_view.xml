@@ -109,7 +109,7 @@
                                                 <group>
                                                     <group string="Product Options">
                                                         <field name="finish_id"/>
-                                                        <field name="divider_id"/>
+                                                        <field name="spacer_id"/>
                                                         <field name="grid_id"/>
                                                     </group>
                                                 </group>

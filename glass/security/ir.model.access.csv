@@ -8,8 +8,8 @@ access_glass_shape,glass.shape,glass.model_product_glass_shape,base.group_sale_s
 edit_glass_shape,glass.shape,glass.model_product_glass_shape,base.group_sale_salesman_all_leads,1,1,1,1
 access_glass_grid,glass.grid,glass.model_product_glass_grid,base.group_sale_salesman,1,0,0,0
 edit_glass_grid,glass.grid,glass.model_product_glass_grid,base.group_sale_salesman_all_leads,1,1,1,1
-access_glass_divider,glass.divider,glass.model_product_glass_divider,base.group_sale_salesman,1,0,0,0
-edit_glass_divider,glass.divider,glass.model_product_glass_divider,base.group_sale_salesman_all_leads,1,1,1,1
+access_glass_spacer,glass.spacer,glass.model_product_glass_spacer,base.group_sale_salesman,1,0,0,0
+edit_glass_spacer,glass.spacer,glass.model_product_glass_spacer,base.group_sale_salesman_all_leads,1,1,1,1
 access_glass_finish,glass.finish,glass.model_product_glass_finish,base.group_sale_salesman,1,0,0,0
 edit_glass_finish,glass.finish,glass.model_product_glass_finish,base.group_sale_salesman_all_leads,1,1,1,1
 access_glass_dimconstraint,glass.dimconstraint,glass.model_product_glass_dimconstraint,base.group_sale_salesman,1,0,0,0

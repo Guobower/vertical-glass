@@ -20,7 +20,7 @@
         'views/product_glass_finish_view.xml',
         'views/product_glass_edge_view.xml',
         'views/product_glass_grid_view.xml',
-        'views/product_glass_divider_view.xml',
+        'views/product_glass_spacer_view.xml',
         'views/product_glass_extras_view.xml',
         'views/product_glass_shape_view.xml',
         'views/product_glass_finish_view.xml',

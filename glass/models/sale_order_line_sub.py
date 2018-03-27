@@ -49,7 +49,7 @@ class SaleOrderLineSub(models.Model):
     use_glass_substitute = fields.Boolean('Use Glass Substitute', default=False)
     # Options
     grid_id = fields.Many2one('product.glass.grid', 'Grid')
-    divider_id = fields.Many2one('product.glass.divider', 'Divider')
+    spacer_id = fields.Many2one('product.glass.spacer', 'Spacer')
     finish_id = fields.Many2one('product.glass.finish', 'Finish')
     options_total = fields.Float('Total options', compute="compute_options", readonly=True, default=0)
     # Extras
@@ -201,13 +201,13 @@ class SaleOrderLineSub(models.Model):
         self._compute_description()
 
     @api.one
-    @api.onchange('finish_id', 'divider_id', 'grid_id')
+    @api.onchange('finish_id', 'spacer_id', 'grid_id')
     def compute_options(self):
         self.options_total = 0
         if self.finish_id and self.finish_id.price:
             self.options_total += self.finish_id.compute_price(self.area_geometric)
-        if self.divider_id and self.divider_id.price:
-            self.options_total += self.divider_id.compute_price(self.area_geometric)
+        if self.spacer_id and self.spacer_id.price:
+            self.options_total += self.spacer_id.compute_price(self.area_geometric)
         if self.grid_id and self.grid_id.price:
             self.options_total += self.grid_id.compute_price()
         self._compute_description()
@@ -252,8 +252,8 @@ class SaleOrderLineSub(models.Model):
                     text += ", " + str(self.shape_id.name.encode('utf-8'))
                 if self.finish_id:
                     text += ", " + str(self.finish_id.name.encode('utf-8'))
-                if self.divider_id:
-                    text += ", " + str(self.divider_id.name.encode('utf-8'))
+                if self.spacer_id:
+                    text += ", " + str(self.spacer_id.name.encode('utf-8'))
                 if self.grid_id:
                     text += ", " + str(self.grid_id.name.encode('utf-8'))
             if self.area_max_exceeded_front or self.area_max_exceeded_back or self.area_max_exceeded_middle:
