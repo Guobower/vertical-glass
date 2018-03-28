@@ -1,18 +1,12 @@
 {
     'name': "Glass Company in Odoo",
     'version': '9.0.1.0.2',
-    'depends': [
-	   'sale',
-    ],
     'author': "AbAKUS it-solutions SARL",
     'website': "http://www.abakusitsolutions.eu",
     'category': 'Sale',
-    'description': 
-    """
-    
-    
-    This module has been developed by AbAKUS it-solutions
-    """,
+    'depends': [
+        'sale',
+    ],
     'data': [
         'views/settings_view.xml',
         'views/res_config.xml',
@@ -40,8 +34,8 @@
         'reports/sale_order_report_full.xml',
 
         'security/ir.model.access.csv',
-        ],
-        'demo': [
-            'data/product_product_demo.xml',
-        ],
+    ],
+    'demo': [
+        'data/product_product_demo.xml',
+    ],
 }

@@ -5,7 +5,6 @@ Sale order line extension
 
 import logging
 from openerp import models, fields, api, _
-from pprint import pformat
 _logger = logging.getLogger(__name__)
 
 

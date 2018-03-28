@@ -1,0 +1,6 @@
+
+Command line for running backend tests:
+(Windows)
+"C:\Program Files (x86)\Odoo 9.0\server\openerp-server.exe" -i glass --test-enable --test-report=. --stop-after-init --db_user=odooadm --db_password=odoopwd --db_host=localhost --database=devdb9 --log-level=test
+(Linux)
+openerp-server -i glass --test-enable --test-report=. --stop-after-init --db_user=odooadm --db_password=odoopwd --db_host=localhost --database=devdb9 --log-level=test
