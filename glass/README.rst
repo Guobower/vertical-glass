@@ -2,14 +2,19 @@
    Glass Company
 =====================================
 
-This module is a vertical addon to <code>sale</code>.
+This module is a vertical addon to ``sale``.
 It allows running a full glass product company sales process.
 It also allow managing glass product settings including:
-* finishes
-* internal grids
-* spacers
-* shapes
-* generic extras
+
+- finishes
+
+- internal grids
+
+- spacers
+
+- shapes
+
+- generic extras
 
 Installation notes
 ==================

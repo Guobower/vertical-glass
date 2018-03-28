@@ -13,6 +13,7 @@ class SaleOrderLineSub(models.Model):
     _description = 'Sub Order Line Shape'
 
     order_line_id = fields.Many2one('sale.order.line', 'Sale Order Line')
+    currency_id = fields.Many2one(related='order_line_id.currency_id')
     description = fields.Text(compute='_compute_description', default='', store=True)
 
     type = fields.Selection([('glass', 'Glass'), ('accessory', 'Accessory')], string="Sub Type", default='glass', required=True)
