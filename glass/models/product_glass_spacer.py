@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Manage divider (intercalaire - FR) with price by volume(m3) and colour
+Manage spacer (intercalaire - FR) with price by volume(m3) and colour
 """
 
 import logging
@@ -8,12 +8,12 @@ from openerp import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class GlassDivider(models.Model):
+class GlassSpacer(models.Model):
     """
-    Main divider class
+    Main spacer class
     """
-    _name = 'product.glass.divider'
-    _description = "Glass Divider"
+    _name = 'product.glass.spacer'
+    _description = "Glass Spacer"
 
     name = fields.Char(required=True)
     colour = fields.Char(required=True)
