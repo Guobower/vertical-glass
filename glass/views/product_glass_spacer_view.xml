@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="product_glass_divider_form">
-            <field name="name">product_glass_divider_form</field>
-            <field name="model">product.glass.divider</field>
+        <record model="ir.ui.view" id="product_glass_spacer_form">
+            <field name="name">product_glass_spacer_form</field>
+            <field name="model">product.glass.spacer</field>
             <field name="arch" type="xml">
                 <form>
                     <group>
@@ -15,9 +15,9 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="product_glass_divider_tree">
-            <field name="name">product_glass_divider_tree</field>
-            <field name="model">product.glass.divider</field>
+        <record model="ir.ui.view" id="product_glass_spacer_tree">
+            <field name="name">product_glass_spacer_tree</field>
+            <field name="model">product.glass.spacer</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name" />
@@ -27,14 +27,14 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="product_glass_divider_action">
-            <field name="name">Glass Divider</field>
-            <field name="res_model">product.glass.divider</field>
+        <record model="ir.actions.act_window" id="product_glass_spacer_action">
+            <field name="name">Glass Spacer</field>
+            <field name="res_model">product.glass.spacer</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="product_glass_divider_menu" name="Product Divider" parent="glass_sale_config_menu"
-                  sequence="30" action="product_glass_divider_action"/>
+        <menuitem id="product_glass_spacer_menu" name="Product Spacer" parent="glass_sale_config_menu"
+                  sequence="30" action="product_glass_spacer_action"/>
     </data>
 </openerp>

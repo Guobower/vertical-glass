@@ -15,8 +15,10 @@
                         <field name="minimum_invoiceable"/>
                     </group>
                     <group string="Associated glass products">
-                        <field name="glass_back_id" string="Glass 02 (Back)"/>
-                        <field name="glass_middle_id" string="Glass 03 (Middle)"/>
+                        <field name="glass_back_id" string="Glass 02 (Back)"
+                               domain="[('categ_id', '=ilike', 'vitrages'), ('id', '!=', id)]"/>
+                        <field name="glass_middle_id" string="Glass 03 (Middle)"
+                               domain="[('categ_id', '=ilike', 'vitrages'), ('id', '!=', id)]"/>
                     </group>
                     <group>
                         <page string="Associated product extras" name="wood_delivery_rules">

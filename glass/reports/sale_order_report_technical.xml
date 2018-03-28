@@ -166,8 +166,16 @@
                                                 <span t-field="sub.quantity" />
                                             </td>
                                             <td>
-                                                <span t-field="sub.glass_id" />
+                                                <span t-field="sub.glass_front_id" />
                                                 <br />
+                                                <t t-if="sub.glass_back_id" >
+                                                    <span t-field="sub.glass_back_id" />
+                                                    <br />
+                                                </t>
+                                                <t t-if="sub.glass_middle_id" >
+                                                    <span t-field="sub.glass_middle_id" />
+                                                    <br />
+                                                </t>
                                                 <span t-field="sub.shape_id" />
                                             </td>
                                             <td><span t-field="sub.width" /></td>
