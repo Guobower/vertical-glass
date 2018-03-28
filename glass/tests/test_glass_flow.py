@@ -37,3 +37,8 @@ class TestSaleOrder(TestGlassCommon):
         # so.action_confirm()
         # self.assertTrue(so.state == 'sale')
         # self.assertTrue(so.invoice_status == 'to invoice')
+        so.header_text = u"This is a text with company: %(company)s tag in it"
+        self.assertEqual(so._get_header_text(),
+                         ["<p>This is a text with company: YourCompany tag in it</p>"],
+                         'Tag replacement failed')
+
