@@ -17,7 +17,8 @@ class GlassBraces(models.Model):
 
     name = fields.Char(required=True)
     colour = fields.Char(required=True)
-    price = fields.Char('Price / socket', required=True)
+    sockets = fields.Integer(required=True, default=0)
+    price = fields.Float('Price / socket', required=True)
 
     @api.multi
     def name_get(self):
@@ -26,5 +27,9 @@ class GlassBraces(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s (%s) [%s EUR]" % (record.name, record.colour, record.price)))
+            result.append((record.id, "%s %d sockets (%s) [%.2f EUR]" % (record.name, record.sockets, record.colour, record.price)))
         return result
+
+    @api.multi
+    def compute_price(self):
+        return self.price * self.sockets

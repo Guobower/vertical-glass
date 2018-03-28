@@ -9,10 +9,10 @@
                 <!-- SOL tree -->
                 <xpath expr="//field[@name='order_line']/tree" position="replace">
                     <tree string="Sale lines" editable="">
-                        <field name="name" />
-                        <field name="description_structured" />
-                        <field name="tax_id" />
-                        <field name="price_unit" />
+                        <field name="name"/>
+                        <field name="description_structured"/>
+                        <field name="tax_id"/>
+                        <field name="price_unit"/>
                     </tree>
                 </xpath>
                 <!-- SOL and SOLS forms -->
@@ -24,124 +24,177 @@
                                     <h3>
                                         <label string="Title" name="title"/>
                                     </h3>
-                                    <field name="name" />
+                                    <field name="name"/>
                                     <!-- SOL Sub Lines -->
                                     <field name="sale_order_line_sub_ids" mode="tree,kanban">
                                         <!-- SOL Sub Form -->
                                         <form string="Sale Order Sub line">
-                                            <!-- Form title -->
-                                            <label string="Sub Type:" />
-                                            <field name="type" colspan="1" nolabel="1" />
-                                            <!-- Glass part -->
-                                            <group name="main_glass" col="4" attrs="{'invisible':[('type', '!=', 'glass')]}">
-                                                
-                                                <field name="category_id" colspan="4" domain="['|', ('name', '=ilike', 'vitrages'), ('parent_id', '=ilike', 'vitrages')]" attrs="{'required':[('type','=','glass')]}" />
-                                                
-                                                <!-- Line 1 -->
-                                                <field name="glass_id" colspan="3" domain="[('categ_id', '=', category_id), ('sale_ok', '=', True)]" attrs="{'required':[('type','=','glass')]}" />
-                                                <field name="shape_id" nolabel="1" attrs="{'required':[('type','=','glass')]}"/>
-                                                <!-- Line 2 -->
-                                                <field name="supplier_id" domain="[('glass_supplier', '=', True)]"/>
-                                                <group col="4" colspan="2">
-                                                    <field name="width" attrs="{'required':[('type','=','glass')]}"/>
-                                                    <field name="height" attrs="{'required':[('type','=','glass')]}"/>
+                                            <!-- 1) Chose type -->
+                                            <field name="type"/>
+                                            <!-- 2) Glass product -->
+                                            <group col="1" name="main_glass"
+                                                   attrs="{'invisible':[('type', '!=', 'glass')]}">
+                                                <group col="1">
+                                                    <group col="2" name="glass_products">
+                                                        <field name="category_id"
+                                                               domain="['|', ('name', '=ilike', 'vitrages'), ('parent_id', '=ilike', 'vitrages')]"
+                                                               attrs="{'required':[('type','=','glass')]}"/>
+                                                        <field name="glass_front_id"
+                                                               domain="[('categ_id', '=', category_id), ('sale_ok', '=', True)]"
+                                                               attrs="{'required':[('type','=','glass')]}"/>
+                                                        <field name="glass_back_id"
+                                                               domain="[('categ_id', '=', category_id), ('sale_ok', '=', True)]"
+                                                               attrs=""/>
+                                                        <field name="glass_middle_id"
+                                                               domain="[('categ_id', '=', category_id), ('sale_ok', '=', True)]"
+                                                               attrs=""/>
+                                                    </group>
+                                                    <group col="6" name="layout">
+                                                        <field name="shape_id"
+                                                               attrs="{'required':[('type','=','glass')]}"/>
+                                                        <field name="width"
+                                                               attrs="{'required':[('type','=','glass')]}"/>
+                                                        <field name="height"
+                                                               attrs="{'required':[('type','=','glass')]}"/>
+                                                    </group>
+                                                    <group col="6" name="edge">
+                                                        <field name="edge_id"
+                                                               attrs="{'required':[('type','=','glass')]}"/>
+                                                        <field name="edge_width" widget="radio"
+                                                               options="{'horizontal': true}"/>
+                                                        <field name="edge_height" widget="radio"
+                                                               options="{'horizontal': true}"/>
+                                                    </group>
                                                 </group>
-                                                <!-- When Area is too big for the product -->
-                                                <group col="2" colspan="4" attrs="{'invisible':[('area_max_exceeded', '=', False)]}">
-                                                    <field name="area_max_exceeded" nolabel="1" invisible="1" />
-                                                    <label colspan="2" string="The specified area for the product exceeds the maximum size on the product settings. If you leave the area as it, a message informing the customer about the loss of warranty will be added to the line. If you want to add the substitute product, use the button 'Substitute' in the form." color="red"/>
-                                                    <field name="use_glass_substitute" on_change="change_glass_to_substitute()" />
+                                                <group>
+                                                    <group name="area">
+                                                        <field name="area_geometric"/>
+                                                        <field name="area"/>
+                                                        <field name="area_cost_price"/>
+                                                    </group>
+                                                    <group name="perimeter">
+                                                        <field name="perimeter"/>
+                                                        <field name="perimeter_cost_price"/>
+                                                    </group>
                                                 </group>
-                                                <!-- Line 3 -->
-                                                <field name="edge_id" attrs="{'required':[('type','=','glass')]}"/>
-                                                <group col="4" colspan="2">
-                                                    <field name="edge_width" widget="radio" options="{'horizontal': true}"/>
-                                                    <field name="edge_height" widget="radio" options="{'horizontal': true}"/>
+                                                <group attrs="{'invisible':[('area_max_exceeded_front', '=', False)]}">
+                                                    <div style="background-color: #FA8072;border: 1px solid black;">
+                                                        <field name="area_max_exceeded_front" nolabel="1"
+                                                               invisible="1"/>
+                                                        <label colspan="2"
+                                                               string="The specified area for the front product exceeds the maximum size on the product settings. If you leave the area as it, a message informing the customer about the loss of warranty will be added to the line. If you want to add the substitute product, use the button 'Substitute' in the form."
+                                                               />
+                                                    </div>
                                                 </group>
-                                                <!-- Line 4 -->
-                                                <group name="area" col="4" colspan="4">
-                                                    <field name="area"/>
-                                                    <field name="area_cost_price"/>
-                                                    <field name="finish_id"/>
+                                                <group attrs="{'invisible':[('area_max_exceeded_back', '=', False)]}">
+                                                    <div style="background-color: #FA8072;border: 1px solid black;">
+                                                        <field name="area_max_exceeded_back" nolabel="1" invisible="1"/>
+                                                        <label colspan="2"
+                                                               string="The specified area for the back product exceeds the maximum size on the product settings. If you leave the area as it, a message informing the customer about the loss of warranty will be added to the line. If you want to add the substitute product, use the button 'Substitute' in the form."
+                                                               />
+                                                    </div>
                                                 </group>
-                                                <!-- Line 5 -->
-                                                <group name="perimeter" col="4" colspan="4">
-                                                    <field name="perimeter"/>
-                                                    <field name="perimeter_cost_price"/>
+                                                <group attrs="{'invisible':[('area_max_exceeded_middle', '=', False)]}">
+                                                    <div style="background-color: #FA8072;border: 1px solid black;">
+                                                        <field name="area_max_exceeded_middle" nolabel="1"
+                                                               invisible="1"/>
+                                                        <label colspan="2"
+                                                               string="The specified area for the middle product exceeds the maximum size on the product settings. If you leave the area as it, a message informing the customer about the loss of warranty will be added to the line. If you want to add the substitute product, use the button 'Substitute' in the form."
+                                                               />
+                                                    </div>
+                                                </group>
+                                                <group attrs="{'invisible':[('area_max_exceeded_middle', '=', False), ('area_max_exceeded_back', '=', False), ('area_max_exceeded_front', '=', False)]}">
+                                                    <field name="use_glass_substitute"/>
+                                                </group>
+                                                <group>
+                                                    <group string="Product Options">
+                                                        <field name="finish_id"/>
+                                                        <field name="divider_id"/>
+                                                        <field name="braces_id"/>
+                                                    </group>
+                                                </group>
+                                                <group>
+                                                    <group string="Product Extras" mode="tree,kanban">
+                                                        <field name="extras_ids" nolabel="1" editable="bottom">
+                                                            <field name="name"/>
+                                                            <field name="type"/>
+                                                            <field name="price" sum="Total extra [m^2]"/>
+                                                        </field>
+                                                    </group>
                                                 </group>
                                             </group>
-                                            <!-- Acc part -->
-                                            <group name="main_accessory" col="4" attrs="{'invisible':[('type', '!=', 'accessory')]}" >
+                                            <!-- 3) Accessory product -->
+                                            <group name="main_accessory" col="4"
+                                                   attrs="{'invisible':[('type', '!=', 'accessory')]}">
                                                 <!-- Line 1 -->
-                                                <field name="accessory_id" colspan="4" domain="[('categ_id', 'not ilike', 'vitrages')]" attrs="{'required':[('type','=','accessory')]}"/>
+                                                <field name="accessory_id" colspan="4"
+                                                       domain="[('categ_id', 'not ilike', 'vitrages')]"
+                                                       attrs="{'required':[('type','=','accessory')]}"/>
                                             </group>
-                                            <separator />
+                                            <separator/>
                                             <!-- TOTALS -->
-                                            <group col="10" colspan="2">
-                                                <!-- BEGIN -->
-                                                <label string="TOTAL HTVA = " />
-                                                <field name="quantity" nolabel="1" />
-                                                <label string="x (" />
-                                                <!-- GLASS -->
-                                                <field name="area_total" nolabel="1" attrs="{'invisible':[('type', '!=', 'glass')]}" />
-                                                <label string="+" attrs="{'invisible':[('type', '!=', 'glass')]}" />
-                                                <field name="perimeter_total" nolabel="1" attrs="{'invisible':[('type', '!=', 'glass')]}" />
-                                                <!-- ACC -->
-                                                <field name="accessory_price" nolabel="1" attrs="{'invisible':[('type', '!=', 'accessory')]}" />
-                                                <!-- END -->
-                                                <label string=") x" />
-                                                <field name="multiplier" nolabel="1" />
-                                                <label string="=" />
-                                                <field name="total" nolabel="1" />
+                                            <group class="oe_subtotal_footer oe_right" colspan="2" name="total_summary">
+                                                <field name="area_total" widget="monetary"/>
+                                                <field name="perimeter_total" widget="monetary"/>
+                                                <field name="options_total" widget="monetary"/>
+                                                <field name="extras_total" widget="monetary"/>
+                                                <field name="quantity"/>
+                                                <field name="multiplier"/>
+                                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                                    <label for="total"/>
+                                                </div>
+                                                <field name="total" nolabel="1" class="oe_subtotal_footer_separator"
+                                                       widget="monetary"/>
                                             </group>
-                                            
                                         </form>
                                         <!-- SOL Sub Tree -->
                                         <tree>
-                                            <field name="description" />
-                                            <field name="quantity" />
-                                            <field name="total" />
+                                            <field name="description"/>
+                                            <field name="quantity"/>
+                                            <field name="total"/>
                                         </tree>
                                     </field>
                                     <group class="oe_subtotal_footer oe_right" colspan="2" name="total_lines">
-                                        <field name="sub_lines_total" widget="monetary" />
+                                        <field name="sub_lines_total" widget="monetary"/>
                                     </group>
                                     <group col="1" colspan="3">
                                         <group col="5" colspan="5">
-                                            <field name="men" />
-                                            <field name="men_quantity" nolabel="1" />
-                                            <label string="" />
-                                            <label string="" />
+                                            <field name="men"/>
+                                            <field name="men_quantity" nolabel="1"/>
+                                            <label string=""/>
+                                            <label string=""/>
                                         </group>
                                         <group col="5">
-                                            <field name="installation" />
-                                            <field name="installation_qty" nolabel="1" />
-                                            <label string="x 1h x nbr hommes = " />
-                                            <field name="installation_total" nolabel="1" widget="monetary" />
+                                            <field name="installation"/>
+                                            <field name="installation_qty" nolabel="1"/>
+                                            <label string="x 1h x nbr hommes = "/>
+                                            <field name="installation_total" nolabel="1" widget="monetary"/>
                                         </group>
                                         <group col="5">
-                                            <field name="moving" />
-                                            <field name="moving_qty" nolabel="1" />
-                                            <label string="x 1h x nbr hommes = " />
-                                            <field name="moving_total" nolabel="1" widget="monetary" />
+                                            <field name="moving"/>
+                                            <field name="moving_qty" nolabel="1"/>
+                                            <label string="x 1h x nbr hommes = "/>
+                                            <field name="moving_total" nolabel="1" widget="monetary"/>
                                         </group>
                                         <group col="5">
                                             <field name="km"/>
-                                            <field name="km_qty" nolabel="1" />
-                                            <label string="KM" />
-                                            <field name="km_total" nolabel="1" />
+                                            <field name="km_qty" nolabel="1"/>
+                                            <label string="KM"/>
+                                            <field name="km_total" nolabel="1"/>
                                         </group>
                                         <group col="3">
-                                            <field name="miscellaneous_total" />
+                                            <field name="miscellaneous_total"/>
                                         </group>
                                         <group col="3">
-                                            <field name="tax_id" string="Taxes" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]" required="1"/>
+                                            <field name="tax_id" string="Taxes" widget="many2many_tags"
+                                                   domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
+                                                   required="1"/>
                                         </group>
                                     </group>
-                                    <separator />
+                                    <separator/>
                                     <group class="oe_subtotal_footer oe_right" colspan="4" name="total">
-                                        <field name="price_tmp" />
-                                        <field name="margin_applied" />
+                                        <field name="price_tmp"/>
+                                        <field name="margin_applied"/>
                                         <field name="price_unit" widget="monetary"/>
                                     </group>
                                 </page>

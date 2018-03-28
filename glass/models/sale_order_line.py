@@ -111,6 +111,7 @@ class SaleOrderLine(models.Model):
     def _compute_amount(self):
         """
         Compute the amounts of the SO line.
+        TODO: Why is the discount not taken into account
         """
         for line in self:
             price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
