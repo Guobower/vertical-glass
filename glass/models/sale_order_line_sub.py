@@ -237,8 +237,8 @@ class SaleOrderLineSub(models.Model):
     @api.one
     @api.depends('type', 'total')
     def _compute_description(self):
+        text = ''
         if self.type == 'glass':
-            text = ''
             if self.glass_front_id:
                 text += "Front: {} - {}".format(self.glass_front_id.categ_id.name.encode('utf-8'), self.glass_front_id.name.encode('utf-8'))
             if self.glass_back_id:
@@ -267,10 +267,12 @@ class SaleOrderLineSub(models.Model):
                 text += "\n /!\ " + str(setting.glass_maximum_area_warning.encode('utf-8'))
             if self.edge_id:
                 text += "\n- " + str(self.edge_id.name.encode('utf-8')) + " (" + str(self.edge_width) + " / " + str(self.edge_height) + ")"
-            self.description = text
-        if self.type == 'accessory':
-            self.description = "{} - {}".format(self.accessory_id.categ_id.name,
-                                                self.accessory_id.name)
+        elif self.type == 'accessory':
+            if self.accessory_id:
+                text = "{}".format(self.accessory_id.name.encode('utf-8'))
+                if self.accessory_id.categ_id:
+                    text = "{} - {}".format(self.accessory_id.categ_id.name.encode('utf-8'), text)
+        self.description = text
 
     @api.multi
     @api.onchange('use_glass_substitute')
