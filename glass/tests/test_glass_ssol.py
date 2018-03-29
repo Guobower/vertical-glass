@@ -3,7 +3,7 @@ from .test_glass_common import TestGlassCommon
 
 class TestSubSaleOrderLine(TestGlassCommon):
 
-    def test_compute_area(self):
+    def test__compute_area(self):
         # create a SSOL
         ssol = self.env['sale.order.line.sub'].create({
             'edge_height': '0',
@@ -17,12 +17,12 @@ class TestSubSaleOrderLine(TestGlassCommon):
             'type': 'glass',
         })
         # check initial area_total value
-        ssol.compute_area()
+        ssol._compute_area()
         self.assertEqual(ssol.area_total, 0,
                          'Bad initial value for area total')
         # choose add a glass product
         ssol.glass_front_id = self.glass_product_id
-        ssol.compute_area()
+        ssol._compute_area()
         self.assertEqual(ssol.area_total, 90,
                          'Wrong area_total computation')
 
