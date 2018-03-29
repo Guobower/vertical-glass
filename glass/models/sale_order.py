@@ -14,7 +14,7 @@ class SaleOrder(models.Model):
     reference_auto = fields.Char(related='partner_id.ref_auto', store=True)
     header_text = fields.Html(default=lambda self: self.do_set_header())
     header_text_replaced = fields.Html(compute='_compute_header_text')
-    footer_text = fields.Html(default=lambda self: self.do_set_footer_text())
+    footer_text = fields.Html(default=lambda self: self.do_set_footer())
     footer_text_replaced = fields.Html(compute='_compute_footer_text')
 
     @api.model
@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
         return setting.default_header_text
 
     @api.model
-    def do_set_footer_text(self):
+    def do_set_footer(self):
         """ Load footer text using settings """
         setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
         if len(setting) > 1:

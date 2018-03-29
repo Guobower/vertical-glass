@@ -40,19 +40,19 @@ class TestSubSaleOrderLine(TestGlassCommon):
             'type': 'glass',
         })
         # check initial perimeter value, should be 0 sinze no edge selected
-        ssol.compute_perimeter()
+        ssol._compute_perimeter()
         self.assertEqual(ssol.perimeter, 0,
                          'Bad initial value for perimeter')
         # alter edges perimeter should now be 1+1=2m^2
         ssol.edge_height = '1'
         ssol.edge_width = '1'
-        ssol.compute_perimeter()
+        ssol._compute_perimeter()
         self.assertEqual(ssol.perimeter, 2,
                          'Bad value for perimeter')
         # alter edges perimeter should now be 1+1+1+1=4m^2
         ssol.edge_height = '2'
         ssol.edge_width = '2'
-        ssol.compute_perimeter()
+        ssol._compute_perimeter()
         self.assertEqual(ssol.perimeter, 4,
                          'Bad value for perimeter')
 
