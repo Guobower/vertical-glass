@@ -56,9 +56,12 @@ class SaleGlassCompanyConfigSettings(models.TransientModel):
                                                            ' %(bank_number)s : company first bank account number')
 
     @api.model
-    def get_default_gscs_values(self):
+    def get_default_gscs_values(self, fields):
         """ loads new settings
-         pylint: a method name can not exceed 30 chars so get_default_glass_sale_config_settings_values is forbidden"""
+         pylint: a method name can not exceed 30 chars so get_default_glass_sale_config_settings_values is forbidden
+         pylint: api.models decorator makes passing fields as second param mandatory. This triggers an obvious lint
+         error.
+         """
         setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
         if setting:
             return {
