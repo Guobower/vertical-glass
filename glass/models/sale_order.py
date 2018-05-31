@@ -88,6 +88,7 @@ class SaleOrder(models.Model):
                         used_taxes = tax.name
         return used_taxes
 
-    @api.onchange('order_line')
+    @api.depends('order_line')
+    @api.onchange('order_line.price_unit')
     def update_total(self):
         self._amount_all()

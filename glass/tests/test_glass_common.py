@@ -9,7 +9,7 @@ class TestGlassCommon(common.TransactionCase):
     def setUp(self):
         # make sur we run parent setUp
         super(TestGlassCommon, self).setUp()
-        # chose users to run this test
+        # chose users to run this tests
         self.Users = self.env['res.users']
 
         #
@@ -17,7 +17,7 @@ class TestGlassCommon(common.TransactionCase):
         self.group_glass_user_id = self.ref('base.group_sale_salesman')
         self.group_user_id = self.ref('base.group_user')
 
-        # Will be used in various test cases of test_glass_flow
+        # Will be used in various tests cases of test_glass_flow
         self.demo_user_id = self.ref('base.user_demo')
         self.main_company_id = self.ref('base.main_company')
         self.main_partner_id = self.ref('base.main_partner')
@@ -53,3 +53,12 @@ class TestGlassCommon(common.TransactionCase):
         ])
 
         self.partner = self.env.ref('base.res_partner_1')
+
+        # create a glass product
+        self.glass_product_id = self.env['product.product'].create({
+            'categ_id': 7,
+            'name': 'Glass front',
+            'product_tmpl_id': 1,
+            'product_variant_ids': []
+        })
+
