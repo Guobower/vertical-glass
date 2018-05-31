@@ -48,6 +48,8 @@
                                                         <field name="glass_middle_id"
                                                                domain="[('categ_id', '=', category_id), ('sale_ok', '=', True)]"
                                                                attrs=""/>
+                                                        <field name="supplier_id"
+                                                               domain="[('glass_supplier', '=', True)]"/>
                                                     </group>
                                                     <group col="6" name="layout">
                                                         <field name="shape_id"

@@ -26,6 +26,8 @@ class SaleOrderLineSub(models.Model):
     glass_front_id = fields.Many2one('product.product', 'Glass (front)')
     glass_back_id = fields.Many2one('product.product', 'Glass (back)')
     glass_middle_id = fields.Many2one('product.product', 'Glass (middle)')
+    # NOTE: we make the assumption that all glass products in this SubSOL are provided by the same supplier
+    supplier_id = fields.Many2one('res.partner')
 
     shape_id = fields.Many2one('product.glass.shape', 'Shape')
     width = fields.Integer('Width (mm)', default=1000)
@@ -69,13 +71,6 @@ class SaleOrderLineSub(models.Model):
     multiplier = fields.Float(required=True, default=1.0)
     quantity = fields.Integer(required=True, default=1)
     total = fields.Float(compute="_compute_total", required=True)
-
-    # TBD
-    supplier_id = fields.Many2one('res.partner')
-    standard_price = fields.Float(related='glass_front_id.standard_price')
-    lst_price = fields.Float(related='glass_front_id.lst_price')
-    margin = fields.Float(related='category_id.margin_default')
-    dimension_constraint_id = fields.Many2one('product.glass.dimconstraint', 'Dimension constraint')
 
     @api.model
     def create(self, values):
