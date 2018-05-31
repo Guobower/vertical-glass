@@ -27,7 +27,8 @@ class GlassGrid(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s %d sockets (%s) [%.2f EUR]" % (record.name, record.sockets, record.colour, record.price)))
+            result.append((record.id, "%s %d sockets (%s) [%.2f EUR]"
+                           % (record.name, record.sockets, record.colour, record.price)))
         return result
 
     @api.multi

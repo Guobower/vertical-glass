@@ -26,7 +26,8 @@ class GlassSpacer(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s (%s) [%.2f EUR]" % (record.name, record.colour, record.price)))
+            result.append((record.id, "%s (%s) [%.2f EUR]"
+                           % (record.name, record.colour, record.price)))
         return result
 
     @api.multi

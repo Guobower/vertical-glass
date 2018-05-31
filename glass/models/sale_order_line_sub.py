@@ -4,11 +4,14 @@ Sale order line extension
 """
 
 import logging
-from openerp import models, fields, api, _
+from openerp import models, fields, api
 _logger = logging.getLogger(__name__)
 
 
 class SaleOrderLineSub(models.Model):
+    """
+    Main class
+    """
     _name = 'sale.order.line.sub'
     _description = 'Sub Order Line Shape'
 
@@ -16,12 +19,15 @@ class SaleOrderLineSub(models.Model):
     currency_id = fields.Many2one(related='order_line_id.currency_id')
     description = fields.Text(compute='_compute_description', default='', store=True)
 
-    type = fields.Selection([('glass', 'Glass'), ('accessory', 'Accessory')], string="Sub Type", default='glass', required=True)
+    type = fields.Selection([('glass', 'Glass'), ('accessory', 'Accessory')], string="Sub Type",
+                            default='glass', required=True)
     category_id = fields.Many2one('product.category', 'Category')
 
     glass_front_id = fields.Many2one('product.product', 'Glass (front)')
     glass_back_id = fields.Many2one('product.product', 'Glass (back)')
     glass_middle_id = fields.Many2one('product.product', 'Glass (middle)')
+    # NOTE: we make the assumption that all glass products in this SubSOL are provided by the same supplier
+    supplier_id = fields.Many2one('res.partner')
 
     shape_id = fields.Many2one('product.glass.shape', 'Shape')
     width = fields.Integer('Width (mm)', default=1000)
@@ -31,48 +37,44 @@ class SaleOrderLineSub(models.Model):
     edge_width = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on W.', required=True, default=2)
     edge_height = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on H.', required=True, default=2)
 
-    perimeter = fields.Float('Perimeter (M)', compute='compute_perimeter', store=True)
-    perimeter_cost_price = fields.Float('Perimeter Cost Price', compute="compute_perimeter")
-    perimeter_total = fields.Float('Perimeter Total', compute='compute_perimeter')
+    perimeter = fields.Float('Perimeter (M)', compute='_compute_perimeter', store=True)
+    perimeter_cost_price = fields.Float(compute="_compute_perimeter")
+    perimeter_total = fields.Float(compute='_compute_perimeter')
 
-    area = fields.Float('Invoice Area (m^2)', compute='compute_area', store=True)
-    area_geometric = fields.Float('Area (m^2)', compute='compute_area', store=True)
-    area_total = fields.Float('Area Total', compute='compute_area')
-    area_cost_price = fields.Float('Area Cost Price (m^2)', compute="compute_area")
+    area = fields.Float('Invoice Area (m^2)', compute='_compute_area', store=True)
+    area_geometric = fields.Float('Area (m^2)', compute='_compute_area', store=True)
+    area_total = fields.Float(compute='_compute_area')
+    area_cost_price = fields.Float('Area Cost Price (m^2)', compute="_compute_area")
 
     minimum_invoiceable = fields.Float('Minimum Invoiceable (m^2)', related='glass_front_id.minimum_invoiceable')
 
-    area_max_exceeded_front = fields.Boolean('Max area exceeded for the front glass', default=False, readonly=True, compute="compute_area")
-    area_max_exceeded_back = fields.Boolean('Max area exceeded for the back glass', default=False, readonly=True, compute="compute_area")
-    area_max_exceeded_middle = fields.Boolean('Max area exceeded for the middle glass', default=False, readonly=True, compute="compute_area")
+    area_max_exceeded_front = fields.Boolean('Max area exceeded for the front glass', default=False,
+                                             readonly=True, compute="_compute_area")
+    area_max_exceeded_back = fields.Boolean('Max area exceeded for the back glass', default=False,
+                                            readonly=True, compute="_compute_area")
+    area_max_exceeded_middle = fields.Boolean('Max area exceeded for the middle glass', default=False,
+                                              readonly=True, compute="_compute_area")
 
-    use_glass_substitute = fields.Boolean('Use Glass Substitute', default=False)
+    use_glass_substitute = fields.Boolean(default=False)
     # Options
-    grid_id = fields.Many2one('product.glass.grid', 'Grid')
-    spacer_id = fields.Many2one('product.glass.spacer', 'Spacer')
-    finish_id = fields.Many2one('product.glass.finish', 'Finish')
-    options_total = fields.Float('Total options', compute="compute_options", readonly=True, default=0)
+    grid_id = fields.Many2one('product.glass.grid')
+    spacer_id = fields.Many2one('product.glass.spacer')
+    finish_id = fields.Many2one('product.glass.finish')
+    options_total = fields.Float('Total options', compute="_compute_options", readonly=True, default=0)
     # Extras
     extras_ids = fields.Many2many('product.glass.extra', string="Extras")
-    extras_total = fields.Float('Total extras', compute="compute_extras", readonly=True, default=0)
+    extras_total = fields.Float('Total extras', compute="_compute_extras", readonly=True, default=0)
     # Accessory
     accessory_id = fields.Many2one('product.product', 'Accessory')
-    accessory_price = fields.Float('Acc. Price', default=0, compute="compute_accessory")
+    accessory_price = fields.Float('Acc. Price', default=0, compute="_compute_accessory")
 
-    multiplier = fields.Float('Multiplier', required=True, default=1.0)
-    quantity = fields.Integer('Quantity', required=True, default=1)
-    total = fields.Float('Total', compute="_compute_total", required=True)
-
-    # TBD
-    supplier_id = fields.Many2one('res.partner', 'Supplier')
-    standard_price = fields.Float(related='glass_front_id.standard_price')
-    lst_price = fields.Float(related='glass_front_id.lst_price')
-    margin = fields.Float(related='category_id.margin_default')
-    dimension_constraint_id = fields.Many2one('product.glass.dimconstraint', 'Dimension constraint')
+    multiplier = fields.Float(required=True, default=1.0)
+    quantity = fields.Integer(required=True, default=1)
+    total = fields.Float(compute="_compute_total", required=True)
 
     @api.model
     def create(self, values):
-        """ Make sur description is saved """
+        """ Make sur description is saved to db"""
         # update description
         if not values.get('description'):
             self._compute_description()
@@ -85,7 +87,7 @@ class SaleOrderLineSub(models.Model):
         if not values.get('description'):
             self._compute_description()
             values['description'] = self.description
-        super(SaleOrderLineSub, self).write(values)
+        return super(SaleOrderLineSub, self).write(values)
 
     @api.onchange('glass_front_id')
     def get_glass_product_presets(self):
@@ -101,7 +103,7 @@ class SaleOrderLineSub(models.Model):
 
     @api.one
     @api.depends('glass_front_id', 'width', 'height')
-    def compute_area(self):
+    def _compute_area(self):
         """ Compute Area
         both geometric and invoiceable area
         """
@@ -113,9 +115,9 @@ class SaleOrderLineSub(models.Model):
 
         if self.glass_front_id:
             # in order to have the area in square meters (mm * mm => m^2)
-            a = unit_area
+            area = unit_area
             if self.glass_front_id.minimum_invoiceable and self.glass_front_id.minimum_invoiceable > unit_area:
-                a = self.glass_front_id.minimum_invoiceable
+                area = self.glass_front_id.minimum_invoiceable
                 self.area += self.glass_front_id.minimum_invoiceable
             else:
                 self.area += unit_area
@@ -124,16 +126,13 @@ class SaleOrderLineSub(models.Model):
             self.area_cost_price = self.glass_front_id.list_price
 
             # Check if area is exceeded
-            if 0 < self.glass_front_id.maximum_area_possible < a:
-                self.area_max_exceeded_front = True
-            else:
-                self.area_max_exceeded_front = False
+            self.area_max_exceeded_front = bool(0 < self.glass_front_id.maximum_area_possible < area)
 
         if self.glass_back_id:
             # in order to have the area in square meters (mm * mm => m^2)
-            a = unit_area
+            area = unit_area
             if self.glass_back_id.minimum_invoiceable and self.glass_back_id.minimum_invoiceable > unit_area:
-                a = self.glass_back_id.minimum_invoiceable
+                area = self.glass_back_id.minimum_invoiceable
                 self.area += self.glass_back_id.minimum_invoiceable
             else:
                 self.area += unit_area
@@ -142,16 +141,13 @@ class SaleOrderLineSub(models.Model):
             self.area_cost_price += self.glass_back_id.list_price
 
             # Check if area is exceeded
-            if 0 < self.glass_back_id.maximum_area_possible < a:
-                self.area_max_exceeded_back = True
-            else:
-                self.area_max_exceeded_back = False
+            self.area_max_exceeded_back = bool(0 < self.glass_back_id.maximum_area_possible < area)
 
         if self.glass_middle_id:
             # in order to have the area in square meters (mm * mm => m^2)
-            a = unit_area
+            area = unit_area
             if self.glass_middle_id.minimum_invoiceable and self.glass_middle_id.minimum_invoiceable > unit_area:
-                a = self.glass_middle_id.minimum_invoiceable
+                area = self.glass_middle_id.minimum_invoiceable
                 self.area += self.glass_middle_id.minimum_invoiceable
             else:
                 self.area += unit_area
@@ -160,10 +156,7 @@ class SaleOrderLineSub(models.Model):
             self.area_cost_price += self.glass_middle_id.list_price
 
             # Check if area is exceeded
-            if 0 < self.glass_middle_id.maximum_area_possible < a:
-                self.area_max_exceeded_middle = True
-            else:
-                self.area_max_exceeded_middle = False
+            self.area_max_exceeded_middle = bool(0 < self.glass_middle_id.maximum_area_possible < area)
 
         # Set price for area and shape
         if self.shape_id:
@@ -183,7 +176,7 @@ class SaleOrderLineSub(models.Model):
 
     @api.one
     @api.depends('width', 'height', 'edge_width', 'edge_height')
-    def compute_perimeter(self):
+    def _compute_perimeter(self):
         """ In order to have the area perimeter in meters we divide by 1000
         """
         self.perimeter = ((float(self.width) * float(self.edge_width)) +
@@ -196,13 +189,13 @@ class SaleOrderLineSub(models.Model):
 
     @api.one
     @api.depends('accessory_id')
-    def compute_accessory(self):
+    def _compute_accessory(self):
         self.accessory_price = self.accessory_id.lst_price
         self._compute_description()
 
     @api.one
     @api.onchange('finish_id', 'spacer_id', 'grid_id')
-    def compute_options(self):
+    def _compute_options(self):
         self.options_total = 0
         if self.finish_id and self.finish_id.price:
             self.options_total += self.finish_id.compute_price(self.area_geometric)
@@ -214,7 +207,7 @@ class SaleOrderLineSub(models.Model):
 
     @api.one
     @api.depends('extras_ids')
-    def compute_extras(self):
+    def _compute_extras(self):
         self.extras_total = 0
         if self.extras_ids:
             for line in self.extras_ids:
@@ -240,11 +233,14 @@ class SaleOrderLineSub(models.Model):
         text = ''
         if self.type == 'glass':
             if self.glass_front_id:
-                text += "Front: {} - {}".format(self.glass_front_id.categ_id.name.encode('utf-8'), self.glass_front_id.name.encode('utf-8'))
+                text += "Front: {} - {}".format(self.glass_front_id.categ_id.name.encode('utf-8'),
+                                                self.glass_front_id.name.encode('utf-8'))
             if self.glass_back_id:
-                text += "\nBack: {} - {}".format(self.glass_back_id.categ_id.name.encode('utf-8'), self.glass_back_id.name.encode('utf-8'))
+                text += "\nBack: {} - {}".format(self.glass_back_id.categ_id.name.encode('utf-8'),
+                                                 self.glass_back_id.name.encode('utf-8'))
             if self.glass_middle_id:
-                text += "\nMiddle: {} - {}".format(self.glass_middle_id.categ_id.name.encode('utf-8'),self.glass_middle_id.name.encode('utf-8'))
+                text += "\nMiddle: {} - {}".format(self.glass_middle_id.categ_id.name.encode('utf-8'),
+                                                   self.glass_middle_id.name.encode('utf-8'))
             if self.quantity:
                 text += "\n- {} volume(s) de {} mm x {} mm".format(self.quantity, self.width, self.height)
                 if self.shape_id:
@@ -256,17 +252,20 @@ class SaleOrderLineSub(models.Model):
                 if self.grid_id:
                     text += ", " + str(self.grid_id.name.encode('utf-8'))
             if self.area_max_exceeded_front or self.area_max_exceeded_back or self.area_max_exceeded_middle:
-                setting = self.env['glass.sale.config.settings.data'].search([('company_id', '=', self.env.user.company_id.id)])
-                text += "\n /!\ "
+                setting = self.env['glass.sale.config.settings.data'].search([
+                    ('company_id', '=', self.env.user.company_id.id)])
+                text += r"\n /!\ "
                 if self.area_max_exceeded_front:
-                    text += "\n /!\ [{}]".format(self.glass_front_id.name.encode('utf-8'))
+                    text += r"\n /!\ [{}]".format(self.glass_front_id.name.encode('utf-8'))
                 if self.area_max_exceeded_back:
-                    text += "\n /!\ [{}]".format(self.glass_back_id.name.encode('utf-8'))
+                    text += r"\n /!\ [{}]".format(self.glass_back_id.name.encode('utf-8'))
                 if self.area_max_exceeded_middle:
-                    text += "\n /!\ [{}]".format(self.glass_middle_id.name.encode('utf-8'))
-                text += "\n /!\ " + str(setting.glass_maximum_area_warning.encode('utf-8'))
+                    text += r"\n /!\ [{}]".format(self.glass_middle_id.name.encode('utf-8'))
+                text += r"\n /!\ " + str(setting.glass_maximum_area_warning.encode('utf-8'))
             if self.edge_id:
-                text += "\n- " + str(self.edge_id.name.encode('utf-8')) + " (" + str(self.edge_width) + " / " + str(self.edge_height) + ")"
+                text += "\n- {} ({} / {})".format(str(self.edge_id.name.encode('utf-8')),
+                                                  str(self.edge_width),
+                                                  str(self.edge_height))
         elif self.type == 'accessory':
             if self.accessory_id:
                 text = "{}".format(self.accessory_id.name.encode('utf-8'))
