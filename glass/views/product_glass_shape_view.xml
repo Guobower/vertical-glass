@@ -12,7 +12,7 @@
                             <field name="multiplier"/>
                         </group>
                         <group>
-                            <field name="photo" widget="image" class="oe_avatar"/>
+                            <field name="photo" widget="image" height="20"/>
                         </group>
                     </group>
                 </form>

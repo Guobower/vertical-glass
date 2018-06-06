@@ -7,9 +7,24 @@
             <field name="inherit_id" ref="product.product_category_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//group[@name='first']" position="after">
-                    <group name="sale" col="4" string="Sale">
-                        <field name="margin_default"/>
-                    </group>
+                    <notebook colspan="4">
+                        <page string="Sale">
+                            <group name="sale" col="4" string="Sale">
+                                <field name="margin_default"/>
+                                <field name="min_invoice_area"/>
+                            </group>
+                        </page>
+                        <page string="Associated products">
+                            <group string="Associated products" mode="tree,kanban">
+                                <field name="linked_product_ids"  nolabel="1" editable="bottom"
+                                       context="{'categ_id': active_id}">
+                                    <field name="display_name"/>
+                                    <field name="active"/>
+                                    <field name="code"/>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
                 </xpath>
             </field>
         </record>

@@ -7,3 +7,15 @@ good-names=_logger
 # skip mandatory docstring for short function
 docstring-min-length=10
 
+# accepts line length matching pycharm default
+max-line-length=120
+
+[MESSAGES CONTROL]
+# disabled messages
+# C8202 UTF-8 coding is not necessary
+# R0903 Too few public methods
+# W0611 Unused import
+# W8104	api.one deprecated
+# E0401 Unable to import 'some_module'
+disable=C8202, R0903, W0611, W8104, E0401
+

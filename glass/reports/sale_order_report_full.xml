@@ -52,7 +52,13 @@
                                                 <tr>
                                                     <td>
                                                         Glass: <br />
-                                                        <span t-field="sub.glass_id.name" /> - <span t-field="sub.shape_id.name" /> <br />
+                                                        <span t-field="sub.glass_front_id.name" /> - <span t-field="sub.shape_id.name" /> <br />
+                                                        <t t-if="sub.glass_back_id">
+                                                            <span t-field="sub.glass_back_id.name" /> - <span t-field="sub.shape_id.name" /> <br />
+                                                        </t>
+                                                        <t t-if="sub.glass_middle_id">
+                                                            <span t-field="sub.glass_middle_id.name" /> - <span t-field="sub.shape_id.name" /> <br />
+                                                        </t>
                                                         <span t-field="sub.width" />mm x <span t-field="sub.height" />mm <br /> (<span t-field="sub.area" />m<sup>2</sup> - <span t-field="sub.perimeter" />m)
                                                         <span t-field="sub.edge_id.name" /> : <span t-field="sub.edge_width" /> / <span t-field="sub.edge_height" /> <br />
                                                     </td>

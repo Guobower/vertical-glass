@@ -32,7 +32,7 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="product_glass_finish_menu" name="Product finishes" parent="glass_sale_config_menu"
-                  sequence="25" action="product_glass_finish_action"/>
+        <menuitem id="product_glass_finish_menu" name="Product Finishes" parent="glass_sale_config_menu"
+                  sequence="29" action="product_glass_finish_action"/>
     </data>
 </openerp>

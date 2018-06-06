@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <!-- Remix product form to add wood fields -->
+    <record id="view_product_template_wood_inherit" model="ir.ui.view">
+        <field name="name">product.template.glass.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']" position="after">
+                <page string="Glass">
+                    <group string="Settings">
+                        <field name="maximum_area_possible"/>
+                        <field name="maximum_area_substitute"
+                               domain="[('categ_id', '=ilike', 'vitrages'), ('id', '!=', id)]"/>
+                        <field name="minimum_invoiceable"/>
+                    </group>
+                    <group string="Associated glass products">
+                        <field name="glass_back_id" string="Glass 02 (Back)"
+                               domain="[('categ_id', '=ilike', 'vitrages'), ('id', '!=', id)]"/>
+                        <field name="glass_middle_id" string="Glass 03 (Middle)"
+                               domain="[('categ_id', '=ilike', 'vitrages'), ('id', '!=', id)]"/>
+                    </group>
+                    <group>
+                        <page string="Associated product extras" name="wood_delivery_rules">
+                            <group string="Product Extras" mode="tree,kanban">
+                                <field name="product_extras_ids" nolabel="1" editable="bottom">
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="price"/>
+                                </field>
+                            </group>
+                        </page>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='list_price']" position="after">
+                <field name="price_with_auto_margin" widget="monetary"/>
+            </xpath>
+        </field>
+    </record>
+</openerp>
