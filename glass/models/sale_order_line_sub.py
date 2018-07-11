@@ -165,7 +165,7 @@ class SaleOrderLineSub(models.Model):
         # Check dimension constraint
         dim_constraint_rate = 1.0
         rules = self.env['product.glass.dimconstraint'].search([
-            '|', ('width', '>=', self.width), ('height', '>=', self.height)
+            '|', ('width', '<=', self.width), ('height', '<=', self.height)
         ], order='rate desc')
         if len(rules) > 0:
             dim_constraint_rate += rules[0].rate/100
