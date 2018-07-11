@@ -169,6 +169,7 @@ class SaleOrderLineSub(models.Model):
         ], order='rate desc')
         if len(rules) > 0:
             dim_constraint_rate += rules[0].rate/100
+            _logger.debug("\n\n\n TEST TEST : %s", rule)
 
         self.area_cost_price = self.area_cost_price * dim_constraint_rate
 
