@@ -168,7 +168,7 @@ class SaleOrderLineSub(models.Model):
             '|', ('width', '<=', self.width), ('height', '<=', self.height)
         ], order='rate desc')
         if len(rules) > 0:
-            dim_constraint_rate += rules[0].rate/100
+            dim_constraint_rate += float(rules[0].rate)/100
 
         self.area_cost_price = self.area_cost_price * dim_constraint_rate
 
