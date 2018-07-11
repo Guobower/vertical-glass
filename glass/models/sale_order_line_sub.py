@@ -165,12 +165,12 @@ class SaleOrderLineSub(models.Model):
         # Check dimension constraint
         dim_constraint_rate = 1.0
         rules = self.env['product.glass.dimconstraint'].search([
-            '|', ('width', '<=', self.width), ('height', '<=', self.height)
+            '|', ('width', '>=', self.width), ('height', '>=', self.height)
         ], order='rate desc')
         if len(rules) > 0:
             dim_constraint_rate += float(rules[0].rate)/100
 
-        self.area_cost_price = self.area_cost_price * dim_constraint_rate
+        self.area_total = self.area * self.area_cost_price * dim_constraint_rate
 
         self._compute_description()
 
@@ -216,7 +216,7 @@ class SaleOrderLineSub(models.Model):
         self._compute_description()
 
     @api.one
-    @api.depends('quantity', 'area_total', 'perimeter_total', 'multiplier', 'area_cost_price')
+    @api.depends('quantity', 'area_total', 'perimeter_total', 'multiplier')
     @api.onchange('accessory_id')
     def _compute_total(self):
         if self.type == 'glass':
