@@ -175,7 +175,7 @@ class SaleOrderLineSub(models.Model):
         self._compute_description()
 
     @api.one
-    @api.depends('width', 'height', 'edge_width', 'edge_height')
+    @api.depends('width', 'height', 'edge_width', 'edge_height', 'edge_id')
     def _compute_perimeter(self):
         """ In order to have the area perimeter in meters we divide by 1000
         """
