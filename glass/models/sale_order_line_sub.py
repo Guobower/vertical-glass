@@ -102,7 +102,7 @@ class SaleOrderLineSub(models.Model):
             self.extras_ids = self.glass_front_id.product_extras_ids
 
     @api.one
-    @api.depends('glass_front_id', 'width', 'height')
+    @api.depends('glass_front_id', 'width', 'height', 'shape_id')
     def _compute_area(self):
         """ Compute Area
         both geometric and invoiceable area
