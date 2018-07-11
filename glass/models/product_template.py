@@ -20,12 +20,13 @@ class ProductTemplate(models.Model):
     glass_back_id = fields.Many2one('product.product', string="Glass (back)")
     glass_middle_id = fields.Many2one('product.product', string="Glass (middle)")
     product_extras_ids = fields.Many2many('product.glass.extra', string='Product extras')
-    price_with_auto_margin = fields.Float('Marged Price', compute='_compute_price_with_auto_margin')
+    price_with_auto_margin = fields.Float('Marged Price', compute='_compute_sale_price')
     # keep a reference of the order in this line
     order_reference = fields.Char()
-
+    
     @api.multi
-    @api.depends('categ_id')
-    def _compute_price_with_auto_margin(self):
+    @api.onchange('categ_id', 'standard_price')
+    def _compute_sale_price(self):
         for product in self:
             product.price_with_auto_margin = product.standard_price * product.categ_id.margin_default
+            product.list_price = product.standard_price * product.categ_id.margin_default
