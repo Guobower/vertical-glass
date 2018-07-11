@@ -28,4 +28,4 @@ class ProductTemplate(models.Model):
     @api.depends('categ_id')
     def _compute_price_with_auto_margin(self):
         for product in self:
-            product.price_with_auto_margin = product.list_price * product.categ_id.margin_default
+            product.price_with_auto_margin = product.standard_price * product.categ_id.margin_default
