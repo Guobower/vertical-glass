@@ -37,8 +37,8 @@ class SaleOrderLineSub(models.Model):
     edge_width = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on W.', required=True, default=2)
     edge_height = fields.Selection([('0', '0'), ('1', '1'), ('2', '2')], 'Edges on H.', required=True, default=2)
 
-    perimeter = fields.Float('Perimeter (M)', compute='_compute_perimeter', store=True)
-    perimeter_cost_price = fields.Float(compute="_compute_perimeter")
+    perimeter = fields.Float('Perimeter (m)', compute='_compute_perimeter', store=True)
+    perimeter_cost_price = fields.Float(string='Perimeter Cost price (m)', compute="_compute_perimeter")
     perimeter_total = fields.Float(compute='_compute_perimeter')
 
     area = fields.Float('Invoice Area (m^2)', compute='_compute_area', store=True)
@@ -165,12 +165,12 @@ class SaleOrderLineSub(models.Model):
         # Check dimension constraint
         dim_constraint_rate = 1.0
         rules = self.env['product.glass.dimconstraint'].search([
-            '|', ('width', '>=', self.width), ('height', '>=', self.height)
+            '|', ('width', '<=', self.width), ('height', '<=', self.height)
         ], order='rate desc')
         if len(rules) > 0:
             dim_constraint_rate += rules[0].rate/100
 
-        self.area_total = self.area * self.area_cost_price * dim_constraint_rate
+        self.area_cost_price = self.area_cost_price * dim_constraint_rate
 
         self._compute_description()
 
@@ -216,7 +216,7 @@ class SaleOrderLineSub(models.Model):
         self._compute_description()
 
     @api.one
-    @api.depends('quantity', 'area_total', 'perimeter_total', 'multiplier')
+    @api.depends('quantity', 'area_total', 'perimeter_total', 'multiplier', 'area_cost_price')
     @api.onchange('accessory_id')
     def _compute_total(self):
         if self.type == 'glass':
