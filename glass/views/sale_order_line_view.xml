@@ -110,9 +110,18 @@
                                                 </group>
                                                 <group>
                                                     <group string="Product Options">
-                                                        <field name="finish_id"/>
-                                                        <field name="spacer_id"/>
-                                                        <field name="grid_id"/>
+                                                        <group name="other_options_settings">
+                                                            <field name="finish_id"/>
+                                                            <field name="spacer_id"/>
+                                                        </group>
+                                                        <group name="grid_settings">
+                                                            <div class="address_format">
+                                                                <label for="grid_socket_qty" />
+                                                                <field name="grid_socket_qty" class="oe_inline"/>
+                                                                <field name="grid_id" nolabel="1" class="oe_inline" attrs="{'required': [('grid_socket_qty', '>', 1)], 'invisible': [('grid_socket_qty', '&lt;=', 1)]}"/>
+                                                                <field name="grid_colour" nolabel="1" placeholder="colour" attrs="{'required': [('grid_socket_qty', '>', 1)], 'invisible': [('grid_socket_qty', '&lt;=', 1)]}" class="oe_inline"/>
+                                                            </div>
+                                                        </group>
                                                     </group>
                                                 </group>
                                                 <group>

@@ -58,6 +58,8 @@ class SaleOrderLineSub(models.Model):
     use_glass_substitute = fields.Boolean(default=False)
     # Options
     grid_id = fields.Many2one('product.glass.grid')
+    grid_colour = fields.Char()
+    grid_socket_qty = fields.Integer(default=1)
     spacer_id = fields.Many2one('product.glass.spacer')
     finish_id = fields.Many2one('product.glass.finish')
     options_total = fields.Float('Total options', compute="_compute_options", readonly=True, default=0)
@@ -194,15 +196,19 @@ class SaleOrderLineSub(models.Model):
         self._compute_description()
 
     @api.one
-    @api.onchange('finish_id', 'spacer_id', 'grid_id')
+    @api.onchange('finish_id', 'spacer_id', 'grid_id', 'grid_socket_qty')
     def _compute_options(self):
         self.options_total = 0
         if self.finish_id and self.finish_id.price:
             self.options_total += self.finish_id.compute_price(self.area_geometric)
         if self.spacer_id and self.spacer_id.price:
             self.options_total += self.spacer_id.compute_price(self.area_geometric)
-        if self.grid_id and self.grid_id.price:
-            self.options_total += self.grid_id.compute_price()
+        if self.grid_socket_qty > 1 and self.grid_id:
+            self.options_total += self.grid_id.price * self.grid_socket_qty
+        elif self.grid_socket_qty == 1:
+            self.grid_id = None
+            self.grid_colour = ''
+            
         self._compute_description()
 
     @api.one
@@ -249,8 +255,12 @@ class SaleOrderLineSub(models.Model):
                     text += ", " + str(self.finish_id.name.encode('utf-8'))
                 if self.spacer_id:
                     text += ", " + str(self.spacer_id.name.encode('utf-8'))
-                if self.grid_id:
-                    text += ", " + str(self.grid_id.name.encode('utf-8'))
+                if self.grid_socket_qty > 1:
+                    text += ", " + str(self.grid_socket_qty) + " sockets"
+                    if self.grid_id:
+                        text += " " + str(self.grid_id.name.encode('utf-8'))
+                        if self.grid_colour:
+                            text += " (colour: " + str(self.grid_colour) + ")"
             if self.area_max_exceeded_front or self.area_max_exceeded_back or self.area_max_exceeded_middle:
                 setting = self.env['glass.sale.config.settings.data'].search([
                     ('company_id', '=', self.env.user.company_id.id)])

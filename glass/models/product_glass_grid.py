@@ -16,9 +16,8 @@ class GlassGrid(models.Model):
     _description = "Glass Grid"
 
     name = fields.Char(required=True)
-    colour = fields.Char(required=True)
-    sockets = fields.Integer(required=True, default=0)
-    price = fields.Float('Price / socket', required=True)
+    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.user.company_id.currency_id)
+    price = fields.Monetary('Price / socket', required=True)
 
     @api.multi
     def name_get(self):
@@ -27,10 +26,6 @@ class GlassGrid(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s %d sockets (%s) [%.2f EUR]"
-                           % (record.name, record.sockets, record.colour, record.price)))
+            result.append((record.id, "%s [%.2f %s / socket]"
+                           % (record.name, record.price, record.currency_id.symbol)))
         return result
-
-    @api.multi
-    def compute_price(self):
-        return self.price * self.sockets
