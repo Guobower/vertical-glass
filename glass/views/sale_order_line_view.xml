@@ -137,10 +137,10 @@
                                             <!-- TOTALS -->
                                             <group class="oe_subtotal_footer oe_right" colspan="2" name="total_summary">
                                                 <field name="currency_id" string="Currency" invisible="1"/>
-                                                <field name="area_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                                                <field name="perimeter_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                                                <field name="options_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                                                <field name="extras_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                                <field name="area_total" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('type', '!=', 'glass')]}"/>
+                                                <field name="perimeter_total" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('type', '!=', 'glass')]}"/>
+                                                <field name="options_total" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('type', '!=', 'glass')]}"/>
+                                                <field name="extras_total" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('type', '!=', 'glass')]}"/>
                                                 <field name="quantity"/>
                                                 <field name="multiplier"/>
                                                 <div class="oe_subtotal_footer_separator oe_inline o_td_label">
