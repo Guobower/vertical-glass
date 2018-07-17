@@ -26,6 +26,6 @@ class GlassGrid(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s [%.2f %s / socket]"
+            result.append((record.id, "%s [%.2f %s / alv.]"
                            % (record.name, record.price, record.currency_id.symbol)))
         return result

@@ -256,11 +256,11 @@ class SaleOrderLineSub(models.Model):
                 if self.spacer_id:
                     text += ", " + str(self.spacer_id.name.encode('utf-8'))
                 if self.grid_socket_qty > 1:
-                    text += ", " + str(self.grid_socket_qty) + " sockets"
+                    text += ", " + str(self.grid_socket_qty) + " alvéoles"
                     if self.grid_id:
                         text += " " + str(self.grid_id.name.encode('utf-8'))
                         if self.grid_colour:
-                            text += " (colour: " + str(self.grid_colour) + ")"
+                            text += " (couleur : " + str(self.grid_colour) + ")"
             if self.area_max_exceeded_front or self.area_max_exceeded_back or self.area_max_exceeded_middle:
                 setting = self.env['glass.sale.config.settings.data'].search([
                     ('company_id', '=', self.env.user.company_id.id)])
