@@ -15,10 +15,13 @@ class GlassDimConstraint(models.Model):
     """
     _name = 'product.glass.dimconstraint'
     _description = "Glass Dimension Constraint"
+    _order = "rate asc"
 
     name = fields.Char(required=True)
-    width = fields.Integer('Width (mm)', default=1000, required=True)
-    height = fields.Integer('Height (mm)', default=1000, required=True)
+    mode = fields.Selection([('inside_rectangle', 'Inside rectangle'), ('area', 'Area')], required=True)
+    width = fields.Integer('Width (mm)', default=1000)
+    height = fields.Integer('Height (mm)', default=1000)
+    area = fields.Float('Area (m^2)', default=1)
     rate = fields.Integer('Rate (%)', required=True)
 
     @api.multi
@@ -28,5 +31,5 @@ class GlassDimConstraint(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s [%s %%]" % (record.name, record.rate)))
+            result.append((record.id, "%s [+%s %%]" % (record.name, record.rate)))
         return result

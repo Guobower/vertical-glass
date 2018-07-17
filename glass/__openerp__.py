@@ -1,6 +1,6 @@
 {
     'name': "Glass Company in Odoo",
-    'version': '9.0.1.0.4',
+    'version': '9.0.1.0.5',
     'author': "AbAKUS it-solutions SARL",
     'website': "http://www.abakusitsolutions.eu",
     'category': 'Sale',

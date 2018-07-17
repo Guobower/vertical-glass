@@ -8,13 +8,15 @@
                 <form>
                     <sheet>
                         <group>
+                             <field name="name" colspan="4" />
                             <group>
-                                <field name="name" />
                                 <field name="rate" />
+                                <field name="mode" class="oe_inline"/>
                             </group>
                             <group>
-                                <field name="height" class="oe_inline" />
-                                <field name="width" class="oe_inline" />
+                                <field name="height" class="oe_inline" attrs="{'invisible': [('mode', '!=', 'inside_rectangle')], 'required': [('mode', '=', 'inside_rectangle')]}"/>
+                                <field name="width" class="oe_inline" attrs="{'invisible': [('mode', '!=', 'inside_rectangle')], 'required': [('mode', '=', 'inside_rectangle')]}"/>
+                                <field name="area" class="oe_inline" attrs="{'invisible': [('mode', '!=', 'area')], 'required': [('mode', '=', 'area')]}"/>
                             </group>
                         </group>
                     </sheet>
@@ -28,8 +30,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name" />
-                    <field name="height" />
-                    <field name="width" />
+                    <field name="mode" />
                     <field name="rate" />
                 </tree>
             </field>

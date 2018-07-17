@@ -58,6 +58,7 @@
                                                                attrs="{'required':[('type','=','glass')]}"/>
                                                         <field name="height"
                                                                attrs="{'required':[('type','=','glass')]}"/>
+                                                        <field name="dimconstraint_id" attrs="{'invisible': [('dimconstraint_id', '=', False)]}" readonly="True" colspan="6"/>
                                                     </group>
                                                     <group col="6" name="edge">
                                                         <field name="edge_id"

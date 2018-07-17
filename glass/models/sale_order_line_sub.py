@@ -63,6 +63,7 @@ class SaleOrderLineSub(models.Model):
     spacer_id = fields.Many2one('product.glass.spacer')
     finish_id = fields.Many2one('product.glass.finish')
     options_total = fields.Float('Total options', compute="_compute_options", readonly=True, default=0)
+    dimconstraint_id = fields.Many2one('product.glass.dimconstraint')
     # Extras
     extras_ids = fields.Many2many('product.glass.extra', string="Extras")
     extras_total = fields.Float('Total extras', compute="_compute_extras", readonly=True, default=0)
@@ -164,18 +165,51 @@ class SaleOrderLineSub(models.Model):
         if self.shape_id:
             self.area_cost_price = self.area_cost_price*float(self.shape_id.multiplier)
 
-        # Check dimension constraint
+        # Check dimension constraints
         dim_constraint_rate = 1.0
-        rules = self.env['product.glass.dimconstraint'].search([
-            '|', ('width', '<=', self.width), ('height', '<=', self.height)
-        ], order='rate desc')
-        if len(rules) > 0:
-            dim_constraint_rate += float(rules[0].rate)/100
-            self.area_cost_price = self.area_cost_price * dim_constraint_rate
+        self.dimconstraint_id = None
+        rules = self.env['product.glass.dimconstraint'].search([], order='rate desc')
+        for rule in rules:
+            # Area max
+            if rule.mode == 'area':
+                if self.area > rule.area:
+                    self.dimconstraint_id = rule
+                    dim_constraint_rate += float(rule.rate)/100
+                    break
+            # Inside rectangle
+            elif rule.mode == 'inside_rectangle':
+                if not self.can_be_inserted_inside_shape(rule):
+                    self.dimconstraint_id = rule
+                    dim_constraint_rate += float(rule.rate)/100
+                    break
+            else:
+                self.dimconstraint_id = None
 
+        # Apply the constraint if exists
+        self.area_cost_price = self.area_cost_price * dim_constraint_rate
         self.area_total = self.area * self.area_cost_price
 
         self._compute_description()
+
+    # This method tests if the current shape with dimension can be inserted inside the rule dimensions
+    @api.model
+    def can_be_inserted_inside_shape(self, rule):
+        # We always use an "horizontal rectangle" : where the width is greater or equal than the height
+        # Variables
+        order_dim = {
+            'width': self.width if self.width >= self.height else self.height,
+            'height': self.height if self.height <= self.width else self.width,
+        }
+        rule_dim = {
+            'width': rule.width if rule.width >= rule.height else rule.height,
+            'height': rule.height if rule.height <= rule.width else rule.width,
+        }
+        _logger.debug("Order: %s | Rule: %s", order_dim, rule_dim)
+
+        # Test
+        if (order_dim['width'] > rule_dim['width'] or order_dim['height'] > rule_dim['height']):
+            return False
+        return True
 
     @api.one
     @api.depends('width', 'height', 'edge_width', 'edge_height', 'edge_id')
