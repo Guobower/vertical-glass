@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c-20161104\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 07:33+0000\n"
-"PO-Revision-Date: 2018-07-17 09:58+0200\n"
+"POT-Creation-Date: 2018-07-17 12:53+0000\n"
+"PO-Revision-Date: 2018-07-17 14:49+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -135,7 +135,7 @@ msgstr "<u>Vos références : </u>"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_accessory_price
 msgid "Acc. Price"
-msgstr "Prix de l’accessoire"
+msgstr "Prix de l’ACC."
 
 #. module: glass
 #: model:product.category,name:glass.product_category_acessories
@@ -161,7 +161,7 @@ msgstr "Adresse :"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_margin_applied
 msgid "Applied margin"
-msgstr "Marge appliquée"
+msgstr "Remise appliquée"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_glass_settings_form
@@ -234,7 +234,6 @@ msgid "Category"
 msgstr "Catégorie"
 
 #. module: glass
-#: model:ir.model.fields,field_description:glass.field_product_glass_grid_colour
 #: model:ir.model.fields,field_description:glass.field_product_glass_spacer_colour
 msgid "Colour"
 msgstr "Couleur"
@@ -297,6 +296,11 @@ msgid "Currency"
 msgstr "Devise"
 
 #. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_glass_grid_currency_id
+msgid "Currency id"
+msgstr "Devise"
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_res_partner_ref_auto
 #: model:ir.model.fields,field_description:glass.field_sale_order_reference_auto
 msgid "Customer Reference"
@@ -339,7 +343,7 @@ msgstr "Description"
 #. module: glass
 #: model:ir.ui.menu,name:glass.product_glass_dimconstraint_menu
 msgid "Dimension Constraint"
-msgstr "Dimension Constraint"
+msgstr "Contraintes de taille"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_display_name
@@ -354,7 +358,7 @@ msgstr "Dimension Constraint"
 #: model:ir.model.fields,field_description:glass.field_product_glass_spacer_display_name
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_display_name
 msgid "Display Name"
-msgstr "Afficher le nom"
+msgstr "Nom"
 
 #. module: glass
 #: model:product.category,name:glass.product_category_misc
@@ -585,9 +589,19 @@ msgid "Glass: <br/>"
 msgstr "Vitrage : <br/>"
 
 #. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_grid_colour
+msgid "Grid colour"
+msgstr "Couleur"
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_grid_id
 msgid "Grid id"
 msgstr "Croisillon"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_grid_socket_qty
+msgid "Grid socket qty"
+msgstr "Nombre d'alvéoles"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_full_report_document
@@ -886,13 +900,13 @@ msgstr "Partenaire"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter
-msgid "Perimeter (M)"
-msgstr "Périmètre (m)"
+msgid "Perimeter (m)"
+msgstr "Perimeter (m)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter_cost_price
-msgid "Perimeter cost price"
-msgstr "Prix du bord"
+msgid "Perimeter Cost price (m)"
+msgstr "Perimeter Cost price (m)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter_total
@@ -917,7 +931,7 @@ msgstr "Prix"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_edge_price
 msgid "Price (M)"
-msgstr "Prix (m)"
+msgstr "Prix (M)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_finish_price
@@ -969,7 +983,7 @@ msgstr "Produits de finition"
 #. module: glass
 #: model:ir.ui.menu,name:glass.product_glass_grid_menu
 msgid "Product Grid"
-msgstr "Produit de croisillon"
+msgstr "Croisillions"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
@@ -1104,11 +1118,6 @@ msgid "Shape image"
 msgstr "Image de la forme"
 
 #. module: glass
-#: model:ir.model.fields,field_description:glass.field_product_glass_grid_sockets
-msgid "Sockets"
-msgstr "Croisillons"
-
-#. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Solde TVAC"
 msgstr "Solde TVAC"
@@ -1166,7 +1175,7 @@ msgstr "Rapport Technique"
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
 msgid "The specified area for the back product exceeds the maximum size on the product settings. If you leave the area as it, a message informing the customer about the loss of warranty will be added to the line. If you want to add the substitute product, use the button 'Substitute' in the form."
-msgstr "La surface spécifiée sur le vitrage de derrière dépasse le maximum défini sur les paramètres du produit. Si vous la laissez comme tel, un message informant le client que la garantie sur le vitrage n'est plus applicable apparaîtra sur le rapport. Si vous voulez utiliser le produit substitut de celui sélectionner, cochez la case ci dessous."
+msgstr "La surface spécifiée dépasse le maxium défini sur les paramètres du produit. Si vous la laissez comme tel, un message informant le client que la garantie sur le vitrage n'est plus applicable apparaîtra sur le rapport. Si vous voulez utiliser le produit substitut de celui sélectionner, cochez la case ci dessous."
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
@@ -1308,6 +1317,11 @@ msgstr "Historique de communication du site web"
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_width
 msgid "Width (mm)"
 msgstr "Largeur  (mm)"
+
+#. module: glass
+#: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
+msgid "colour"
+msgstr "Couleur"
 
 #. module: glass
 #: model:ir.model,name:glass.model_glass_sale_config_settings
