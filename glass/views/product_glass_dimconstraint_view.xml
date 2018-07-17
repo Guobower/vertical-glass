@@ -6,12 +6,18 @@
             <field name="model">product.glass.dimconstraint</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>
-                        <field name="name" />
-                        <field name="height" />
-                        <field name="width" />
-                        <field name="rate" />
-                    </group>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="rate" />
+                            </group>
+                            <group>
+                                <field name="height" class="oe_inline" />
+                                <field name="width" class="oe_inline" />
+                            </group>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
