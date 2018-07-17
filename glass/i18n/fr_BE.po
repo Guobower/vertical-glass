@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c-20161104\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 12:53+0000\n"
-"PO-Revision-Date: 2018-07-17 14:49+0200\n"
+"POT-Creation-Date: 2018-07-17 14:51+0000\n"
+"PO-Revision-Date: 2018-07-17 16:49+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -161,7 +161,7 @@ msgstr "Adresse :"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_margin_applied
 msgid "Applied margin"
-msgstr "Remise appliquée"
+msgstr "Marge appliquée"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_glass_settings_form
@@ -169,14 +169,20 @@ msgid "Apply"
 msgstr "Appliquer"
 
 #. module: glass
+#: selection:product.glass.dimconstraint,mode:0
+msgid "Area"
+msgstr "Surface"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_glass_dimconstraint_area
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area_geometric
 msgid "Area (m^2)"
-msgstr "Surface (m^2)"
+msgstr "Surface (m²)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area_cost_price
 msgid "Area Cost Price (m^2)"
-msgstr "Prix de la surface (m^2)"
+msgstr "Prix au m²"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area_total
@@ -341,6 +347,11 @@ msgid "Description"
 msgstr "Description"
 
 #. module: glass
+#: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_dimconstraint_id
+msgid "Dimconstraint id"
+msgstr "Contrainte de taille"
+
+#. module: glass
 #: model:ir.ui.menu,name:glass.product_glass_dimconstraint_menu
 msgid "Dimension Constraint"
 msgstr "Contraintes de taille"
@@ -358,7 +369,7 @@ msgstr "Contraintes de taille"
 #: model:ir.model.fields,field_description:glass.field_product_glass_spacer_display_name
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_display_name
 msgid "Display Name"
-msgstr "Nom"
+msgstr "Afficher le nom"
 
 #. module: glass
 #: model:product.category,name:glass.product_category_misc
@@ -645,6 +656,11 @@ msgid "Included"
 msgstr "Inclu"
 
 #. module: glass
+#: selection:product.glass.dimconstraint,mode:0
+msgid "Inside rectangle"
+msgstr "Inside rectangle"
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_installation
 msgid "Installation"
 msgstr "Pose"
@@ -667,7 +683,7 @@ msgstr "Pose :"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area
 msgid "Invoice Area (m^2)"
-msgstr "Surface facturable (m^2)"
+msgstr "Surface facturable (m²)"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
@@ -801,7 +817,7 @@ msgstr "Dépassement de la surface maximum pour le verre du millieu"
 #: model:ir.model.fields,field_description:glass.field_product_product_maximum_area_possible
 #: model:ir.model.fields,field_description:glass.field_product_template_maximum_area_possible
 msgid "Maximum Area with warranty (m^2)"
-msgstr "Surface maximum couverte par la garantie (m^2)"
+msgstr "Surface maximum couverte par la garantie (m²)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_men_quantity
@@ -816,18 +832,23 @@ msgstr "Nombre d'hommes"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_category_min_invoice_area
 msgid "Min. Invoiceable Area [m^2]"
-msgstr "Surface minimum facturable (m^2)"
+msgstr "Surface minimum facturable (m²)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_template_minimum_invoiceable
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_minimum_invoiceable
 msgid "Minimum Invoiceable (m^2)"
-msgstr "Minimum facturable (m^2)"
+msgstr "Minimum facturable (m²)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_miscellaneous_total
 msgid "Miscellaneous"
 msgstr "Autres"
+
+#. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_glass_dimconstraint_mode
+msgid "Mode"
+msgstr "Mode"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_moving
@@ -936,12 +957,12 @@ msgstr "Prix (M)"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_finish_price
 msgid "Price (m^2)"
-msgstr "Prix (m^2)"
+msgstr "Prix (m²)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_spacer_price
 msgid "Price / m^2"
-msgstr "Price / m^2"
+msgstr "Price (m²)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_grid_price
@@ -951,7 +972,7 @@ msgstr "Prix par alvéole"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_extra_price
 msgid "Price/Surface area [m^2]"
-msgstr "Prix / surface (m^2)"
+msgstr "Prix / surface (m²)"
 
 #. module: glass
 #: model:ir.model,name:glass.model_product_product
@@ -983,7 +1004,7 @@ msgstr "Produits de finition"
 #. module: glass
 #: model:ir.ui.menu,name:glass.product_glass_grid_menu
 msgid "Product Grid"
-msgstr "Croisillions"
+msgstr "Produit de croisillon"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
@@ -1225,7 +1246,7 @@ msgstr "Total TVAC"
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
 msgid "Total extra [m^2]"
-msgstr "Total extra (m^2)"
+msgstr "Total extra (m²)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_extras_total
