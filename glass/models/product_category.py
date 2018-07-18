@@ -13,6 +13,5 @@ class ProductCategory(models.Model):
     """
     _inherit = 'product.category'
 
-    margin_default = fields.Float('Default Margin', default=1)
     min_invoice_area = fields.Integer(string="Min. Invoiceable Area [m^2]")
     linked_product_ids = fields.One2many('product.product', 'categ_id', string="Linked Product")

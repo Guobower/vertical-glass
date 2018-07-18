@@ -10,7 +10,6 @@
                     <notebook colspan="4">
                         <page string="Sale">
                             <group name="sale" col="4" string="Sale">
-                                <field name="margin_default"/>
                                 <field name="min_invoice_area"/>
                             </group>
                         </page>
