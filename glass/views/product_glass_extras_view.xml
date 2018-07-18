@@ -6,9 +6,11 @@
             <field name="model">product.glass.extra.type</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>
-                        <field name="name" />
-                    </group>
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
@@ -35,11 +37,14 @@
             <field name="model">product.glass.extra</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>
-                        <field name="name" />
-                        <field name="type_id" />
-                        <field name="price" />
-                    </group>
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="type_id" />
+                            <field name="price" />
+                            <field name="currency_id" />
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>

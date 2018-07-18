@@ -17,14 +17,6 @@ class GlassExtraType(models.Model):
 
     name = fields.Char(required=True)
 
-    @api.multi
-    def name_get(self):
-        result = []
-        for record in self:
-            result.append((record.id, "%s" % record.name))
-        return result
-
-
 class GlassExtras(models.Model):
     """
     Main extra class
@@ -34,7 +26,8 @@ class GlassExtras(models.Model):
 
     name = fields.Char(required=True)
     type_id = fields.Many2one('product.glass.extra.type', required=True)
-    price = fields.Float('Price/Surface area [m^2]', required=True)
+    price = fields.Monetary('Price /m²', required=True)
+    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.user.company_id.currency_id)
 
     @api.multi
     def name_get(self):
@@ -43,5 +36,10 @@ class GlassExtras(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s [%s EUR]" % (record.name, record.price)))
+            # If admin
+            if self.env.user.id == 1:
+                result.append((record.id, "%s [%.2f%s /m^2]" % (record.name, record.price, record.currency_id.symbol)))
+            else:
+                result.append((record.id, "%s" % (record.name)))
+                
         return result

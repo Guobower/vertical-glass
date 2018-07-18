@@ -17,7 +17,8 @@ class GlassEdge(models.Model):
     _description = "Glass Edge"
 
     name = fields.Char(required=True)
-    price = fields.Char('Price (M)', required=True)
+    price = fields.Monetary('Price /m', required=True)
+    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.user.company_id.currency_id)
 
     @api.multi
     def name_get(self):
@@ -26,5 +27,9 @@ class GlassEdge(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s [%s EUR]" % (record.name, record.price)))
+            # If admin
+            if self.env.user.id == 1:
+                result.append((record.id, "%s [%.2f%s /m]" % (record.name, record.price, record.currency_id.symbol)))
+            else:
+                result.append((record.id, "%s" % (record.name)))
         return result

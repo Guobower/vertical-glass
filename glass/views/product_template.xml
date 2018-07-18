@@ -34,7 +34,8 @@
                 </page>
             </xpath>
             <xpath expr="//field[@name='list_price']" position="after">
-                <field name="price_with_auto_margin" widget="monetary"/>
+                <field name="price_with_auto_margin" widget="monetary" readonly="True"/>
+                <field name="margin"/>
             </xpath>
         </field>
     </record>

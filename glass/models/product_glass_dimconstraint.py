@@ -31,5 +31,9 @@ class GlassDimConstraint(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s [+%s %%]" % (record.name, record.rate)))
+            # If Admin
+            if self.env.user.id == 1:
+                result.append((record.id, "%s [+%s %%]" % (record.name, record.rate)))
+            else:
+                result.append((record.id, "%s" % (record.name)))
         return result

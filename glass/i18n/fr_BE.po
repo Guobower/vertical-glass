@@ -931,7 +931,7 @@ msgstr "Perimètre (m)"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter_cost_price
 msgid "Perimeter Cost price (m)"
-msgstr "Prix du périmètre (m)"
+msgstr "Prix du bord (m)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter_total
