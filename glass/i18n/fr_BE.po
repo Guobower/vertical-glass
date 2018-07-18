@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c-20161104\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 14:51+0000\n"
-"PO-Revision-Date: 2018-07-17 16:49+0200\n"
+"POT-Creation-Date: 2018-07-18 10:42+0000\n"
+"PO-Revision-Date: 2018-07-18 12:39+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -302,7 +302,11 @@ msgid "Currency"
 msgstr "Devise"
 
 #. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge_currency_id
+#: model:ir.model.fields,field_description:glass.field_product_glass_extra_currency_id
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish_currency_id
 #: model:ir.model.fields,field_description:glass.field_product_glass_grid_currency_id
+#: model:ir.model.fields,field_description:glass.field_product_glass_spacer_currency_id
 msgid "Currency id"
 msgstr "Devise"
 
@@ -321,11 +325,6 @@ msgstr "Référence client :"
 #: model:ir.ui.view,arch_db:glass.sale_order_technical_report_document
 msgid "Date :"
 msgstr "Date :"
-
-#. module: glass
-#: model:ir.model.fields,field_description:glass.field_product_category_margin_default
-msgid "Default Margin"
-msgstr "Marge par défaut"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_glass_sale_config_settings_data_default_footer_text
@@ -799,6 +798,11 @@ msgid "Marged Price"
 msgstr "Prix avec marge"
 
 #. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_template_margin
+msgid "Margin"
+msgstr "Margin"
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_area_max_exceeded_back
 msgid "Max area exceeded for the back glass"
 msgstr "Dépassement de la surface maximum pour le verre de derrière"
@@ -922,12 +926,12 @@ msgstr "Partenaire"
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter
 msgid "Perimeter (m)"
-msgstr "Perimeter (m)"
+msgstr "Perimètre (m)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter_cost_price
 msgid "Perimeter Cost price (m)"
-msgstr "Perimeter Cost price (m)"
+msgstr "Prix du périmètre (m)"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_sale_order_line_sub_perimeter_total
@@ -950,19 +954,9 @@ msgid "Price"
 msgstr "Prix"
 
 #. module: glass
-#: model:ir.model.fields,field_description:glass.field_product_glass_edge_price
-msgid "Price (M)"
-msgstr "Prix (M)"
-
-#. module: glass
-#: model:ir.model.fields,field_description:glass.field_product_glass_finish_price
-msgid "Price (m^2)"
-msgstr "Prix (m²)"
-
-#. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_spacer_price
-msgid "Price / m^2"
-msgstr "Price (m²)"
+msgid "Price / m²"
+msgstr "Price / m²"
 
 #. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_grid_price
@@ -970,9 +964,15 @@ msgid "Price / socket"
 msgstr "Prix par alvéole"
 
 #. module: glass
+#: model:ir.model.fields,field_description:glass.field_product_glass_edge_price
+msgid "Price /m"
+msgstr "Price /m"
+
+#. module: glass
 #: model:ir.model.fields,field_description:glass.field_product_glass_extra_price
-msgid "Price/Surface area [m^2]"
-msgstr "Prix / surface (m²)"
+#: model:ir.model.fields,field_description:glass.field_product_glass_finish_price
+msgid "Price /m²"
+msgstr "Price /m²"
 
 #. module: glass
 #: model:ir.model,name:glass.model_product_product
@@ -987,7 +987,7 @@ msgstr "Catégorie d'articles"
 #. module: glass
 #: model:ir.ui.menu,name:glass.product_glass_edge_menu
 msgid "Product Edges"
-msgstr "Finitions des bords"
+msgstr "Finitions de bord"
 
 #. module: glass
 #: model:ir.ui.menu,name:glass.product_glass_extras_menu
@@ -999,12 +999,12 @@ msgstr "Suppléments"
 #. module: glass
 #: model:ir.ui.menu,name:glass.product_glass_finish_menu
 msgid "Product Finishes"
-msgstr "Produits de finition"
+msgstr "Façonnages"
 
 #. module: glass
 #: model:ir.ui.menu,name:glass.product_glass_grid_menu
 msgid "Product Grid"
-msgstr "Produit de croisillon"
+msgstr "Croisillon"
 
 #. module: glass
 #: model:ir.ui.view,arch_db:glass.sale_order_line_for_glass_form
@@ -1019,7 +1019,7 @@ msgstr "Formes"
 #. module: glass
 #: model:ir.ui.menu,name:glass.product_glass_spacer_menu
 msgid "Product Spacer"
-msgstr "Produit d'intercalaire"
+msgstr "Intercalaire"
 
 #. module: glass
 #: model:ir.model,name:glass.model_product_template
