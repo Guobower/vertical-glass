@@ -22,7 +22,7 @@ class ProductTemplate(models.Model):
     product_extras_ids = fields.Many2many('product.glass.extra', string='Product extras')
 
     # Price
-    margin = fields.Float('Applied Margin', default=1)
+    margin = fields.Float('Margin', default=1)
     price_with_auto_margin = fields.Float('Marged Price', compute='_compute_sale_price')
 
     # keep a reference of the order in this line
