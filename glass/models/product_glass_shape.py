@@ -28,7 +28,11 @@ class GlassShape(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s [x %s]" % (record.name, record.multiplier)))
+            # If admin
+            if self.env.user.id == 1:
+                result.append((record.id, "%s [x%s]" % (record.name, record.multiplier)))
+            else:
+                result.append((record.id, "%s" % (record.name)))
         return result
 
     @classmethod

@@ -6,10 +6,13 @@
             <field name="model">product.glass.edge</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>
-                        <field name="name" />
-                        <field name="price" />
-                    </group>
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="price" />
+                            <field name="currency_id" />
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>

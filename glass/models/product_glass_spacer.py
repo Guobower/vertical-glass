@@ -17,7 +17,8 @@ class GlassSpacer(models.Model):
 
     name = fields.Char(required=True)
     colour = fields.Char(required=True)
-    price = fields.Float('Price / m^2', required=True)
+    price = fields.Monetary('Price / m²', required=True)
+    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.user.company_id.currency_id)
 
     @api.multi
     def name_get(self):
@@ -26,8 +27,11 @@ class GlassSpacer(models.Model):
         """
         result = []
         for record in self:
-            result.append((record.id, "%s (%s) [%.2f EUR]"
-                           % (record.name, record.colour, record.price)))
+            # If admin
+            if self.env.user.id == 1:
+                result.append((record.id, "%s (%s) [%.2f%s /m^2]" % (record.name, record.colour, record.price, record.currency_id.symbol)))
+            else:
+                result.append((record.id, "%s (%s)" % (record.name, record.colour)))
         return result
 
     @api.multi

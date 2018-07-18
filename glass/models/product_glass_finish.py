@@ -13,14 +13,19 @@ class GlassFinish(models.Model):
     _description = 'Glass Finish'
 
     name = fields.Char(required=True)
-    price = fields.Float('Price (m^2)', required=True, default=1)
+    price = fields.Monetary('Price /m²', required=True, default=1)
+    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.user.company_id.currency_id)
 
     @api.multi
     def name_get(self):
         """ Custom naming """
         result = []
         for record in self:
-            result.append((record.id, "%s [x %s]" % (record.name, str(record.price))))
+            # If admin
+            if self.env.user.id == 1:
+                result.append((record.id, "%s [%.2f%s /m^2]" % (record.name, record.price, record.currency_id.symbol)))
+            else:
+                result.append((record.id, "%s" % (record.name)))
         return result
 
     @api.multi

@@ -126,7 +126,7 @@ class SaleOrderLineSub(models.Model):
                 self.area += unit_area
             # Set area - actually area of 1 item
             self.area_geometric += unit_area
-            self.area_cost_price = self.glass_front_id.list_price
+            self.area_cost_price = self.glass_front_id.list_price  # Margin is already applied on the product (point 1)
 
             # Check if area is exceeded
             self.area_max_exceeded_front = bool(0 < self.glass_front_id.maximum_area_possible < area)
@@ -219,7 +219,7 @@ class SaleOrderLineSub(models.Model):
         self.perimeter = ((float(self.width) * float(self.edge_width)) +
                           (float(self.height) * float(self.edge_height))) / 1000
         if self.edge_id:
-            self.perimeter_cost_price = float(self.edge_id.price)
+            self.perimeter_cost_price = float(self.edge_id.price) * self.glass_front_id.margin # Apply margin here (point 2)
         self.perimeter_total = self.perimeter * self.perimeter_cost_price
 
         self._compute_description()
@@ -231,15 +231,15 @@ class SaleOrderLineSub(models.Model):
         self._compute_description()
 
     @api.one
-    @api.onchange('finish_id', 'spacer_id', 'grid_id', 'grid_socket_qty')
+    @api.onchange('finish_id', 'spacer_id', 'grid_id', 'grid_socket_qty', 'width', 'height')
     def _compute_options(self):
         self.options_total = 0
         if self.finish_id and self.finish_id.price:
-            self.options_total += self.finish_id.compute_price(self.area_geometric)
+            self.options_total += self.finish_id.compute_price(self.area_geometric) * self.glass_front_id.margin # Apply margin here (point 3)
         if self.spacer_id and self.spacer_id.price:
-            self.options_total += self.spacer_id.compute_price(self.area_geometric)
+            self.options_total += self.spacer_id.compute_price(self.area_geometric) * self.glass_front_id.margin # Apply margin here (point 4)
         if self.grid_socket_qty > 1 and self.grid_id:
-            self.options_total += self.grid_id.price * self.grid_socket_qty
+            self.options_total += self.grid_id.price * self.grid_socket_qty * self.glass_front_id.margin # Apply margin here (point 5)
         elif self.grid_socket_qty == 1:
             self.grid_id = None
             self.grid_colour = ''
